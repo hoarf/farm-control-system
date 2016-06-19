@@ -1,0 +1,8 @@
+%nav
+  %ul
+    - if user_signed_in?
+      %li= "Logado como #{current_user.email}"
+      %li= link_to "Sair", destroy_user_session_path, :method => :delete
+    - else
+      %li= link_to "Entrar no site", new_user_session_path
+      %li= link_to "Cadastrar", new_user_registration_path

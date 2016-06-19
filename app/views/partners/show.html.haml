@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @partner.name
+%p
+  %b Contact:
+  = @partner.contact
+%p
+  %b Deals:
+  = @partner.deals
+
+= link_to 'Edit', edit_partner_path(@partner)
+\|
+= link_to 'Back', partners_path

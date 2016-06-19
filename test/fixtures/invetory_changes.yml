@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2016-06-15
+  amount_male: 1
+  amount_female: 1
+
+two:
+  date: 2016-06-15
+  amount_male: 1
+  amount_female: 1

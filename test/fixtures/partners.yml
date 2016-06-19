@@ -1,0 +1,6 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+cooperativa:
+  name: Cooperativa
+  contact: 81018822
+

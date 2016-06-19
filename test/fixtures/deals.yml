@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+purchase:
+  date: 2016-06-15
+  price: 9.99
+  males: 1
+  females: 1
+  live_weight: 1.5
+  dead_weight: 1.5
+  deal_type: purchase
+  reason: ENGORDA
+
+sell:
+  date: 2016-06-15
+  price: 9.99
+  males: 1
+  females: 1
+  live_weight: 1.5
+  dead_weight: 1.5
+  deal_type: sell
+  reason: ABATE

@@ -1,0 +1,21 @@
+%h1 Listing others
+
+%table
+  %thead
+    %tr
+      %th Reason
+      %th
+      %th
+      %th
+
+  %tbody
+    - @others.each do |other|
+      %tr
+        %td= other.reason
+        %td= link_to 'Show', other
+        %td= link_to 'Edit', edit_other_path(other)
+        %td= link_to 'Destroy', other, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Other', new_other_path

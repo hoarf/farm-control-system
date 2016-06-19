@@ -1,0 +1,25 @@
+1. Existem negócios
+   1. Negócios possuem data, quantidade, total de machos e fêmeas involvido, total de
+      peso, finalidade, parceiro, total de peso morto
+   2. Um negócio *pertence a um* parceiro de negócio
+   3. Um negócio *possui uma* movimentação como ação de movimentação de inventário
+2. Existe um inventário do total de cabeças de gado
+   1. O inventário é uma memória das movimentações no inventário
+   2. O inventário discrimina o total de cabelas de gado de machos e fêmeas
+3. Existem movimentações no inventário
+   1. Negócios criam uma movimentação no inventário
+   2. Uma movimentação no inventário possui data e quantidade machos e fêmeas
+4. Existem relatórios
+   1. Deve mostrar o preço médio por tipo de negócio
+   2. Deve mostrar o preço ponderado pelo total de bois
+5. Existem parceiros
+   1. Parceiros possuem nome, contato e negócios.
+   2. Um parceiro *possui muitos* negócios
+6. Existem uma ação de movimentação genérica chamada de "Outra movimentação"
+   1. Outras movimentações *possuem uma* movimentação no inventário
+   2. Outras movimentações possui uma razão
+
+
+
+
+

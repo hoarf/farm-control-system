@@ -1,0 +1,37 @@
+%h1 Listing deals
+
+%table
+  %thead
+    %tr
+      %th Date
+      %th Price
+      %th Males
+      %th Females
+      %th Live weight
+      %th Dead weight
+      %th Deal type
+      %th Reason
+      %th Partner
+      %th
+      %th
+      %th
+
+  %tbody
+    - @deals.each do |deal|
+      %tr
+        %td= deal.date
+        %td= deal.price
+        %td= deal.males
+        %td= deal.females
+        %td= deal.live_weight
+        %td= deal.dead_weight
+        %td= deal.deal_type
+        %td= deal.reason
+        %td= deal.partner
+        %td= link_to 'Show', deal
+        %td= link_to 'Edit', edit_deal_path(deal)
+        %td= link_to 'Destroy', deal, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Deal', new_deal_path

@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Date:
+  = @deal.date
+%p
+  %b Price:
+  = @deal.price
+%p
+  %b Males:
+  = @deal.males
+%p
+  %b Females:
+  = @deal.females
+%p
+  %b Live weight:
+  = @deal.live_weight
+%p
+  %b Dead weight:
+  = @deal.dead_weight
+%p
+  %b Deal type:
+  = @deal.deal_type
+%p
+  %b Reason:
+  = @deal.reason
+%p
+  %b Partner:
+  = @deal.partner
+
+= link_to 'Edit', edit_deal_path(@deal)
+\|
+= link_to 'Back', deals_path
