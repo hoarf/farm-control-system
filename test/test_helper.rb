@@ -20,7 +20,7 @@ class ActiveSupport::TestCase
 end
 
 class ActionDispatch::IntegrationTest
-  include Capybara::DSL
+  fixtures :all
 end
 
 # See: https://gist.github.com/mperham/3049152
@@ -33,8 +33,6 @@ class ActiveRecord::Base
   end
 end
 ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
-require File.expand_path('../../config/environment', __FILE__)
-require 'rails/test_help'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.

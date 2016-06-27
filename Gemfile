@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby "2.2.5"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
@@ -49,6 +50,7 @@ group :development do
   gem 'web-console', '~> 2.0'
 
   gem 'guard'
+  gem 'guard-minitest'
 end
 
 group :test, :development do 
