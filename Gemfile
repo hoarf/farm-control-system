@@ -51,9 +51,11 @@ group :development do
 
   gem 'guard'
   gem 'guard-minitest'
+
+
 end
 
-group :test, :development do 
+group :test, :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
@@ -68,5 +70,7 @@ group :test do
   gem "shoulda-context"
   gem "shoulda-matchers", ">= 3.0.1"
   gem "test_after_commit"
+  gem 'minitest-rails'
+  gem 'minitest-rails-capybara'
+  gem 'minitest-spec'
 end
-
