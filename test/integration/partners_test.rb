@@ -2,14 +2,20 @@ require "test_helper"
 
 class PartnersTest < Capybara::Rails::TestCase
 
-  feature "can access home" do
+  subject { partners(:cooperativa) }
+  feature "create partner from report page" do
 
-    scenario "not logged yet" do
-      login_routine
-      visit root_path
+    background "user signs in and fill the form in" do
+      sign_in_user
+      click_link "Cadastrar contato"
+      page.must_have_content "Novo contato"
+      fill_in "Name", :with => subject.name
+      fill_in "Contact", :with => subject.contact
+      click_button "Salvar"
+    end
 
-
+    scenario "contact was valid" do
+      page.must_have_content "Contato cadastrado com sucesso"
     end
   end
-
 end
