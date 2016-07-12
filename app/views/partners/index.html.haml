@@ -1,25 +1,22 @@
-%h1 Listing partners
+#page-wrapper
+  = fa_page_header("Contatos", "user")
+  .row
+    .col-lg-12
+      %table.table.table-stripped.table-bordered.table-hover#dataTables-sales
+        %thead
+          %tr
+            %th Nome
+            %th Contato
+            %th Negócios
+            %th Ações
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th Contact
-      %th Deals
-      %th
-      %th
-      %th
-
-  %tbody
-    - @partners.each do |partner|
-      %tr
-        %td= partner.name
-        %td= partner.contact
-        %td= partner.deals
-        %td= link_to 'Show', partner
-        %td= link_to 'Edit', edit_partner_path(partner)
-        %td= link_to 'Destroy', partner, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Partner', new_partner_path
+        %tbody
+          - @partners.each do |partner|
+            %tr
+              %td= partner.name
+              %td= partner.contact
+              %td= link_to "Listar", deals_path, class: "btn btn-default"
+              %td
+                =link_to 'Detalhes', partner, class: "btn btn-default"
+                =link_to 'Editar', edit_partner_path(partner), class: "btn btn-default"
+                =link_to 'Apagar', partner, :method => :delete, :data => { :confirm => 'Tem certeza que deseja excluir?' }, class: "btn btn-default"

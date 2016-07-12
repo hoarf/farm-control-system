@@ -1,0 +1,3 @@
+* Application Backlog
+** TODO [#A] Change database to postgres
+** TODO [#C] Buy a domain and host this application

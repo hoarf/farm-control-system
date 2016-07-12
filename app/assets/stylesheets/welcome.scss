@@ -1,3 +1,48 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.fa-header {
+  background: white url(#{asset_path('bg.jpg')}) no-repeat fixed center;
+  height: 100%;
+}
+
+#wrapper {
+  height: 100%;
+}
+
+.fa-padding-top-bottom {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.container.fa-padding-left-right {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.panel-body.fa-login {
+  color: black;
+  padding: 40px;
+  background-color: rgba(100,100,100,.1);
+}
+
+.fa-intro-text {
+  color: #FFF;
+  text-shadow: 1px 1px grey;
+  font-size: 100px;
+  font-weight: 700;
+}
+.fa-intro-text span {
+  font-face: "Montserrat", "Helvetica Neue", "Arial", sans-serif;
+  font-weight: 700;
+}
+
+.fa-intro-subtext {
+  color: #FFF;
+  font-size: 30px;
+}
+
+.fa-intro-subtext.p {
+  margin-top: 20px;
+}

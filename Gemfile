@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby "2.2.5"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -34,13 +34,24 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 # Authentication
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 gem 'devise'
 
 # Haml
 gem 'haml'
 
+# Who wants to keep writing divs amirite?
+gem 'simple_form'
+
 # Haml generator
 gem 'haml-rails', '~> 0.9'
+
+# CSS
+gem 'jquery-turbolinks'
+gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'bootstrap_sb_admin_base_v2'
 
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -51,8 +62,6 @@ group :development do
 
   gem 'guard'
   gem 'guard-minitest'
-
-
 end
 
 group :test, :development do

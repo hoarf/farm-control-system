@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 %html
   %head
-    %title App
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    %title Aliança
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Montserrat:400,700', type: 'text/css'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Lora', type: 'text/css'
+
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
   %body
-    = render "layouts/navbar"
-    = render "layouts/links"
-    = yield
+    #wrapper
+      = render "shared/navbar"
+      = render "shared/links"
+
+      = yield

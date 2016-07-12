@@ -1,10 +1,12 @@
+# coding: utf-8
 class DealsController < ApplicationController
   before_action :set_deal, only: [:show, :edit, :update, :destroy]
 
   # GET /deals
   # GET /deals.json
   def index
-    @deals = Deal.all
+    @buys = Deal.where(deal_type: "Compra")
+    @sales = Deal.where(deal_type: "Venda")
   end
 
   # GET /deals/1
@@ -15,10 +17,12 @@ class DealsController < ApplicationController
   # GET /deals/new
   def new
     @deal = Deal.new
+    @partners = Partner.all.collect { |p| [ p.name, p.id ] }
   end
 
   # GET /deals/1/edit
   def edit
+    @partners = Partner.all.collect { |p| [ p.name, p.id ] }
   end
 
   # POST /deals
@@ -28,7 +32,7 @@ class DealsController < ApplicationController
 
     respond_to do |format|
       if @deal.save
-        format.html { redirect_to @deal, notice: 'Deal was successfully created.' }
+        format.html { redirect_to @deal, notice: 'Negócio foi cadastrado com sucesso.' }
         format.json { render :show, status: :created, location: @deal }
       else
         format.html { render :new }

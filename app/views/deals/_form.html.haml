@@ -1,37 +1,11 @@
-= form_for @deal do |f|
-  - if @deal.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@deal.errors.count, "error")} prohibited this deal from being saved:"
-      %ul
-        - @deal.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :date
-    = f.date_select :date
-  .field
-    = f.label :price
-    = f.text_field :price
-  .field
-    = f.label :males
-    = f.number_field :males
-  .field
-    = f.label :females
-    = f.number_field :females
-  .field
-    = f.label :live_weight
-    = f.text_field :live_weight
-  .field
-    = f.label :dead_weight
-    = f.text_field :dead_weight
-  .field
-    = f.label :deal_type
-    = f.text_field :deal_type
-  .field
-    = f.label :reason
-    = f.text_field :reason
-  .field
-    = f.label :partner
-    = f.text_field :partner
-  .actions
-    = f.submit 'Salvar'
+= simple_form_for @deal do |f|
+  = f.input :deal_type, collection: [ "Compra", "Venda" ], selected: "Venda"
+  = f.input :date
+  = f.input :price
+  = f.input :males
+  = f.input :females
+  = f.input :live_weight
+  = f.input :dead_weight
+  = f.input :reason
+  = f.input :partner, collection: @partners, selected: @deal.partner
+  = f.button :submit

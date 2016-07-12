@@ -13,9 +13,16 @@ class DealsTest < Capybara::Rails::TestCase
     end
 
     scenario "is a valid deal" do
-      puts page.html
+      fill_in "Preço por Kilo", :with => 4.5
+      fill_in "Número de Machos", :with => 49
+      fill_in "Número de Fêmeas", :with => 30
+      fill_in "Peso Vivo (Média)", :with => 300
+      fill_in "Peso Morto (Média)", :with => 500
 
-      page.must_have_content "asdkja"
+      click_button "Cadastrar Negócio"
+
+      puts page.html
+      #page.must_have_content "asdkja"
     end
   end
 end

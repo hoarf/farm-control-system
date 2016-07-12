@@ -12,4 +12,13 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap_sb_admin_base_v2
  */
+
+body {
+    height: 100%
+}
+
+html {
+    height: 100%
+}

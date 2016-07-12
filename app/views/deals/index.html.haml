@@ -1,37 +1,68 @@
-%h1 Listing deals
+#page-wrapper
+  = fa_page_header("Listagem de Negócios", "money")
+  .row
+    .col-lg-12
+      .panel.panel-red
+        .panel-heading Compras
+        .panel-body
+          .dataTable_wrapper
+            %table.table.table-stripped.table-bordered.table-hover#dataTables-buys
+              %thead
+                %tr
+                  %th Data
+                  %th Preço
+                  %th Número de Machos
+                  %th Número de Fêmeas
+                  %th Peso Vivo
+                  %th Finalidade
+                  %th Contato
+                  %th Ações
 
-%table
-  %thead
-    %tr
-      %th Date
-      %th Price
-      %th Males
-      %th Females
-      %th Live weight
-      %th Dead weight
-      %th Deal type
-      %th Reason
-      %th Partner
-      %th
-      %th
-      %th
+              %tbody
+                - @buys.each do |deal|
+                  %tr
+                    %td= deal.date
+                    %td= deal.price
+                    %td= deal.males
+                    %td= deal.females
+                    %td= deal.live_weight
+                    %td= deal.reason
+                    %td= deal.partner || "Não informado"
+                    %td
+                      =link_to 'Detalhes', deal, class: "btn btn-default"
+                      =link_to 'Editar', edit_deal_path(deal), class: "btn btn-default"
+                      =link_to 'Apagar', deal, :method => :delete, :data => { :confirm => 'Tem certeza que deseja apagar?' }, class: "btn btn-default"
+  .row
+    .col-lg-12
+      .panel.panel-primary
+        .panel-heading Vendas
+        .panel-body
+          .dataTable_wrapper
+            %table.table.table-stripped.table-bordered.table-hover#dataTables-sales
+              %thead
+                %tr
+                  %th Data
+                  %th Preço
+                  %th Número de Machos
+                  %th Número de Fêmeas
+                  %th Peso Vivo
+                  %th Peso Morto
+                  %th Finalidade
+                  %th Contato
+                  %th Ações
 
-  %tbody
-    - @deals.each do |deal|
-      %tr
-        %td= deal.date
-        %td= deal.price
-        %td= deal.males
-        %td= deal.females
-        %td= deal.live_weight
-        %td= deal.dead_weight
-        %td= deal.deal_type
-        %td= deal.reason
-        %td= deal.partner
-        %td= link_to 'Show', deal
-        %td= link_to 'Edit', edit_deal_path(deal)
-        %td= link_to 'Destroy', deal, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Deal', new_deal_path
+              %tbody
+                - @sales.each do |deal|
+                  %tr
+                    %td= deal.date
+                    %td= deal.price
+                    %td= deal.males
+                    %td= deal.females
+                    %td= deal.live_weight
+                    %td= deal.dead_weight
+                    %td= deal.reason
+                    %td= deal.partner || "Não informado"
+                    %td
+                      =link_to 'Detalhes', deal, class: "btn btn-default"
+                      =link_to 'Editar', edit_deal_path(deal), class: "btn btn-default"
+                      =link_to 'Apagar', deal, :method => :delete, :data => { :confirm => 'Tem certeza que deseja apagar?' }, class: "btn btn-default"

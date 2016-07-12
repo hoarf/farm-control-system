@@ -1,7 +1,10 @@
-%h1 Editing partner
-
-= render 'form'
-
-= link_to 'Show', @partner
-\|
-= link_to 'Back', partners_path
+#page-wrapper
+  = fa_page_header("Editar Contato", "user")
+  .row
+    .col-lg-6
+      .panel.panel-default
+        .panel-heading= @partner.name
+        .panel-body
+          = render 'form'
+        .panel-footer
+          = link_to 'Voltar', partners_path, class: "btn btn-default"

@@ -1,5 +1,13 @@
-%h1 Novo negócio
-
-= render 'form'
-
-= link_to "Voltar", deals_path
+#page-wrapper
+  .row
+    .col-lg-12
+      %h1.page-header
+        %i.fa.fa-money~ " Novo Negócio"
+  .row
+    .col-lg-4
+      .panel.panel-default
+        .panel-heading Dados do Negócio
+        .panel-body
+          = render 'form'
+        .panel-footer
+          = link_to "Voltar", deals_path

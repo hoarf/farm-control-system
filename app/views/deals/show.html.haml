@@ -1,33 +1,35 @@
-%p#notice= notice
-
-%p
-  %b Date:
-  = @deal.date
-%p
-  %b Price:
-  = @deal.price
-%p
-  %b Males:
-  = @deal.males
-%p
-  %b Females:
-  = @deal.females
-%p
-  %b Live weight:
-  = @deal.live_weight
-%p
-  %b Dead weight:
-  = @deal.dead_weight
-%p
-  %b Deal type:
-  = @deal.deal_type
-%p
-  %b Reason:
-  = @deal.reason
-%p
-  %b Partner:
-  = @deal.partner
-
-= link_to 'Edit', edit_deal_path(@deal)
-\|
-= link_to 'Back', deals_path
+#page-wrapper
+  = fa_page_header("Detalhes do Negócio", "money")
+  = fa_page_alert(notice)
+  .row
+    .col-lg-6
+      .panel.panel-default
+        .panel-heading= "Dados da #{@deal.deal_type}"
+        .panel-body
+          %p
+            %b Data:
+            = @deal.date
+          %p
+            %b Preço por Kilo:
+            = @deal.price
+          %p
+            %b Número de Machos:
+            = @deal.males
+          %p
+            %b Número de Fêmeas:
+            = @deal.females
+          %p
+            %b Peso Vivo:
+            = @deal.live_weight
+          %p
+            %b Peso Morto:
+            = @deal.dead_weight
+          %p
+            %b Finalidade:
+            = @deal.reason
+          %p
+            %b Contato:
+            = @deal.partner || "Não informado"
+        .panel-footer
+          = link_to 'Editar', edit_deal_path(@deal), class: "btn btn-default"
+          = link_to 'Voltar', deals_path, class: "btn btn-default"

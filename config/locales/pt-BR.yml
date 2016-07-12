@@ -1,13 +1,22 @@
 ---
 pt-BR:
   activerecord:
-    attributes:
+    models:
       deal:
-        price: "Preço"
+        one: "Negócio"
+    attributes:
+      devise/users:
+        remember_me: "Permanecer logado"
+      partner:
+        name: "Nome"
+        contact: "Forma de contato"
+      deal:
+        date: "Data"
+        price: "Preço por Kilo"
         males: "Número de Machos"
         females: "Número de Fêmeas"
-        live_weight: "Peso Vivo"
-        dead_weight: "Peso Morto"
+        live_weight: "Peso Vivo (Média)"
+        dead_weight: "Peso Morto (Média)"
         deal_type: "Tipo de Negócio"
         reason: "Finalidade"
         partner: "Contato"
@@ -27,7 +36,6 @@ pt-BR:
     - Sex
     - Sáb
     abbr_month_names:
-    -
     - Jan
     - Fev
     - Mar
@@ -155,7 +163,7 @@ pt-BR:
     select:
       prompt: Por favor selecione
     submit:
-      create: Criar %{model}
+      create: Cadastrar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
   number:

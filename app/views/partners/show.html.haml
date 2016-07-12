@@ -1,15 +1,17 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @partner.name
-%p
-  %b Contact:
-  = @partner.contact
-%p
-  %b Deals:
-  = @partner.deals
-
-= link_to 'Edit', edit_partner_path(@partner)
-\|
-= link_to 'Back', partners_path
+#page-wrapper
+  = fa_page_header("Detalhes", "user")
+  = fa_page_alert(notice)
+  .row
+    .col-lg-6
+      .panel.panel-default
+        .panel-heading= @partner.name
+        .panel-body
+          %p
+            %b Contato:
+            %span= @partner.contact
+          %p
+            %b Negócios:
+            %span= link_to "Listar", @partner.deals, class: "btn btn-default"
+        .panel-footer
+          = link_to 'Editar', edit_partner_path(@partner), class: "btn btn-default"
+          = link_to 'Voltar', partners_path, class: "btn btn-default"

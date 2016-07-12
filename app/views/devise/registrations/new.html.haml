@@ -1,0 +1,15 @@
+.header.fa-header
+  = render partial: "shared/header"
+  .container
+    .row
+      .col-lg-4.col-lg-offset-4
+        .panel.panel-default
+          .panel-heading
+            %h4 Cadastrar Usuário
+          .panel-body.fa-login
+            = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+              = f.input :email, autofocus: true
+              = f.input :password, autocomplete: "off"
+              = f.input :password_confirmation
+              = f.button :submit, "Cadastrar Usuário"
+            = render "devise/shared/links"

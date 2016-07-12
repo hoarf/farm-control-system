@@ -1,0 +1,15 @@
+%nav.navbar.navbar-default.navbar-static-top{role: "navigation", style: "margin-bottom: 0"}
+  .navbar-header
+    %div
+      - if user_signed_in?
+        %a.navbar-brand{href: reports_path}
+          ="#{current_user.fazenda}"
+      - else
+        %a.navbar-brand{href: root_path}
+          Sua Fazenda
+
+  %ul.nav.navbar-top-links.navbar-right
+    - if user_signed_in?
+      %li
+        %strong= "#{current_user.email}"
+      %li= link_to "Sair", destroy_user_session_path, :method => :delete

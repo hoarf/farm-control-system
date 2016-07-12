@@ -17,5 +17,6 @@ class PartnersTest < Capybara::Rails::TestCase
     scenario "contact was valid" do
       page.must_have_content "Contato cadastrado com sucesso"
     end
+
   end
 end

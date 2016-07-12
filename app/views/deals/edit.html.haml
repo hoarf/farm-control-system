@@ -1,7 +1,10 @@
-%h1 Editing deal
-
-= render 'form'
-
-= link_to 'Show', @deal
-\|
-= link_to 'Back', deals_path
+#page-wrapper
+  = fa_page_header("Editar Negócio", "money")
+  .row
+    .col-lg-6
+      .panel.panel-default
+        .panel-heading= "#{@deal.deal_type} do dia #{@deal.date}"
+        .panel-body
+          = render 'form'
+        .panel-footer
+          = link_to 'Voltar', deals_path, class: 'btn btn-defaul'
