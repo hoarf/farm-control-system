@@ -1,3 +1,15 @@
 * Application Backlog
-** TODO [#A] Change database to postgres
-** TODO [#C] Buy a domain and host this application
+** UX
+** Doc
+** Tech
+*** DONE Remove turbolink from _links to avoid problems with collapsing menu
+    It didn't work. I'm putting turbolink back in.
+    *Update*
+        It sorta worked out. Not 100% tho. But will do for now.
+        The correct syntax for disabling turbolink is 'data-turbolinks='false'
+*** TODO [#C] Fix collapsing menu
+*** DONE Filter =deals= by =partners=
+*** DONE Add btn-link class to all links
+** Infra
+*** TODO [#A] Change database to postgres
+*** TODO [#C] Buy a domain and host this application
