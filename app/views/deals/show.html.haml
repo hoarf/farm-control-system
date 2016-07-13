@@ -31,5 +31,5 @@
             %b Contato:
             = @deal.partner || "Não informado"
         .panel-footer
-          = link_to 'Editar', edit_deal_path(@deal), class: "btn btn-default"
-          = link_to 'Voltar', deals_path, class: "btn btn-default"
+          = link_to 'Editar', edit_deal_path(@deal)
+          = link_to 'Voltar', deals_path

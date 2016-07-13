@@ -33,9 +33,9 @@
                       %td= deal.reason
                       %td= deal.partner || "Não informado"
                       %td
-                        =link_to 'Detalhes', deal, class: "btn btn-default"
-                        =link_to 'Editar', edit_deal_path(deal), class: "btn btn-default"
-                        =link_to 'Apagar', deal, :method => :delete, :data => { :confirm => 'Tem certeza que deseja apagar?' }, class: "btn btn-default"
+                        =link_to 'Detalhes', deal
+                        =link_to 'Editar', edit_deal_path(deal)
+                        =link_to 'Apagar', deal, :method => :delete, :data => { :confirm => 'Tem certeza que deseja apagar?' }
   .row
     .col-lg-12
       - if @sales.any?
@@ -68,6 +68,6 @@
                       %td= deal.reason
                       %td= deal.partner || "Não informado"
                       %td
-                        =link_to 'Detalhes', deal, class: "btn btn-default"
-                        =link_to 'Editar', edit_deal_path(deal), class: "btn btn-default"
-                        =link_to 'Apagar', deal, :method => :delete, :data => { :confirm => 'Tem certeza que deseja apagar?' }, class: "btn btn-default"
+                        =link_to 'Detalhes', deal
+                        =link_to 'Editar', edit_deal_path(deal)
+                        =link_to 'Apagar', deal, :method => :delete, :data => { :confirm => 'Tem certeza que deseja apagar?' }

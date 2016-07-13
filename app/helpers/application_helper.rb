@@ -54,4 +54,19 @@ module ApplicationHelper
     """.html_safe
   end
 
+  def link_to(*args)
+    if args.any? { |arg| arg.class == Hash}
+      args.each do |arg|
+        if arg.class == Hash
+          if arg.key?(:class)
+            arg[:class] = (arg[:class].split(' ') << 'btn btn-link').join(' ')
+          end
+        end
+      end
+    else
+      args << {:class => 'btn btn-link'}
+    end
+    super(*args)
+  end
+
 end
