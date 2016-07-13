@@ -5,8 +5,14 @@ class DealsController < ApplicationController
   # GET /deals
   # GET /deals.json
   def index
-    @buys = Deal.where(deal_type: "Compra")
-    @sales = Deal.where(deal_type: "Venda")
+    if params[:partner_id]
+      @buys = Deal.buys.where(partner_id: params[:partner_id])
+      @sales = Deal.sales.where(partner_id: params[:partner_id])
+      @partner_name = Partner.find(params[:partner_id])
+    else
+      @buys = Deal.buys
+      @sales = Deal.sales
+    end
   end
 
   # GET /deals/1

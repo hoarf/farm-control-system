@@ -15,7 +15,7 @@
             %tr
               %td= partner.name
               %td= partner.contact
-              %td= link_to "Listar", deals_path, class: "btn btn-default"
+              %td= link_to "Listar", partner_deals_path(partner), class: "btn btn-default"
               %td
                 =link_to 'Detalhes', partner, class: "btn btn-default"
                 =link_to 'Editar', edit_partner_path(partner), class: "btn btn-default"

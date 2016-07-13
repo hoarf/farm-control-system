@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :admins
   resources :others
-  resources :partners
+  resources :partners do
+    resources :deals, only: [:index]
+  end
+
   resources :deals
   resources :reports, only: [:index]
   devise_for :users

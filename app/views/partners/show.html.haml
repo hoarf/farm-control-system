@@ -11,7 +11,7 @@
             %span= @partner.contact
           %p
             %b Negócios:
-            %span= link_to "Listar", @partner.deals, class: "btn btn-default"
+            %span= link_to "Listar", partner_deals_path(@partner), class: "btn btn-default"
         .panel-footer
           = link_to 'Editar', edit_partner_path(@partner), class: "btn btn-default"
           = link_to 'Voltar', partners_path, class: "btn btn-default"
