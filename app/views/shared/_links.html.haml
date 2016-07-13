@@ -1,13 +1,11 @@
 - if user_signed_in?
   .navbar-default.sidebar{role: "navigation"}
-    .sidebar-nav
+    .sidebar-nav.navbar-collapse
       %ul#side-menu.nav
         %li
           %a{href: reports_path}
             %i.fa.fa-bar-chart-o
               %span.fa-titulo Relatórios
-          %ul.nav.nav-second-level{style: "display: none"}
-            = fa_menu_item("/relatorios/vendas", "Vendas", "bar-chart")
         %li
           %a{href: "#"}
             %i.fa.fa-money
