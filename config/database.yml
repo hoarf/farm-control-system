@@ -39,3 +39,12 @@ test:
   pool: 5
   username: fazenda
   password: 123456
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: agropecuariaficagna
+  pool: 5
+  username: agropecuariaficagna
+  url: <%= ENV['DATABASE_URL'] %>
+  passowrd: <%= ENV['DATABASE_PASSWORD'] %>
