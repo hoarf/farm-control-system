@@ -47,4 +47,4 @@ production:
   pool: 5
   username: agropecuariaficagna
   host: pgsql.agropecuariaficagna.com
-  passowrd: <%= ENV['DATABASE_PASSWORD'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
