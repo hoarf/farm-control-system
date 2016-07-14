@@ -1,17 +1,18 @@
 #page-wrapper
-  = fa_page_header("Detalhes", "user")
+  = fa_page_header("Detalhes do Contato", "user")
   = fa_page_alert(notice)
   .row
     .col-lg-6
       .panel.panel-default
         .panel-heading= @partner.name
         .panel-body
-          %p
-            %b Contato:
-            %span= @partner.contact
-          %p
-            %b Negócios:
-            %span= link_to "Listar", partner_deals_path(@partner)
+          .list-group
+            %p.list-group-item
+              %b Contato:
+              %span= @partner.contact
+            %p.list-group-item
+              %b Negócios:
+              %span= fa_index_button partner_deals_path(@partner)
         .panel-footer
           = link_to 'Editar', edit_partner_path(@partner)
           = link_to 'Voltar', partners_path

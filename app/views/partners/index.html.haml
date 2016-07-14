@@ -1,22 +1,29 @@
 #page-wrapper
-  = fa_page_header("Contatos", "user")
-  .row
-    .col-lg-12
-      %table.table.table-stripped.table-bordered.table-hover#dataTables-sales
-        %thead
-          %tr
-            %th Nome
-            %th Contato
-            %th Negócios
-            %th Ações
+  = fa_page_header("Listagem de Contatos", "users")
+  = fa_page_alert(notice)
+  - if @partners.empty?
+    = fa_no_resource("Contato")
+  - else
+    .row
+      .col-lg-6
+        .panel.panel-default
+          .panel-heading Contatos
+          .panel-body
+            %table.table.text-center.table-stripped.table-bordered.table-hover#dataTables-partners
+              %thead
+                %tr
+                  %th Nome
+                  %th Contato
+                  %th Negócios
+                  %th Ações
 
-        %tbody
-          - @partners.each do |partner|
-            %tr
-              %td= partner.name
-              %td= partner.contact
-              %td= link_to "Listar", partner_deals_path(partner)
-              %td
-                =link_to 'Detalhes', partner
-                =link_to 'Editar', edit_partner_path(partner)
-                =link_to 'Apagar', partner, :method => :delete, :data => { :confirm => 'Tem certeza que deseja excluir?' }
+              %tbody
+                - @partners.each do |partner|
+                  %tr
+                    %td= partner.name
+                    %td= partner.contact
+                    %td= fa_index_button partner_deals_path partner
+                    %td
+                      = fa_show_button partner_path partner
+                      = fa_edit_button edit_partner_path(partner)
+                      = fa_delete_button partner_path partner
