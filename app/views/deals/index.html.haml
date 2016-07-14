@@ -1,23 +1,24 @@
 #page-wrapper
   = fa_page_header("Listagem de Negócios", "money", @partner_name)
+  = fa_page_alert(notice)
   - if @buys.empty? and @sales.empty?
     = fa_no_resource("Negócio")
-
   .row
     .col-lg-12
       - if @buys.any?
         .panel.panel-red
-          .panel-heading Compras
+          .panel-heading
+            %i.fa.fa-arrow-up
+            Compras
           .panel-body
             .dataTable_wrapper
-              %table.table.table-stripped.table-bordered.table-hover#dataTables-buys
+              %table.table.text-center.table-stripped.table-bordered.table-hover#dataTables-buys
                 %thead
                   %tr
                     %th Data
                     %th Preço
-                    %th Número de Machos
-                    %th Número de Fêmeas
-                    %th Peso Vivo
+                    %th Cabeças
+                    %th Peso(Média)
                     %th Finalidade
                     %th Contato
                     %th Ações
