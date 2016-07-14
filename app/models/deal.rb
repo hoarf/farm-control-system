@@ -4,4 +4,8 @@ class Deal < ActiveRecord::Base
   scope :buys, -> { where(deal_type: "Compra") }
   scope :sales, -> { where(deal_type: "Venda") }
 
+  def total
+    (males || 0)+(females || 0)
+  end
+
 end
