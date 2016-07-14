@@ -42,7 +42,7 @@ class PartnersController < ApplicationController
   def update
     respond_to do |format|
       if @partner.update(partner_params)
-        format.html { redirect_to @partner, notice: 'Partner was successfully updated.' }
+        format.html { redirect_to @partner, notice: 'Contato atualizado com sucesso' }
         format.json { render :show, status: :ok, location: @partner }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class PartnersController < ApplicationController
   def destroy
     @partner.destroy
     respond_to do |format|
-      format.html { redirect_to partners_url, notice: 'Partner was successfully destroyed.' }
+      format.html { redirect_to partners_url, notice: 'Contato apagado com sucesso' }
       format.json { head :no_content }
     end
   end

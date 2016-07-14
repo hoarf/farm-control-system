@@ -50,9 +50,10 @@ class DealsController < ApplicationController
   # PATCH/PUT /deals/1
   # PATCH/PUT /deals/1.json
   def update
+
     respond_to do |format|
       if @deal.update(deal_params)
-        format.html { redirect_to @deal, notice: 'Deal was successfully updated.' }
+        format.html { redirect_to @deal, notice: 'Negócio atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @deal }
       else
         format.html { render :edit }
@@ -66,7 +67,7 @@ class DealsController < ApplicationController
   def destroy
     @deal.destroy
     respond_to do |format|
-      format.html { redirect_to deals_url, notice: 'Deal was successfully destroyed.' }
+      format.html { redirect_to deals_url, notice: 'Negócio removido com sucesso' }
       format.json { head :no_content }
     end
   end

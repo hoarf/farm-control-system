@@ -4,6 +4,8 @@ pt-BR:
     models:
       deal:
         one: "Negócio"
+      partner:
+        one: "Contato"
     attributes:
       devise/users:
         remember_me: "Permanecer logado"
@@ -19,7 +21,7 @@ pt-BR:
         dead_weight: "Peso Morto (Média)"
         deal_type: "Tipo de Negócio"
         reason: "Finalidade"
-        partner: "Contato"
+        partner_id: "Contato"
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'
