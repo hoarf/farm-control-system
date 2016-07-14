@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def fazenda
-    "Aliança"
+    "Fazenda Aliança"
   end
 
 end
