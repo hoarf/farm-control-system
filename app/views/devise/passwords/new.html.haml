@@ -9,4 +9,4 @@
           .panel-body.fa-login
             = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post , role: "form"}) do |f|
               = f.input :email, autofocus: true
-              = f.button :submit, "Enviar"
+              = f.button :submit, "Recuperar Senha", class: 'btn-block btn-primary'

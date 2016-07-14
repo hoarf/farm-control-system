@@ -12,6 +12,6 @@
                 = f.input :email, autofocus: true
                 = f.input :password, autocomplete: "off"
                 = f.input :remember_me, as: :boolean
-                = f.button :submit, "Entrar"
+                = f.button :submit, "Entrar", class: 'btn-block btn-success'
             %div{style: "margin-top: 20px"}
               = render "devise/shared/links"

@@ -7,5 +7,5 @@
   = f.input :live_weight
   = f.input :dead_weight
   = f.input :reason
-  = f.input :partner, collection: @partners, selected: @deal.partner
-  = f.button :submit
+  = f.input :partner_id, collection: @partners
+  = f.button :submit, class: 'btn-block btn-primary'
