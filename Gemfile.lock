@@ -171,6 +171,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
+    pg (0.18.4)
     pkg-config (1.1.7)
     poltergeist (1.10.0)
       capybara (~> 2.1)
@@ -297,6 +298,7 @@ DEPENDENCIES
   minitest-reporters
   minitest-spec
   mocha
+  pg
   poltergeist
   rails (= 4.2.4)
   sass-rails (~> 5.0)

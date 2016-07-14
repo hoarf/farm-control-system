@@ -33,6 +33,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'pg'
+
 # Authentication
 gem 'devise-i18n'
 gem 'devise-i18n-views'
@@ -48,7 +50,6 @@ gem 'simple_form'
 gem 'haml-rails', '~> 0.9'
 
 # CSS
-
 gem 'bootstrap-sass'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'bootstrap_sb_admin_base_v2'
