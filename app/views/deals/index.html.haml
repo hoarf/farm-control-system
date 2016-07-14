@@ -28,31 +28,31 @@
                     %tr
                       %td= deal.date
                       %td= deal.price
-                      %td= deal.males
-                      %td= deal.females
+                      %td= deal.total
                       %td= deal.live_weight
                       %td= deal.reason
                       %td= deal.partner || "Não informado"
                       %td
-                        =link_to 'Detalhes', deal
-                        =link_to 'Editar', edit_deal_path(deal)
-                        =link_to 'Apagar', deal, :method => :delete, :data => { :confirm => 'Tem certeza que deseja apagar?' }
+                        = fa_show_button deal_path(deal)
+                        = fa_edit_button edit_deal_path(deal)
+                        = fa_delete_button deal_path deal
   .row
     .col-lg-12
       - if @sales.any?
         .panel.panel-primary
-          .panel-heading Vendas
+          .panel-heading
+            %i.fa.fa-arrow-down
+            Vendas
           .panel-body
             .dataTable_wrapper
-              %table.table.table-stripped.table-bordered.table-hover#dataTables-sales
+              %table.table.text-center.table-stripped.table-bordered.table-hover#dataTables-sales
                 %thead
                   %tr
                     %th Data
                     %th Preço
-                    %th Número de Machos
-                    %th Número de Fêmeas
-                    %th Peso Vivo
-                    %th Peso Morto
+                    %th Cabeças
+                    %th Peso Vivo(Média)
+                    %th Peso Morto(Média)
                     %th Finalidade
                     %th Contato
                     %th Ações
@@ -62,13 +62,12 @@
                     %tr
                       %td= deal.date
                       %td= deal.price
-                      %td= deal.males
-                      %td= deal.females
+                      %td= deal.total
                       %td= deal.live_weight
                       %td= deal.dead_weight
                       %td= deal.reason
                       %td= deal.partner || "Não informado"
                       %td
-                        =link_to 'Detalhes', deal
-                        =link_to 'Editar', edit_deal_path(deal)
-                        =link_to 'Apagar', deal, :method => :delete, :data => { :confirm => 'Tem certeza que deseja apagar?' }
+                        = fa_show_button deal_path deal
+                        = fa_edit_button edit_deal_path(deal)
+                        = fa_delete_button deal_path deal
