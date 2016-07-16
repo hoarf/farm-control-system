@@ -81,5 +81,5 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_options = {from: 'naoresponda@agropecuariaficagna.com'}
-  config.action_mailer.default_mailer_options = {host: 'agropecuariaficagna.com'}
+  config.action_mailer.default_url_options = {host: 'agropecuariaficagna.com'}
 end
