@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709124143) do
+ActiveRecord::Schema.define(version: 20160716140447) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20160709124143) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
-  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
+  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "deals", force: :cascade do |t|
     t.date     "date"
@@ -45,7 +48,7 @@ ActiveRecord::Schema.define(version: 20160709124143) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "deals", ["partner_id"], name: "index_deals_on_partner_id"
+  add_index "deals", ["partner_id"], name: "index_deals_on_partner_id", using: :btree
 
   create_table "inventories", force: :cascade do |t|
     t.integer  "males"
@@ -55,7 +58,7 @@ ActiveRecord::Schema.define(version: 20160709124143) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "inventories", ["singleton_guard"], name: "index_inventories_on_singleton_guard", unique: true
+  add_index "inventories", ["singleton_guard"], name: "index_inventories_on_singleton_guard", unique: true, using: :btree
 
   create_table "invetory_changes", force: :cascade do |t|
     t.date     "date"
@@ -67,7 +70,7 @@ ActiveRecord::Schema.define(version: 20160709124143) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "invetory_changes", ["changeable_type", "changeable_id"], name: "index_invetory_changes_on_changeable_type_and_changeable_id"
+  add_index "invetory_changes", ["changeable_type", "changeable_id"], name: "index_invetory_changes_on_changeable_type_and_changeable_id", using: :btree
 
   create_table "others", force: :cascade do |t|
     t.string   "reason"
@@ -83,7 +86,7 @@ ActiveRecord::Schema.define(version: 20160709124143) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "partners", ["deals_id"], name: "index_partners_on_deals_id"
+  add_index "partners", ["deals_id"], name: "index_partners_on_deals_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "name"
@@ -105,9 +108,18 @@ ActiveRecord::Schema.define(version: 20160709124143) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts", default: 0, null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", "confirmation_token", unique: true
+  add_index "users", "unlock_token", unique: true
 
 end

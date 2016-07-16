@@ -19,7 +19,6 @@
                     %th Preço
                     %th Cabeças
                     %th Peso(Média)
-                    %th Finalidade
                     %th Contato
                     %th Ações
 
@@ -30,7 +29,6 @@
                       %td= deal.price
                       %td= deal.total
                       %td= deal.live_weight
-                      %td= deal.reason
                       %td= deal.partner || "Não informado"
                       %td
                         = fa_show_button deal_path(deal)
@@ -53,7 +51,6 @@
                     %th Cabeças
                     %th Peso Vivo(Média)
                     %th Peso Morto(Média)
-                    %th Finalidade
                     %th Contato
                     %th Ações
 
@@ -65,7 +62,6 @@
                       %td= deal.total
                       %td= deal.live_weight
                       %td= deal.dead_weight
-                      %td= deal.reason
                       %td= deal.partner || "Não informado"
                       %td
                         = fa_show_button deal_path deal

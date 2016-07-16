@@ -7,10 +7,10 @@
 // Unused
 
 - if devise_mapping.confirmable? && controller_name != 'confirmations'
-  = link_to "Não recebeu instruções de confirmação?", new_confirmation_path(resource_name)
+  = link_to "Reenviar confirmação", new_confirmation_path(resource_name)
   %br/
-- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
-  = link_to "Não receber instruções de desbloqueio?", new_unlock_path(resource_name)
+- if devise_mapping.lockable? && controller_name != 'unlocks'
+  = link_to "Reenviar desbloqueio", new_unlock_path(resource_name)
   %br/
 - if devise_mapping.omniauthable?
   - resource_class.omniauth_providers.each do |provider|

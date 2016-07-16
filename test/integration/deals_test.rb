@@ -21,8 +21,8 @@ class DealsTest < Capybara::Rails::TestCase
 
       click_button "Cadastrar Negócio"
 
-      puts page.html
-      #page.must_have_content "asdkja"
+
+
     end
   end
 end

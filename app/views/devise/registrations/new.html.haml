@@ -1,5 +1,6 @@
 .header.fa-heading
   = render partial: "shared/header"
+  = fa_page_alert(notice)
   .container
     .row
       .col-lg-4.col-lg-offset-4
@@ -12,4 +13,5 @@
               = f.input :password, autocomplete: "off"
               = f.input :password_confirmation
               = f.button :submit, "Cadastrar Usuário", class: 'btn-block btn-primary'
-            = render "devise/shared/links"
+            .fa-margin-top
+              = render "devise/shared/links"

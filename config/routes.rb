@@ -7,13 +7,15 @@ Rails.application.routes.draw do
 
   resources :deals
   resources :reports, only: [:index]
-  devise_for :users
+  devise_for :users, path: 'usuario', path_names: { sign_in: 'entrar', sign_out: 'sair', confirmation: 'confirmacao', unlock: 'desbloqueio', registration: 'registrar', sign_up: 'cadastrar' }
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+
+  root 'reports#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
