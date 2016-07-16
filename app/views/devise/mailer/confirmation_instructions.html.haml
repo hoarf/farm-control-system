@@ -1,4 +1,4 @@
 %p
-  Welcome #{@email}!
-%p You can confirm your account email through the link below:
+  Olá #{@email}!
+%p Você precisa confirmar o seu email clicando no link abaixo:
 %p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
