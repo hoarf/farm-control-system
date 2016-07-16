@@ -53,8 +53,6 @@ gem 'simple_form'
 gem 'haml-rails', '~> 0.9'
 
 # CSS
-gem 'bootstrap-sass'
-gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'bootstrap_sb_admin_base_v2'
 
 group :development do
