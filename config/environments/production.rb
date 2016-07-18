@@ -77,7 +77,18 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.smtp_settings = {
+    :openssl_verify_mode => 'none',
+    :address => 'smtp-web.kinghost.net', 
+    # :address => 'smtp.agropecuariaficagna.com',
+    :port => 587, 
+    :domain => 'smtp.agropecuariaficagna.com', 
+    #:user_name => 'naoresponda@agropecuariaficagna.com', 
+    #:password => 'senhaprofilipe1',
+    #:authentication => 'plain' 
+  }
+  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_options = {from: 'naoresponda@agropecuariaficagna.com'}
