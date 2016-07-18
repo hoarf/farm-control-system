@@ -1,10 +1,14 @@
-%h2 Resend confirmation instructions
-= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
-  .actions
-    = f.submit "Resend confirmation instructions"
-= render "devise/shared/links"
+.header.fa-heading
+  = render "shared/header"
+  .container
+    .row
+      .col-lg-4.col-lg-offset-4
+        .panel.panel-default
+          .panel-heading
+            %h4 Reenviar email de confirmação
+          .panel-body.fa-login
+            = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+              = f.input :email, autofocus: true
+              = f.button :submit, "Reenviar Email", class: "btn btn-block btn-primary"
+
+            = render "devise/shared/links"

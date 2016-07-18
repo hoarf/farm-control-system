@@ -1,5 +1,4 @@
 .header.fa-heading
-  = fa_page_alert(notice)
   = render :partial => "shared/header"
   .container.fa-padding-left-right
     .row
@@ -8,11 +7,9 @@
           .panel-heading
             %h4 Área Restrita
           .panel-body.fa-login
-            %div
-              = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-                = f.input :email, autofocus: true
-                = f.input :password, autocomplete: "off"
-                = f.input :remember_me, as: :boolean
-                = f.button :submit, "Entrar", class: 'btn-block btn-success'
-            .fa-margin-top
-              = render "devise/shared/links"
+            = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+              = f.input :email, autofocus: true
+              = f.input :password, autocomplete: "off"
+              = f.input :remember_me, as: :boolean
+              = f.button :submit, "Entrar", class: 'btn-block btn-success'
+            = render "devise/shared/links"

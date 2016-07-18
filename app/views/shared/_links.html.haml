@@ -3,20 +3,22 @@
     .sidebar-nav.navbar-collapse
       %ul#side-menu.nav
         %li
-          %a{href: reports_path}
-            %i.fa.fa-bar-chart-o
-              %span.fa-titulo Relatórios
+          %a{href: "#"}
+            %i.fa.fa-leaf
+              %span.fa-title Fazenda
+          %ul.nav-nav-second-level
+            = fa_menu_item(new_deal_path, "Status", "bar-chart-o")
         %li
           %a{href: "#"}
             %i.fa.fa-money
-              %span.fa-titulo Negócios
+              %span.fa-title Negócios
           %ul.nav.nav-second-level
-            = fa_menu_item(new_deal_path, "Cadastrar Negócio", "money")
-            = fa_menu_item(deals_path, "Listar Negócios", "money")
+            = fa_menu_item(new_deal_path, "Cadastrar Negócio", "plus")
+            = fa_menu_item(deals_path, "Listar Negócios", "list")
         %li
           %a{href: "#"}
             %i.fa.fa-user
-              %span.fa-titulo Contatos
+              %span.fa-title Contatos
           %ul.nav.nav-second-level
-            = fa_menu_item(new_partner_path, "Cadastrar Contato", "user")
-            = fa_menu_item(partners_path, "Listar Contatos", "user")
+            = fa_menu_item(new_partner_path, "Cadastrar Contato", "plus")
+            = fa_menu_item(partners_path, "Listar Contatos", "list")

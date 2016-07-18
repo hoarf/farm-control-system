@@ -1,5 +1,5 @@
 .header.fa-heading
-  =render "shared/header"
+  = render "shared/header"
   .container
     .row
       .col-lg-4.col-lg-offset-4
@@ -10,3 +10,4 @@
             = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post , role: "form"}) do |f|
               = f.input :email, autofocus: true
               = f.button :submit, "Recuperar Senha", class: 'btn-block btn-primary'
+            = render "devise/shared/links"

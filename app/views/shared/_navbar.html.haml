@@ -3,10 +3,15 @@
     %div
       - if user_signed_in?
         %a.navbar-brand{href: reports_path}
-          ="#{current_user.fazenda}"
+          %button.btn.btn-success.btn-circle
+            %i.fa.fa-leaf
+          %span.fa-title= current_user.fazenda
       - else
         %a.navbar-brand{href: root_path}
-          Sua Fazenda
+          %button.btn.btn-circle
+            %i.fa.fa-fire
+          %span.fa-title
+            Sua Fazenda
 
   %ul.nav.navbar-top-links.navbar-right
     - if user_signed_in?
