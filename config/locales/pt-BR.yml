@@ -13,6 +13,7 @@ pt-BR:
         name: "Nome"
         contact: "Forma de contato"
       deal:
+        amount: "Preço por Kilo"
         date: "Data"
         price: "Preço por Kilo"
         males: "Número de Machos"

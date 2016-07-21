@@ -1,6 +1,5 @@
 #page-wrapper
-  = fa_page_header("Detalhes do Negócio", "money")
-  = fa_page_alert(notice)
+  = render partial: "shared/page_header", locals: { title: "Detalhes do Negócio", icon: "money" }
   .row
     .col-lg-6
       .panel.panel-default
@@ -11,7 +10,7 @@
             = @deal.date
           %p
             %b Preço por Kilo:
-            = @deal.price
+            = @deal.amount
           %p
             %b Número de Machos:
             = @deal.males

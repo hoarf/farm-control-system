@@ -1,7 +1,7 @@
 = simple_form_for @deal do |f|
   = f.input :deal_type, collection: [ "Compra", "Venda" ], selected: "Venda"
   = f.input :date
-  = f.input :price
+  = f.input :amount
   = f.input :males
   = f.input :females
   = f.input :live_weight

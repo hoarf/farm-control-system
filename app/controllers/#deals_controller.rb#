@@ -37,9 +37,10 @@ class DealsController < ApplicationController
   # POST /deals.json
   def create
     @deal = Deal.new(deal_params)
-    @deal.balance_change = BalanceChange.new(balance_params)
-    @deal.inventory_change = InventoryChange.new(inventory_params)
+    balance = BalanceChange.new(balance_params)
+    inventory = InventoryChange.new(inventory_params)
 
+    
     respond_to do |format|
       if @deal.save
         format.html { redirect_to @deal, notice: 'Negócio foi cadastrado com sucesso.' }
@@ -54,9 +55,7 @@ class DealsController < ApplicationController
   # PATCH/PUT /deals/1
   # PATCH/PUT /deals/1.json
   def update
-    @deal.balance_change.assign_attributes(balance_params)
-    puts balance_params
-    @deal.inventory_change.assign_attributes(inventory_params)
+
     respond_to do |format|
       if @deal.update(deal_params)
         format.html { redirect_to @deal, notice: 'Negócio atualizado com sucesso.' }
@@ -90,10 +89,10 @@ class DealsController < ApplicationController
     end
 
     def balance_params
-      params.require(:deal).permit(:amount).merge({farm_id: current_farm_id })
+      params.permit(:amount)
     end
 
     def inventory_params
-      params.require(:deal).permit(:males, :females).merge({farm_id: current_farm_id })
+      params.permit(:males, :females)
     end
 end

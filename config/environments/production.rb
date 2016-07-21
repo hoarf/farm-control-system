@@ -79,16 +79,11 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     :openssl_verify_mode => 'none',
-    :address => 'smtp-web.kinghost.net', 
-    # :address => 'smtp.agropecuariaficagna.com',
-    :port => 587, 
-    :domain => 'smtp.agropecuariaficagna.com', 
-    #:user_name => 'naoresponda@agropecuariaficagna.com', 
-    #:password => 'senhaprofilipe1',
-    #:authentication => 'plain' 
+    :address => 'smtp-web.kinghost.net',
+    :port => 587,
+    :domain => 'smtp.agropecuariaficagna.com',
   }
   config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_options = {from: 'naoresponda@agropecuariaficagna.com'}

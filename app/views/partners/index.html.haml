@@ -1,8 +1,7 @@
 #page-wrapper
-  = fa_page_header("Listagem de Contatos", "users")
-  = fa_page_alert(notice)
-  - if @partners.empty?
-    = fa_no_resource("Contato")
+  = render partial: "shared/page_header", locals: { title: "Listagem de Contatos", icon: "list" }
+  -if @partners.empty?
+    = render partial: "shared/empty_resource", locals: { resource: @partners }
   - else
     .row
       .col-lg-6

@@ -2,9 +2,6 @@ class CreateDeals < ActiveRecord::Migration
   def change
     create_table :deals do |t|
       t.date :date
-      t.decimal :price
-      t.integer :males
-      t.integer :females
       t.float :live_weight
       t.float :dead_weight
       t.string :deal_type

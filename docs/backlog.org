@@ -1,13 +1,18 @@
 * Application Backlog
 ** UX
+*** [#C] Write a prettier show page.
 ** Doc
+*** [#B] Write more tests.
+** Features
+*** [#A] Add a farm
 ** Tech
 *** DONE Remove turbolink from _links to avoid problems with collapsing menu
     It didn't work. I'm putting turbolink back in.
     *Update*
         It sorta worked out. Not 100% tho. But will do for now.
         The correct syntax for disabling turbolink is 'data-turbolinks='false'
-*** TODO [#C] Fix collapsing menu
+*** TODO [#C] Fix collapsing
+    * It doesn't collapse back.
 *** DONE Filter =deals= by =partners=
 *** DONE Add btn-link class to all links
 ** Infra

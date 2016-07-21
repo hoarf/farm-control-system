@@ -1,0 +1,4 @@
+- if flash[type]
+  .alert.alert-dismissable(class="#{fa_alert_map(type)}")
+    %button.close{type: "button", data: { dismiss: 'alert' }, aria: { hidden: true }} x
+    = flash[type]

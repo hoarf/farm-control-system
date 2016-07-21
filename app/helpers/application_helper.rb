@@ -1,6 +1,10 @@
 # coding: utf-8
 module ApplicationHelper
 
+  def current_farm_id
+    current_user && current_user.farm && current_user.farm.id
+  end
+
   def fa_menu_item(href, title, icon)
     """
     <li>
@@ -12,27 +16,18 @@ module ApplicationHelper
     """.html_safe
   end
 
-  def fa_page_header(title, icon, scope=nil)
+  def fa_build_title_string(title, scope)
     scope_string = scope && " - (#{scope})"
-    """
-    <div class='row'>
-      <div class='col-lg-12'>
-      <h1 class='page-header'>
-        <i class='fa fa-#{icon}'></i>
-        <span class='fa-title'>#{title}#{scope_string}</span>
-      </h1>
-      </div>
-    </div>
-    """.html_safe
+    "#{title}#{scope_string}"
   end
 
-  def fa_page_alert(notice)
-    notice && """
-    <div class='alert alert-info alert-dismissable'>
-      <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>x</button>
-      #{notice}
-    </div>
-    """.html_safe
+  def fa_alert_map(type)
+    map = {
+      error: "alert-danger",
+      notice: "alert-success",
+      alert: "alert-warning"
+    }
+    map[type]
   end
 
   def fa_no_resource(resource)

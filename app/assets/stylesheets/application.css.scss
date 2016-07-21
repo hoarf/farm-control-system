@@ -15,64 +15,65 @@
  *= require bootstrap_sb_admin_base_v2
  */
 
-body {
-    min-height: 100%;
-}
 
 html {
-    height: 100%;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
 }
 
 #wrapper {
-    height: 100vh;
+  height: 100vh;
 }
 
 .fa-heading {
-    background: white url(#{asset_path('bg.jpg')}) no-repeat fixed center;
-    height: 100%;
+  background: white url(#{asset_path('bg.jpg')}) no-repeat fixed center;
+  height: 100%;
 }
 
 .fa-title {
-    font-family: "Lora", sans-serif
+  font-family: "Lora", sans-serif
 }
 
 .fa-logo {
-    font-size: 10px;
+  font-size: 10px;
 }
 
 .fa-padding-top-bottom {
-    padding-top: 100px;
-    padding-bottom: 100px;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .container.fa-padding-left-right {
-    margin-right: auto;
-    margin-left: auto;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .panel-body.fa-login {
-    color: black;
-    padding: 40px;
-    background-color: rgba(100,100,100,.1);
+  color: black;
+  padding: 40px;
+  background-color: rgba(100,100,100,.1);
 }
 
 .fa-intro-text {
-    color: #FFF;
-    text-shadow: 1px 1px grey;
-    font-size: 100px;
-    font-weight: 700;
+  color: #FFF;
+  text-shadow: 1px 1px grey;
+  font-size: 100px;
+  font-weight: 700;
 }
 
 .fa-intro-text span {
-    font-face: "Montserrat", "Helvetica Neue", "Arial", sans-serif;
-    font-weight: 700;
+  font-face: "Montserrat", "Helvetica Neue", "Arial", sans-serif;
+  font-weight: 700;
 }
 
 .fa-intro-subtext {
-    color: #FFF;
-    font-size: 30px;
+  color: #FFF;
+  font-size: 30px;
 }
 
 .fa-margin-top {
-    margin-top: 20px;
+  margin-top: 20px;
 }

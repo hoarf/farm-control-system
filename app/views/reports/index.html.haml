@@ -1,6 +1,5 @@
 #page-wrapper
-  = fa_page_header("Relatórios", "bar-chart-o")
-  = fa_page_alert(notice)
+  = render partial: "shared/page_header", locals: { title: "Relatórios", icon: "bar-chart-o" }
   .row
     .col-lg-12
       .panel.panel-warning

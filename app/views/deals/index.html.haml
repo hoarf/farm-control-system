@@ -1,8 +1,7 @@
 #page-wrapper
-  = fa_page_header("Listagem de Negócios", "money", @partner_name)
-  = fa_page_alert(notice)
+  = render partial: "shared/page_header", locals: { title: "Listagem de Negócios", icon: "money", scope: @partner_name }
   - if @buys.empty? and @sales.empty?
-    = fa_no_resource("Negócio")
+    = render partial: "shared/empty_resource", locals: { resource: @buys }
   .row
     .col-lg-12
       - if @buys.any?
@@ -26,7 +25,7 @@
                   - @buys.each do |deal|
                     %tr
                       %td= deal.date
-                      %td= deal.price
+                      %td= deal.amount
                       %td= deal.total
                       %td= deal.live_weight
                       %td= deal.partner || "Não informado"
@@ -58,7 +57,7 @@
                   - @sales.each do |deal|
                     %tr
                       %td= deal.date
-                      %td= deal.price
+                      %td= deal.amount
                       %td= deal.total
                       %td= deal.live_weight
                       %td= deal.dead_weight

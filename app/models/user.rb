@@ -5,8 +5,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  def fazenda
-    "Fazenda Aliança"
+  has_and_belongs_to_many :farms
+
+  def farm
+    farms.first || "Sua Fazenda"
   end
 
   def send_devise_notification(notification, *args)
