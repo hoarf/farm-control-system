@@ -1,28 +1,3 @@
-#page-wrapper
-  = render partial: "shared/page_header", locals: { title: "Listagem de Contatos", icon: "list" }
-  -if @partners.empty?
-    = render partial: "shared/empty_resource", locals: { resource: @partners }
-  - else
-    .row
-      .col-lg-6
-        .panel.panel-default
-          .panel-heading Contatos
-          .panel-body
-            %table.table.text-center.table-stripped.table-bordered.table-hover#dataTables-partners
-              %thead
-                %tr
-                  %th Nome
-                  %th Contato
-                  %th Negócios
-                  %th Ações
-
-              %tbody
-                - @partners.each do |partner|
-                  %tr
-                    %td= partner.name
-                    %td= partner.contact
-                    %td= fa_index_button partner_deals_path partner
-                    %td
-                      = fa_show_button partner_path partner
-                      = fa_edit_button edit_partner_path(partner)
-                      = fa_delete_button partner_path partner
+- title "Listagem de Contatos"
+%th Nome
+%th Contato

@@ -2,15 +2,19 @@
 %html
   %head
     %title Aliança
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Montserrat:400,700', type: 'text/css'
-    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Lora', type: 'text/css'
-
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = csrf_meta_tags
-
-  %body
+    = render "shared/head"
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false
+  %body{ data: { no_turbolink: true } }
     #wrapper
-      = render "shared/navbar"
+      %header
+        = render "shared/navbar"
       = render "shared/links"
-      = yield
+      #page-wrapper
+        .row
+          .col-lg-12
+            %h1.page-header
+              %i(class=icon)
+                %span.fa-title= yield :title
+        =render "shared/flash"
+        = yield
+      = render "shared/footer"

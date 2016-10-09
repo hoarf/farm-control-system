@@ -1,8 +1,21 @@
 # coding: utf-8
 module ApplicationHelper
 
-  def current_farm_id
-    current_user && current_user.farm && current_user.farm.id
+  def icon
+    case
+    when controller.class == PartnersController
+      "fa fa-users"
+    when controller.class == FactsController
+      "fa fa-pencil"
+    when controller.class == FarmsController
+      "fa fa-leaf"
+    when controller.class == DailybookController
+      "fa fa-book"
+    end
+  end
+
+  def current_farm
+    current_user && current_user.farm
   end
 
   def fa_menu_item(href, title, icon)
@@ -16,9 +29,8 @@ module ApplicationHelper
     """.html_safe
   end
 
-  def fa_build_title_string(title, scope)
-    scope_string = scope && " - (#{scope})"
-    "#{title}#{scope_string}"
+  def title(page_title, scope=nil)
+    content_for(:title) { page_title }
   end
 
   def fa_alert_map(type)

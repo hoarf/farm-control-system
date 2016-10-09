@@ -1,8 +1,7 @@
-#page-wrapper
-  = render partial: "shared/page_header", locals: { title: "Novo Contato", icon: "user" }
-  .row
-    .col-lg-4
-      .panel.panel-default
-        .panel-heading Dados do Contato
-        .panel-body= render 'form'
-        .panel-footer= link_to 'Voltar', partners_path
+- title "Novo Contato"
+.row
+  .col-lg-4
+    .panel.panel-default
+      .panel-heading Dados do Contatos
+      .panel-body= render 'form'
+      .panel-footer= link_to 'Voltar', partners_path

@@ -56,6 +56,14 @@ gem 'haml-rails', '~> 0.9'
 gem 'bootstrap-sass'
 gem 'bootstrap_sb_admin_base_v2'
 
+# Nested Forms
+gem 'cocoon'
+
+# Datatables
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git', branch: 'master'
+gem 'ajax-datatables-rails', '0.1.2'
+gem "kaminari"
+
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

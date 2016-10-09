@@ -1,0 +1,58 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require bootstrap_sb_admin_base_v2
+ */
+
+header {
+    background: white url(#{asset_path('bg.jpg')}) no-repeat fixed center;
+    min-height: 400px;
+}
+
+
+footer {
+    background: white url(#{asset_path('bg.jpg')}) no-repeat fixed center;
+    min-height: 200px;
+}
+
+
+#logo {
+    margin: 100px auto 0px auto;
+    color: #FFF;
+    text-shadow: 1px 1px grey;
+    font-size: 100px;
+    font-weight: 700;
+}
+
+
+#logo i {
+    font-face: "Montserrat", "Helvetica Neue", "Arial", sans-serif;
+    font-weight: 700;
+    font-size: 100px;
+}
+
+
+#content {
+    margin: 40px auto 40px auto;
+}
+
+
+#subtext {
+  font-size: 30px;
+}
+
+
+#company {
+    font-family: "Lora", serif;
+}

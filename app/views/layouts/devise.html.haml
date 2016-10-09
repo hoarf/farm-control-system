@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+%html
+  %head
+    = render "shared/head"
+    = stylesheet_link_tag 'landing', media: 'all', 'data-turbolinks-track' => true
+  %body
+    #wrapper
+      %header
+        = render "shared/navbar"
+        = render partial: "shared/flash"
+        .container#logo
+          %p.text-center
+            %i.fa.fa-leaf
+              %span~ " Fazenda Aliança"
+          %p.text-center#subtext Gestão e Agronegócio
+      .container#content
+        .row
+          .col-md-4.col-md-offset-4
+            = yield
+      = render "shared/footer"

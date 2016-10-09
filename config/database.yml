@@ -29,6 +29,7 @@ development:
   encoding: unicode
   database: fazenda_dev
   pool: 5
+  host: localhost
   username: fazenda
   password: 123456
 

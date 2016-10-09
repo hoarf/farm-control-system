@@ -1,0 +1,3 @@
+class Debtor < Account
+
+end

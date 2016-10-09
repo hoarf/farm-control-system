@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title Aliança
+    = render "shared/head"
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false
+  %body{ data: { no_turbolink: true } }
+    #wrapper
+      %header
+        = render "shared/navbar"
+      = render "shared/links"
+      #page-wrapper
+        .row
+          .col-lg-12
+            %h1.page-header
+              %i(class=icon)
+                %span.fa-title= yield :title
+        =render "shared/flash"
+        .row
+          .col-lg-12
+            %table.table.text-center.table-stripped.table-bordered.table-hover{ data: { source: @path } }(id="#{@resource}-table")
+              %thead
+                %tr
+                  = yield
+              %tbody
+      = render "shared/footer"

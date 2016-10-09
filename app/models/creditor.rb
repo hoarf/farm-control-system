@@ -1,0 +1,3 @@
+class Creditor < Account
+
+end

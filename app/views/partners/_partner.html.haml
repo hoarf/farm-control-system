@@ -1,0 +1,8 @@
+%tr
+  %td= partner.name
+  %td= partner.contact
+  %td= fa_index_button "/"
+  %td
+    = fa_show_button partner_path partner
+    = fa_edit_button edit_partner_path(partner)
+    = fa_delete_button partner_path partner

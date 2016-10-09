@@ -1,0 +1,10 @@
+#page-wrapper
+  = render partial: "shared/page_header", locals: { title: "Editar Negócio", icon: "money" }
+  .row
+    .col-lg-6
+      .panel.panel-default
+        .panel-heading= "#{@deal.type} do dia #{@deal.date}"
+        .panel-body
+          = render 'form'
+        .panel-footer
+          = link_to 'Voltar', deals_path, class: 'btn btn-defaul'

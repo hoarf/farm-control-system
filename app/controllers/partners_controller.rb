@@ -4,7 +4,12 @@ class PartnersController < ApplicationController
   # GET /partners
   # GET /partners.json
   def index
-    @partners = Partner.all
+    @path = partners_path(format: :json)
+    @resource = "partners"
+    respond_to do |format|
+      format.html
+      format.json { render json: PartnerDatatable.new(view_context) }
+    end
   end
 
   # GET /partners/1
