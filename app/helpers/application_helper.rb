@@ -1,17 +1,12 @@
 # coding: utf-8
 module ApplicationHelper
 
-  def icon
-    case
-    when controller.class == PartnersController
-      "fa fa-users"
-    when controller.class == FactsController
-      "fa fa-pencil"
-    when controller.class == FarmsController
-      "fa fa-leaf"
-    when controller.class == DailybookController
-      "fa fa-book"
-    end
+  def table
+    "table text-center table-stripped table-bordered table-hover"
+  end
+
+  def table_id
+    "#{request.parameters['controller']}-table"
   end
 
   def current_farm
@@ -30,7 +25,7 @@ module ApplicationHelper
   end
 
   def title(page_title, scope=nil)
-    content_for(:title) { page_title }
+    content_for(:title) { "#{page_title}#{scope}" }
   end
 
   def fa_alert_map(type)
@@ -40,23 +35,6 @@ module ApplicationHelper
       alert: "alert-warning"
     }
     map[type]
-  end
-
-  def fa_no_resource(resource)
-    """
-    <div class='row'>
-      <div class='col-lg-12'>
-        <div class='panel panel-info'>
-          <div class='panel-heading'>
-            Nenhum #{resource} Encontrado
-          </div>
-          <div class='panel-body'>
-            Não existe nenhum <em>#{resource}</em> cadastrado com os critérios especificados
-          </div>
-        </div>
-      </div>
-    </div>
-    """.html_safe
   end
 
   def link_to(*args, &block)

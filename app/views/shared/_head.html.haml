@@ -1,6 +1,3 @@
-%title Aliança
-= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Montserrat:400,700', type: 'text/css'
-= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Lora', type: 'text/css'
-= javascript_include_tag 'application', 'data-turbolinks-track' => false
-= favicon_link_tag 'favicon.ico'
-= csrf_meta_tags
+%head
+  = render "shared/meta"
+  = stylesheet_link_tag 'application', media: 'all'

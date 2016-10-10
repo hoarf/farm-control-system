@@ -1,11 +1,10 @@
 class PartnersController < ApplicationController
+
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
 
   # GET /partners
   # GET /partners.json
   def index
-    @path = partners_path(format: :json)
-    @resource = "partners"
     respond_to do |format|
       format.html
       format.json { render json: PartnerDatatable.new(view_context) }
