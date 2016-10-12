@@ -2,12 +2,12 @@
 %html
   %head
     = render "shared/head"
-    = stylesheet_link_tag 'landing', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'landing', media: 'all'
   %body
     #wrapper
       %header
         = render "shared/navbar"
-        = render partial: "shared/flash"
+        = render "shared/flash"
         .container#logo
           %p.text-center
             %i.fa.fa-leaf

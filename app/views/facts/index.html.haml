@@ -1,19 +1,6 @@
 - title "Livro Diário"
-.row
-  .col-lg-6
-    %table.table.text-center.table-stripped.table-bordered.table-hover#dataTables-facts
-      %thead
-        %tr
-          %th Data
-          %th Descrição
-          %th Crédito
-          %th Débito
-          %th Valor
-        %tbody
-          - @facts.each do |f|
-            %tr
-              %td= f.date
-              %td= f.description
-              %td= f.moves.first && f.moves.first.credit.name
-              %td= f.moves.first && f.moves.first.debit.name
-              %td= f.moves.first && f.moves.first.amount
+%th Data
+%th Descrição
+%th Crédito
+%th Débito
+%th Valor

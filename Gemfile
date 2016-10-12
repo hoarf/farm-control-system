@@ -60,8 +60,7 @@ gem 'bootstrap_sb_admin_base_v2'
 gem 'cocoon'
 
 # Datatables
-gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git', branch: 'master'
-gem 'ajax-datatables-rails', '0.1.2'
+gem 'jquery-datatables-rails', '~> 3.4.0'
 gem "kaminari"
 
 group :development do

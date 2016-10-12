@@ -1,15 +1,13 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-$ ->
-  $('#partners-table').dataTable
+dt = (t, c) ->
+  $(t).dataTable
     processing: true,
     serverSide: true,
-    ajax: $('#partners-table').data('source'),
+    ajax: $(t).data('source'),
     pagingType: 'full_numbers',
-    columns: [
-        { data: '0' },
-        { data: '1' }
-        ]
+    columns: { data: i } for i in [0..c]
 
-  $('#partners-table tbody').on 'click', 'tr', -> window.location.href = "/#{this.parent.data('resource')}/#{this.id}"
+  $("#{t} tbody").on 'click', 'tr', -> window.location.href = "/#{this.parent.data('resource')}/#{this.id}"
+
+$ ->
+  dt '#partners-table', 1
+  dt '#facts-table', 4

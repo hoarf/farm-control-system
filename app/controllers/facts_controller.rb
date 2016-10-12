@@ -1,10 +1,14 @@
 class FactsController < ApplicationController
+
   before_action :set_fact, only: [:show, :edit, :update, :destroy]
 
   # GET /facts
   # GET /facts.json
   def index
-    @facts = Fact.all
+    respond_to do |format|
+      format.html
+      format.json { render json: FactsDatatable.new(view_context) }
+    end
   end
 
   # GET /facts/1
@@ -25,7 +29,7 @@ class FactsController < ApplicationController
   # POST /facts.json
   def create
     @fact = Fact.new(fact_params)
-    puts fact_params
+
     respond_to do |format|
       if @fact.save
         format.html { redirect_to @fact, notice: 'Fact was successfully created.' }
