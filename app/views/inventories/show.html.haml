@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Item:
+  = @inventory.item
+%p
+  %b Initial amount:
+  = @inventory.initial_amount
+%p
+  %b Initial cost:
+  = @inventory.initial_cost
+%p
+  %b Description:
+  = @inventory.description
+
+= link_to 'Edit', edit_inventory_path(@inventory)
+\|
+= link_to 'Back', inventories_path

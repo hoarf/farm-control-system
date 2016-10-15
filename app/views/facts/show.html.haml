@@ -1,9 +1,8 @@
-= title "Fato Contábil"
-.row
-  .col-lg-4
-    .panel.panel-default
-      .panel-body
-        %p
-          %b= @fact.date
-        %p
-          %b= @fact.description
+- title "Fato Contábil"
+- apagar_path fact_path(@fact)
+= content_for :symbol do
+  %i.fa.fa-fw.fa-pencil
+- heading @fact.description || "???"
+%p
+  %b Data:
+  = @fact.date

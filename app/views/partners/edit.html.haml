@@ -1,9 +1,3 @@
 - title "Editar Contato"
 .row
-  .col-lg-6
-    .panel.panel-default
-      .panel-heading= @partner.name
-      .panel-body
-        = render 'form'
-      .panel-footer
-        = link_to 'Voltar', partners_path
+  .col-md-12= render 'form'

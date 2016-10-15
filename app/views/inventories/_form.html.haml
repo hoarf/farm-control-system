@@ -1,0 +1,11 @@
+= simple_form_for(@inventory) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :item
+    = f.input :initial_amount
+    = f.input :initial_cost
+    = f.input :description
+
+  .form-actions
+    = f.button :submit

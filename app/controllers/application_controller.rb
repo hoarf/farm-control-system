@@ -5,6 +5,21 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
-  layout "index", only: [:index]
+  layout :resolve_layout
+
+private
+
+  def resolve_layout
+    return 'devise' if controller_name == 'devise'
+    return 'devise' if controller_name == 'sessions'
+    return 'devise' if controller_name == 'registration'
+
+    return 'application' if controller_name == 'farms'
+    return 'index' if action_name == 'index'
+    return 'show' if action_name == 'show'
+
+
+    return 'application'
+  end
 
 end

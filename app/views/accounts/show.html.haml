@@ -1,0 +1,14 @@
+- title "Detalhes da conta"
+- apagar_path account_path(@account)
+= content_for :symbol do
+  %i.fa.fa-fw.fa-book
+- heading @account.name || "???"
+%p
+  %b Nome:
+  = @account.name
+%p
+  %b Tipo:
+  = @account.type
+%p
+  %b Saldo:
+  = @account.balance

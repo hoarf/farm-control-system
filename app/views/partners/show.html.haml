@@ -1,15 +1,8 @@
 - title "Detalhes do Contato"
-.row
-  .col-md-4
-    .panel.panel-default
-      .panel-heading= "Dados sobre #{@partner.name}"
-      .panel-body
-        %p
-          %b Nome:
-          = @partner.name
-        %p
-          %b Contato:
-          = @partner.contact
-      .panel-footer
-        = link_to 'Editar', edit_partner_path(@partner)
-        = link_to 'Voltar', partners_path
+- apagar_path partner_path(@partner)
+= content_for :symbol do
+  %i.fa.fa-fw.fa-user
+- heading @partner.name || "???"
+%p
+  %b Contato:
+  = @partner.contact

@@ -5,4 +5,7 @@ class Partner < ActiveRecord::Base
     name
   end
 
+  def to_datatable
+    { '0' => name, '1' => contact, 'DT_RowId' => id }
+  end
 end

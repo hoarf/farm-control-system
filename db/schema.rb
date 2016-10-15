@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160925215228) do
+ActiveRecord::Schema.define(version: 20161015005219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 20160925215228) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "entries", force: :cascade do |t|
+    t.date     "date"
+    t.integer  "inventory_id"
+    t.decimal  "amount"
+    t.decimal  "cost"
+    t.string   "type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "entries", ["inventory_id"], name: "index_entries_on_inventory_id", using: :btree
+
   create_table "facts", force: :cascade do |t|
     t.date     "date"
     t.text     "description"
@@ -48,6 +60,16 @@ ActiveRecord::Schema.define(version: 20160925215228) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.date     "initial_date"
+    t.string   "item"
+    t.decimal  "initial_amount"
+    t.decimal  "initial_cost"
+    t.text     "description"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "moves", force: :cascade do |t|
@@ -103,6 +125,7 @@ ActiveRecord::Schema.define(version: 20160925215228) do
 
   add_foreign_key "accounts", "currencies"
   add_foreign_key "accounts", "farms"
+  add_foreign_key "entries", "inventories"
   add_foreign_key "moves", "facts"
   add_foreign_key "moves", "partners"
   add_foreign_key "users", "farms"

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Date:
+  = @entry.date
+%p
+  %b Inventory:
+  = @entry.inventory
+%p
+  %b Amount:
+  = @entry.amount
+%p
+  %b Cost:
+  = @entry.cost
+%p
+  %b Type:
+  = @entry.type
+
+= link_to 'Edit', edit_entry_path(@entry)
+\|
+= link_to 'Back', entries_path

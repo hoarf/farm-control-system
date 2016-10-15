@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
+  resources :entries
+  resources :inventories
   scope 'path_names': { new: 'novo', edit: 'editar' } do
 
     resources :partners, path: 'contatos'
 
-    resources :facts, path: 'fatos', only: [:new, :create]
+    resources :facts, path: 'livrodiario'
+
+    resources :accounts, path: 'contas'
 
     resources :farms, path: 'fazendas', only: [:show]
 

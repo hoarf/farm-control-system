@@ -1,13 +1,23 @@
 = simple_form_for(@fact) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :date
-    = f.input :description
-    %h3 Moves
-    #moves
-      = f.simple_fields_for :moves do |move|
-        = render 'move_fields', f: move
-      .links
-        = link_to_add_association 'Adicionar Movimentação', f, :moves
-  .form-actions
-    = f.button :submit
+  .container
+    .row
+      .col-lg-4
+        = f.error_notification
+        %div
+          %div
+            %h3 Dados do Fato
+          %hr
+            = f.input :date
+            = f.input :description
+      .col-lg-4
+        #moves
+          %div
+            %div
+              %h3 Movimentações financeiras
+            %hr
+              = f.simple_fields_for :moves do |move|
+                = render 'move_fields', f: move
+              %p
+                = link_to_add_association 'Adicionar Movimentação Financeira', f, :moves, class: 'btn-default'
+      .form-actions
+        = f.button :submit, class: 'btn-block btn-primary'
