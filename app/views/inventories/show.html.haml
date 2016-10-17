@@ -1,18 +1,12 @@
-%p#notice= notice
-
+- title "Detalhes do Estoque"
+- apagar_path inventory_path(@inventory)
+= content_for :symbol do
+  %i.fa.fa-fw.fa-bank
+- heading @inventory.item || "???"
 %p
-  %b Item:
-  = @inventory.item
-%p
-  %b Initial amount:
-  = @inventory.initial_amount
-%p
-  %b Initial cost:
-  = @inventory.initial_cost
-%p
-  %b Description:
-  = @inventory.description
-
-= link_to 'Edit', edit_inventory_path(@inventory)
-\|
-= link_to 'Back', inventories_path
+  %b Descrição
+  = @inventory.description || "vazia"
+%hr
+  %h4 Entradas
+  %hr
+  %p= render @inventory.entries

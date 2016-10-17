@@ -3,8 +3,8 @@ class CreateEntries < ActiveRecord::Migration
     create_table :entries do |t|
       t.date :date
       t.references :inventory, index: true, foreign_key: true
+      t.references :move, index: true, foreign_key: true
       t.decimal :amount
-      t.decimal :cost
       t.string :type
 
       t.timestamps null: false

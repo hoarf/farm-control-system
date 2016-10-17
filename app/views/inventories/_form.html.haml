@@ -1,11 +1,17 @@
 = simple_form_for(@inventory) do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.input :item
-    = f.input :initial_amount
-    = f.input :initial_cost
-    = f.input :description
-
-  .form-actions
-    = f.button :submit
+  %p= f.error_notification
+  .container
+    .row
+      .col-md-4
+        %h3 Dados do Estoque
+        %hr
+        = f.input :item, autofocus: true
+        = f.input :description
+        %hr
+        = f.button :submit, class: "btn-primary"
+      .col-md-4
+        %h3 Dados da Entrada Inicial do Estoque
+        %hr
+          = f.input :start_date, as: :date
+          = f.input :start_amount, as: :decimal
+          = f.input :start_value, as: :decimal

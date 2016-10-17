@@ -7,22 +7,17 @@
       #page-wrapper
         = render "shared/title"
         .row
-          .col-md-6
-            .panel.panel-default
-              .panel-heading
-                =yield :symbol
-                =yield :heading
-                .pull-right
-                  .btn-group
-                    %button.btn.btn-default.btn-xs.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { expanded: "false" } }
-                      Ações
-                      %span.carret
-                    %ul.dropdown-menu.pull-right{ role: 'menu' }
-                      %li= link_to "Ver outros", url_for(action: :index)
-                      %li= link_to "Editar", url_for(action: :edit)
-                      %li= yield :apagar_path
-              .panel-body
-                = yield
+          .col-md-12
+            %h2= yield :heading
+            %ul.list-inline
+              %i.fa.fa-list.fa-fc
+              %li= link_to "Outros", url_for(action: :index), class: ""
+              %i.fa.fa-edit.fa-fc
+              %li= link_to "Editar", url_for(action: :edit), class: ""
+              %i.fa.fa-trash
+              %li= yield :apagar_path
+            %hr
+            = yield
 
 
       = render "shared/footer"

@@ -1,17 +1,30 @@
 class PartnerDatatable < BaseDatatable
 
-private
+  def initialize(view)
+    @columns = [:name, :contact]
+    super
+  end
 
-  def my_search
+  private
+
+  def data
+    ready.map do |r|
+      {
+        '0' => r.name,
+        '1' => r.contact,
+        'DT_RowId' => r.id
+      }
+    end
+  end
+
+
+  def scope
     Partner.all
   end
 
-  def sort_column
-    '("name", "contact")'
-  end
 
-  def search_column
-    "partners.name"
+  def search
+    "lower(partners.name) like :search or lower(contact) like :search"
   end
 
 end

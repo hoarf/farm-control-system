@@ -1,31 +1,32 @@
 class FactsDatatable < BaseDatatable
 
-private
+  def initialize(view)
+    @columns = [:date, :description, :moves_debit_names, :moves_credit_names, :moves_amounts]
+    super
+  end
 
-  def my_search
+  private
+
+  def scope
     Fact.all
   end
 
   def data
-    display_on_page.map do |r|
+    ready.map do |r|
     {
      '0' => r.date,
      '1' => r.description,
-     '2' => r.moves.first_or_initialize.debit_name,
-     '3' => r.moves.first_or_initialize.credit_name,
-     '4' => r.moves.first_or_initialize.amount,
+     '2' => r.moves_debit_names,
+     '3' => r.moves_credit_names,
+     '4' => r.moves_amounts,
      'DT_RowId' => r.id,
     }
     end
   end
 
-  def sort_column
-    columns = %w[date description not_orderable not_orderable not_orderable not_orderable]
-    columns[params[:order][:'0'][:column].to_i] if params[:order] else "date"
+  def search
+    "(lower(facts.description) like :search or to_char(facts.date,'YYYY-MM-DD') like :search)"
   end
 
-  def search_column
-    "facts.description"
-  end
 
 end

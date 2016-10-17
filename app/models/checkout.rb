@@ -1,0 +1,3 @@
+class Checkout < Entry
+
+end

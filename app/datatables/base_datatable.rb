@@ -8,27 +8,36 @@ class BaseDatatable
   def as_json(options = {})
     {
       data: data,
-      recordsTotal: my_search.count,
-      recordsFiltered: sort_order_filter.count
+      recordsTotal: scope.count,
+      recordsFiltered: query.count
     }
   end
 
-private
+  private
 
-  def sort_order_filter
-    records = my_search.order("#{sort_column} #{sort_direction}")
+  def paginate
+    yield query.page(page).per(per_page)
+  end
+
+  def ready
+    paginate do |query|
+      if params['order']
+        s = query.sort_by { |x| x[@columns[params['order']['0']['column'].to_i]] || "" }
+        dir_param = params['order']['0']['dir'] || ""
+        dir = dir_param == "desc" ? "desc" : nil
+        s.reverse! if dir
+        query = s
+      end
+      query
+    end
+  end
+
+  def query
+    records = scope
     if params[:search].present? && params[:search][:value].present?
-      records = records.where("#{search_column} like :search", search: "%#{params[:search][:value]}%")
+      records = records.where("#{search}", search: "%#{params[:search][:value]}%")
     end
     records
-  end
-
-  def display_on_page
-    sort_order_filter.page(page).per(per_page)
-  end
-
-  def sort_direction
-    params[:order] && params[:order][:'0'][:dir] == "desc" ? "desc" : "asc"
   end
 
   def page

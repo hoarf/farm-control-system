@@ -1,17 +1,29 @@
 class AccountsDatatable < BaseDatatable
 
-private
+  def initialize(view)
+    @columns = [:name, :type, :balance]
+    super
+  end
 
-  def my_search
+  private
+
+  def data
+    ready.map do |r|
+      {
+        '0' => r.name,
+        '1' => r.type,
+        '2' => r.balance,
+        'DT_RowId' => r.id,
+      }
+    end
+  end
+
+  def scope
     Account.all
   end
 
-  def sort_column
-    '("name")'
-  end
-
-  def search_column
-    "accounts.name"
+  def search
+    "lower(accounts.name) like :search or lower(accounts.type) like :search"
   end
 
 end

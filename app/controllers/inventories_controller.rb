@@ -4,7 +4,10 @@ class InventoriesController < ApplicationController
   # GET /inventories
   # GET /inventories.json
   def index
-    @inventories = Inventory.all
+    respond_to do |format|
+      format.html
+      format.json { render json: InventoriesDatatable.new(view_context) }
+    end
   end
 
   # GET /inventories/1
@@ -14,7 +17,8 @@ class InventoriesController < ApplicationController
 
   # GET /inventories/new
   def new
-    @inventory = Inventory.new
+    @inventory = Inventory.new()
+    @inventory.entries << Entry.new({amount: 20})
   end
 
   # GET /inventories/1/edit
@@ -69,6 +73,12 @@ class InventoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inventory_params
-      params.require(:inventory).permit(:item, :initial_amount, :initial_cost, :description)
+      params.fetch(:inventory, {}).permit(
+        :item,
+        :description,
+        :start_date,
+        :start_amount,
+        :start_value
+      )
     end
 end

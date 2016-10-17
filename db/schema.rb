@@ -17,17 +17,14 @@ ActiveRecord::Schema.define(version: 20161015005219) do
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "name"
     t.integer  "farm_id"
-    t.string   "nature"
-    t.integer  "currency_id"
-    t.decimal  "balance"
+    t.decimal  "start",      default: 0.0
     t.string   "type"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "name"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  add_index "accounts", ["currency_id"], name: "index_accounts_on_currency_id", using: :btree
   add_index "accounts", ["farm_id"], name: "index_accounts_on_farm_id", using: :btree
 
   create_table "currencies", force: :cascade do |t|
@@ -40,14 +37,15 @@ ActiveRecord::Schema.define(version: 20161015005219) do
   create_table "entries", force: :cascade do |t|
     t.date     "date"
     t.integer  "inventory_id"
+    t.integer  "move_id"
     t.decimal  "amount"
-    t.decimal  "cost"
     t.string   "type"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
   add_index "entries", ["inventory_id"], name: "index_entries_on_inventory_id", using: :btree
+  add_index "entries", ["move_id"], name: "index_entries_on_move_id", using: :btree
 
   create_table "facts", force: :cascade do |t|
     t.date     "date"
@@ -63,11 +61,12 @@ ActiveRecord::Schema.define(version: 20161015005219) do
   end
 
   create_table "inventories", force: :cascade do |t|
-    t.date     "initial_date"
     t.string   "item"
-    t.decimal  "initial_amount"
-    t.decimal  "initial_cost"
+    t.integer  "first_entry_id"
     t.text     "description"
+    t.decimal  "start_amount"
+    t.date     "start_date"
+    t.decimal  "start_value"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -89,7 +88,7 @@ ActiveRecord::Schema.define(version: 20161015005219) do
 
   create_table "partners", force: :cascade do |t|
     t.string   "name"
-    t.string   "contact"
+    t.text     "contact"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -123,9 +122,9 @@ ActiveRecord::Schema.define(version: 20161015005219) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
-  add_foreign_key "accounts", "currencies"
   add_foreign_key "accounts", "farms"
   add_foreign_key "entries", "inventories"
+  add_foreign_key "entries", "moves"
   add_foreign_key "moves", "facts"
   add_foreign_key "moves", "partners"
   add_foreign_key "users", "farms"

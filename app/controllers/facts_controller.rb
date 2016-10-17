@@ -18,7 +18,10 @@ class FactsController < ApplicationController
 
   # GET /facts/new
   def new
-    @fact = Fact.new({moves: [Move.new]})
+    @fact = Fact.new()
+    move = Move.new
+    move.build_entry
+    @fact.moves << move
   end
 
   # GET /facts/1/edit
@@ -29,10 +32,9 @@ class FactsController < ApplicationController
   # POST /facts.json
   def create
     @fact = Fact.new(fact_params)
-
     respond_to do |format|
       if @fact.save
-        format.html { redirect_to livrodiario_path, notice: 'Fact was successfully created.' }
+        format.html { redirect_to livrodiario_path, notice: 'Fato cadastrado com sucesso.' }
         format.json { render :show, status: :created, location: @fact }
       else
         format.html { render :new }
@@ -46,7 +48,7 @@ class FactsController < ApplicationController
   def update
     respond_to do |format|
       if @fact.update(fact_params)
-        format.html { redirect_to @fact, notice: 'Fact was successfully updated.' }
+        format.html { redirect_to @fact, notice: 'Fato atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @fact }
       else
         format.html { render :edit }
@@ -60,7 +62,7 @@ class FactsController < ApplicationController
   def destroy
     @fact.destroy
     respond_to do |format|
-      format.html { redirect_to facts_url, notice: 'Fact was successfully destroyed.' }
+      format.html { redirect_to facts_url, notice: 'Fato apagado com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -68,7 +70,7 @@ class FactsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fact
-      @fact = Fact.find(params[:id])
+      @fact = Fact.includes(moves: [:entry]).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -77,12 +79,21 @@ class FactsController < ApplicationController
         :date,
         :description,
         moves_attributes: [
+          :id,
           :credit_id,
           :debit_id,
           :amount,
           :partner_id,
           :evidence,
-          :_destroy
-        ])
+          :_destroy,
+          entry_attributes: [
+            :type,
+            :id,
+            :inventory_id,
+            :_destroy,
+            :amount
+          ]
+        ],
+      )
     end
 end

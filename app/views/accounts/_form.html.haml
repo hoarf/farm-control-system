@@ -1,8 +1,12 @@
 = simple_form_for(@account.becomes(Account)) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :name
-    = f.input :type, collection: [ Debtor.name, Creditor.name ], prompt: "Natureza da conta"
-    = f.input :balance
-  .form-actions
-    = f.button :submit, class: "btn-primary btn-block"
+  %p= f.error_notification
+  .container
+    .row
+      .col-md-4
+        %h3 Dados da Conta
+        %hr
+        = f.input :name, autofocus: true
+        = f.input :type, collection: [ Debtor.name, Creditor.name ]
+        = f.input :start
+        %hr
+        = f.button :submit, class: "btn-primary"

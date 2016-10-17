@@ -12,3 +12,4 @@ $ ->
   dt '#partners-table', 1
   dt '#facts-table', 4
   dt '#accounts-table', 2
+  dt '#inventories-table', 2

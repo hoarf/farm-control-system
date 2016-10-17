@@ -1,7 +1,13 @@
 = simple_form_for @partner do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :name
-    = f.input :contact
-  .form-actions
-    = f.button :submit, class: 'btn-block btn-primary'
+  %p
+    = f.error_notification
+  .container
+    .row
+      .col-md-4
+        %p
+          %h3 Dados do Contato
+        %hr
+        = f.input :name, autofocus: true
+        = f.input :contact
+        %hr
+        = f.button :submit, class: 'btn-primary'

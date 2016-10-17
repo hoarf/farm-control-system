@@ -1,0 +1,3 @@
+class Checkin < Entry
+
+end

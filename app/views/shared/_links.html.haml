@@ -1,26 +1,29 @@
-- if current_user
-  .navbar-default.sidebar{role: "navigation"}
-    .sidebar-nav.navbar-collapse
-      %ul#side-menu.nav
-        %li
-          %a{href: "#"}
-            %i.fa.fa-leaf
-              %span.fa-title Fazenda
-          %ul.nav.nav-second-level
-            = fa_menu_item(farm_path(current_farm), "Status", "bar-chart-o")
-            = fa_menu_item(livrodiario_path, "Livro Diário", "book")
-        %li
-          %a{href: "#"}
-            %i.fa.fa-dollar
-              %span.fa-title Negócios
-          %ul.nav.nav-second-level
-            = fa_menu_item(new_fact_path, "Cadastrar Fato Contábil", "plus")
-            = fa_menu_item(new_account_path, "Cadastrar Conta", "plus")
-            = fa_menu_item(accounts_path, "Listar Contas", "list")
-        %li
-          %a{href: "#"}
-            %i.fa.fa-user
-              %span.fa-title Contatos
-          %ul.nav.nav-second-level
-            = fa_menu_item(new_partner_path, "Cadastrar Contato", "plus")
-            = fa_menu_item(partners_path, "Listar Contatos", "list")
+.navbar-default.sidebar{role: "navigation"}
+  .sidebar-nav.navbar-collapse
+    %ul#side-menu.nav
+      %li
+        %a{href: "#"}
+          %i.fa.fa-leaf
+            %span.fa-title Fazenda
+        %ul.nav.nav-second-level
+          = fa_menu_item(farm_path(current_farm), "Status", "bar-chart-o")
+          = fa_menu_item(livrodiario_path, "Livro Diário", "book")
+          = fa_menu_item(accounts_path, "Livro Razão", "calculator")
+      %li
+        %a{href: "#"}
+          %i.fa.fa-plus
+            %span.fa-title Cadastros
+        %ul.nav.nav-second-level
+          = fa_menu_item(new_account_path, "Conta", "calculator")
+          = fa_menu_item(new_partner_path, "Contato", "users")
+          = fa_menu_item(new_inventory_path, "Estoque", "list-alt")
+          = fa_menu_item(new_fact_path, "Fato Contábil", "book")
+      %li
+        %a{href: "#"}
+          %i.fa.fa-search
+            %span.fa-title Consultas
+        %ul.nav.nav-second-level
+          = fa_menu_item(accounts_path, "Contas", "calculator")
+          = fa_menu_item(partners_path, "Contatos", "users")
+          = fa_menu_item(inventories_path, "Estoques", "list-alt")
+          = fa_menu_item(livrodiario_path, "Fatos Contábeis", "book")

@@ -1,11 +1,9 @@
 class Partner < ActiveRecord::Base
-  belongs_to :deals
+
+  validates_presence_of :name
 
   def to_s
     name
   end
 
-  def to_datatable
-    { '0' => name, '1' => contact, 'DT_RowId' => id }
-  end
 end
