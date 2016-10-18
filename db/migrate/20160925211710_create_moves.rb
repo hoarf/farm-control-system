@@ -5,8 +5,6 @@ class CreateMoves < ActiveRecord::Migration
       t.references :credit
       t.references :fact, index: true, foreign_key: true
       t.references :partner, index: true, foreign_key: true
-
-      t.string :type
       t.decimal :amount
       t.text :evidence
 

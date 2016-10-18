@@ -4,7 +4,9 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.all
+    respond_to do |format|
+      format.json { render json: EntriesDatatable.new(view_context) }
+    end
   end
 
   # GET /entries/1

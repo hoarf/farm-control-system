@@ -10,6 +10,7 @@ class Move < ActiveRecord::Base
 
   delegate :name, to: :credit, prefix: true, allow_nil: true
   delegate :name, to: :debit, prefix: true, allow_nil: true
+  delegate :date, to: :fact, allow_nil: true
 
   validates :amount, :numericality => { :greater_than_or_equal_to => 0 }
   validates_presence_of :credit_id, :debit_id, :amount

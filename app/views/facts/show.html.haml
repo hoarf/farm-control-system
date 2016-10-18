@@ -11,4 +11,4 @@
   %p= @fact.description || "vazia"
 %hr
   %h4 Movimentações Financeiras
-  %p= render @fact.moves
+  %p= render partial: "moves", object: @fact.moves

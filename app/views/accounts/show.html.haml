@@ -10,8 +10,12 @@
   %b Saldo:
   = @account.balance
 %hr
-%h3 Créditos
-%p= render @account.credits
-%hr
-%h3 Débitos
-%p= render @account.debits
+.container
+  .row
+    .col-md-5
+      %h3 Créditos
+      %p= render "credits"
+    .col-md-2
+    .col-md-5
+      %h3 Débitos
+      %p= render "debits"

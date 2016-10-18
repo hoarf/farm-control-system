@@ -6,16 +6,16 @@ class Entry < ActiveRecord::Base
   validates :amount, :numericality => { :greater_than_or_equal_to => 0 }
   validates_presence_of :type, :amount, :inventory_id
 
-  def total_cost
-    0
+  delegate :date, to: :move, allow_nil: true
+
+
+  def total
+    Fact.includes(moves: [:entry]).
+      where('facts.date <= ?', date).sum("entries.amount")
   end
 
-  def cost_peps
-    0
-  end
-
-  def cost_mpm
-    0
+  def mpm
+    total/amount
   end
 
 end
