@@ -7,7 +7,7 @@
         %p
           %h3 Dados do Fato
         %hr
-        = f.input :date, autofocus: true
+        = f.input :date, as: :date, autofocus: true
         = f.input :description
         %hr
         = f.button :submit, class: 'btn-primary'

@@ -1,7 +1,7 @@
 class InventoriesDatatable < BaseDatatable
 
   def initialize(view)
-    @columns = [:item, :total, :balance]
+    @columns = [:item, :total, :balance, :last_mpm]
     super
   end
 

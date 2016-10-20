@@ -76,9 +76,9 @@ class InventoriesController < ApplicationController
       params.fetch(:inventory, {}).permit(
         :item,
         :description,
-        :start_date,
-        :start_amount,
-        :start_value
+        :date,
+        :initial_amount,
+        :initial_balance
       )
     end
 end

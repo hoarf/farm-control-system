@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20161015005219) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "farm_id"
+    t.integer  "parent_id"
     t.decimal  "start",      default: 0.0
     t.string   "type"
     t.string   "name"
@@ -35,7 +36,6 @@ ActiveRecord::Schema.define(version: 20161015005219) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.date     "date"
     t.integer  "inventory_id"
     t.integer  "move_id"
     t.decimal  "amount"
@@ -62,13 +62,12 @@ ActiveRecord::Schema.define(version: 20161015005219) do
 
   create_table "inventories", force: :cascade do |t|
     t.string   "item"
-    t.integer  "first_entry_id"
     t.text     "description"
-    t.decimal  "start_amount"
-    t.date     "start_date"
-    t.decimal  "start_value"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.decimal  "initial_amount",  default: 0.0
+    t.datetime "date",            default: '2016-10-20 22:08:51'
+    t.decimal  "initial_balance", default: 0.0
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   create_table "moves", force: :cascade do |t|
@@ -76,7 +75,6 @@ ActiveRecord::Schema.define(version: 20161015005219) do
     t.integer  "credit_id"
     t.integer  "fact_id"
     t.integer  "partner_id"
-    t.string   "type"
     t.decimal  "amount"
     t.text     "evidence"
     t.datetime "created_at", null: false

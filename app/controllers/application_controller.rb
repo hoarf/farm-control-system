@@ -25,9 +25,6 @@ class ApplicationController < ActionController::Base
   end
 
   def farmize_user!
-    puts action_name
-    puts controller_name
-    puts user_signed_in?
     redirect_to getafarm_path if (user_signed_in? and current_user.farm.nil?) or (not user_signed_in? and action_name == 'farmyourself')
   end
 

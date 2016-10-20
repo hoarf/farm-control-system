@@ -16,4 +16,4 @@ $ ->
   dt '#credits-table', 2, "/livrodiario"
   dt '#debits-table', 2, "/livrodiario"
   dt '#moves-table', 2, "/livrodiario"
-  dt '#entries-table', 3, "/livrodiario"
+  dt '#entries-table', 4, "/livrodiario"

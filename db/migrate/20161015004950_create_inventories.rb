@@ -2,11 +2,11 @@ class CreateInventories < ActiveRecord::Migration
   def change
     create_table :inventories do |t|
       t.string :item
-      t.references :first_entry
       t.text :description
-      t.decimal :start_amount, default: 0
-      t.date :start_date
-      t.decimal :start_value, default: 0
+
+      t.decimal :initial_amount, default: 0
+      t.datetime :date, default: Time.now
+      t.decimal :initial_balance, default: 0
 
       t.timestamps null: false
     end

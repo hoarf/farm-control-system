@@ -1,6 +1,7 @@
 .nested-fields
   = f.input :inventory_id, collection: Inventory.all.pluck(:item, :id)
+  = f.input :type, collection: [ Checkin.name, Checkout.name ]
   = f.input :amount
-  = f.input :type, collection: ["Checkin", "Checkout"]
+
   %i.fa.fa-remove.fa-fw
   = link_to_remove_association "Esta movimentação não altera estoque", f, data: { confirm: "Você está certo disso?" }

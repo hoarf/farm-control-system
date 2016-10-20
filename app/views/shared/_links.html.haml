@@ -6,7 +6,7 @@
           %i.fa.fa-leaf
             %span.fa-title Fazenda
         %ul.nav.nav-second-level
-          = fa_menu_item(farm_path(current_farm), "Status", "bar-chart-o")
+          = fa_menu_item(farm_path(current_user.farm), "Status", "bar-chart-o")
           = fa_menu_item(livrodiario_path, "Livro Diário", "book")
           = fa_menu_item(accounts_path, "Livro Razão", "calculator")
       %li

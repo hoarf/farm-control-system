@@ -1,6 +1,12 @@
 # coding: utf-8
 module ApplicationHelper
 
+  def present(model, presenter_class=nil)
+    klass = presenter_class || "#{model.class}Presenter".constantize
+    presenter = klass.new(model, self)
+    yield(presenter) if block_given?
+  end
+
   def icon
     "fa fa-user"
   end
@@ -11,10 +17,6 @@ module ApplicationHelper
 
   def table_id
     "#{request.parameters['controller']}-table"
-  end
-
-  def current_farm
-    current_user && current_user.farm
   end
 
   def fa_menu_item(href, title, icon)

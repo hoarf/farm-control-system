@@ -5,7 +5,17 @@
 - heading @inventory.item || "???"
 %p
   %b Descrição
-  = @inventory.description || "vazia"
+%p= @inventory.description || "vazia"
+%p
+  %b Quantidade
+%p= @inventory.total || "vazia"
+%p
+  %b Total
+%p= @inventory.balance || "vazia"
+%p
+  %b Média Ponderada Móvel
+%p= @inventory.mpms.last || "vazia"
+
 %hr
   %h4 Entradas
   %hr

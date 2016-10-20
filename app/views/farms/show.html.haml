@@ -1,24 +1,49 @@
 - title "Status da Fazenda"
-.row
-  .col-lg-4
-    .panel.panel-default
-      .panel-heading
-        Total de Cabeças de Gado
-      .panel-body
-        %p
-          %b Machos
-        %p
-          %b Femeas
-        %p
-          %b Total
-  .col-lg-4
-    .panel.panel-default
-      .panel-heading
-        Saldo
-      .panel-body
-        %p
-          %b Total de Vendas
-        %p
-          %b Total de Compras
-        %p
-          %b Total
+- present(@farm) do |farm|
+  .container
+    .row
+      .col-lg-6
+        %h2 Demonstrativo de Resultados
+        %hr
+        .container
+          .row
+            .col-lg-3
+              %p
+                %b Receita Bruta
+              %p - Descontos
+              %p - Devoluções
+              %p - Impostos
+              %p
+                %b Receita Líquida
+              %p - Custos de Vendas de Mercadorias
+              %p
+                %b Resultado Bruto
+              %p - Despesas
+              %p
+                %b Resultado Operacional
+              %p - Despesas Financeiras
+              %p
+                %b Resultado Pré Imposto de Renda
+              %p - Imposto de Renda
+              %p
+                %h3 Lucro Líquido
+            .col-lg-3
+              %p
+                %b= farm.gross_revenue
+              %p= farm.discounts
+              %p= farm.devolutions
+              %p= farm.taxes
+              %p
+                %b= farm.net_revenue
+              %p= farm.cts
+              %p
+                %b= farm.gross_result
+              %p= farm.expenses
+              %p
+                %b= farm.operational_result
+              %p= farm.financial_expenses
+              %p
+                %b= farm.before_ir_result
+              %p= farm.income_tax
+              %h3
+                %b= farm.net_profit

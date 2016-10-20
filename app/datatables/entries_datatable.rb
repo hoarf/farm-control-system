@@ -1,7 +1,7 @@
 class EntriesDatatable < BaseDatatable
 
   def initialize(view)
-    @columns = [:date, :total, :amount, :mpm]
+    @columns = [:date, :amount, :cost, :total, :type]
     super
   end
 
@@ -11,9 +11,10 @@ class EntriesDatatable < BaseDatatable
     ready.map do |r|
       {
         '0' => r.date,
-        '1' => r.total,
-        '2' => r.amount,
-        '3' => r.mpm,
+        '1' => r.amount,
+        '2' => r.cost,
+        '3' => r.total,
+        '4' => r.type,
         'DT_RowId' => r.id,
       }
     end
