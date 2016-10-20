@@ -15,8 +15,8 @@ admin.confirm
 
 # Accounts
 Creditor.create!({ name: "Capital" })
-Debitor.create!({ name: "Despesas" })
-Debitor.create!({ name: "Despesas Financeiras" })
+Debtor.create!({ name: "Despesas" })
+Debtor.create!({ name: "Despesas Financeiras" })
 Creditor.create!({ name: "Imposto de Renda" })
 Creditor.create!({ name: "Receitas" })
 Debtor.create!({ name: "Mercadorias" })
@@ -24,7 +24,7 @@ Debtor.create!({ name: "Custos de Mercadorias Vendidas" })
 Creditor.create!({ name: "Depreciação" })
 Debtor.create!({ name: "Devoluções" })
 Debtor.create!({ name: "Descontos" })
-Debitor.create!({ name: "Impostos" })
+Debtor.create!({ name: "Impostos" })
 
 # Inventories
 Inventory.create!({ item: "Machos", description: "Machos disponíveis para compra e venda."  })
