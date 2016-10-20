@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :authenticate_user!, :farmize_user!
+  before_action :authenticate_user!
   layout :resolve_layout
 
   private
@@ -26,8 +26,12 @@ class ApplicationController < ActionController::Base
     return 'application'
   end
 
-  def farmize_user!
-    redirect_to getafarm_path if (user_signed_in? and current_user.farm.nil?) or (not user_signed_in? and action_name == 'farmyourself')
+  def after_sign_in_path_for(resource)
+    if current_user.farm.nil?
+      getafarm_path
+    else
+      farm_path(current_user.farm)
+    end
   end
 
 end
