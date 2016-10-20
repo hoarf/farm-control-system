@@ -12,7 +12,9 @@ class ApplicationController < ActionController::Base
     return 'devise' if action_name == 'farmyourself'
     return 'devise' if controller_name == 'devise'
     return 'devise' if controller_name == 'sessions'
-    return 'devise' if controller_name == 'registration'
+    return 'devise' if controller_name == 'registrations'
+    return 'devise' if controller_name == 'passwords'
+    return 'devise' if controller_name == 'confirmations'
 
 
     return 'application' if controller_name == 'farms'
