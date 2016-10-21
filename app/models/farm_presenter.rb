@@ -1,6 +1,26 @@
 # coding: utf-8
 class FarmPresenter < BasePresenter
 
+  def actives
+    Debtor.all.map { |d| "#{d.name} ... #{d.balance}" }
+  end
+
+  def passives
+    Creditor.where.not(name: "Capital").map { |d| "#{d.name} ... #{d.balance}" }
+  end
+
+  def pl
+    Account.find_by(name: "Capital").instance_eval { |a| "#{a.name} ... #{a.balance}" }
+  end
+
+  def total_actives
+    Debtor.all.to_a.sum &:balance
+  end
+
+  def total_passives
+    Creditor.all.to_a.sum &:balance
+  end
+
   def gross_revenue
     Account.find_by(name: "Receitas").balance
   end

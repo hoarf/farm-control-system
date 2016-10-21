@@ -1,49 +1,88 @@
 - title "Status da Fazenda"
 - present(@farm) do |farm|
-  .container
-    .row
-      .col-lg-6
-        %h2 Demonstrativo de Resultados
-        %hr
-        .container
-          .row
-            .col-lg-3
-              %p
-                %b Receita Bruta
-              %p - Descontos
-              %p - Devoluções
-              %p - Impostos
-              %p
-                %b Receita Líquida
-              %p - Custos de Vendas de Mercadorias
-              %p
-                %b Resultado Bruto
-              %p - Despesas
-              %p
-                %b Resultado Operacional
-              %p - Despesas Financeiras
-              %p
-                %b Resultado Pré Imposto de Renda
-              %p - Imposto de Renda
-              %p
-                %h3 Lucro Líquido
-            .col-lg-3
-              %p
-                %b= farm.gross_revenue
-              %p= farm.discounts
-              %p= farm.devolutions
-              %p= farm.taxes
-              %p
-                %b= farm.net_revenue
-              %p= farm.cts
-              %p
-                %b= farm.gross_result
-              %p= farm.expenses
-              %p
-                %b= farm.operational_result
-              %p= farm.financial_expenses
-              %p
-                %b= farm.before_ir_result
-              %p= farm.income_tax
+  .row
+    .col-lg-5
+      %h2 Demonstrativo de Resultados
+      %hr
+      .container-fluid
+        .row
+          .col-lg-8
+            %p
+              %b Receita Bruta
+            %p - Descontos
+            %p - Devoluções
+            %p - Impostos
+            %p
+              %b Receita Líquida
+            %p - Custos de Vendas de Mercadorias
+            %p
+              %b Resultado Bruto
+            %p - Despesas
+            %p
+              %b Resultado Operacional
+            %p - Despesas Financeiras
+            %p
+              %b Resultado Pré Imposto de Renda
+            %p - Imposto de Renda
+            %p
               %h3
-                %b= farm.net_profit
+                %b Lucro Líquido
+          .col-lg-4
+            %p
+              %b= farm.gross_revenue
+            %p= farm.discounts
+            %p= farm.devolutions
+            %p= farm.taxes
+            %p
+              %b= farm.net_revenue
+            %p= farm.cts
+            %p
+              %b= farm.gross_result
+            %p= farm.expenses
+            %p
+              %b= farm.operational_result
+            %p= farm.financial_expenses
+            %p
+              %b= farm.before_ir_result
+            %p= farm.income_tax
+            %h3
+              %b= farm.net_profit
+    .col-lg-7
+      %h2 Balanço Patrional
+      %hr
+      .container-fluid
+        .row
+          .col-lg-6
+            %h3 Ativos
+            - farm.actives.each do |a|
+              %p= a
+          .col-lg-6
+            .container-fluid
+              .row
+                .col-lg-12
+                  %h3 Passivos
+                  - farm.passives.each do |p|
+                    %p= p
+              .row
+                .col-lg-12
+                  %hr
+              .row
+                .col-lg-12
+                  %h3 Patrimônio Líquido
+                  %p= farm.pl
+        .row
+          .col-lg-12
+            %hr
+        .row
+          .col-lg-3
+            %h3
+              %b Total
+          .col-lg-3
+            %h3
+              %b= farm.total_actives
+          .col-lg-3
+            %h3
+              %b Total
+          .col-lg-3
+            %h3
+              %b= farm.total_passives
