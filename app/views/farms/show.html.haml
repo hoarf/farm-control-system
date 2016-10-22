@@ -1,6 +1,9 @@
 - title "Status da Fazenda"
 - present(@farm) do |farm|
   .row
+    .col-lg-3
+      %p= line_chart(farm.data, {  })
+  .row
     .col-lg-5
       %h2 Demonstrativo de Resultados
       %hr

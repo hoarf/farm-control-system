@@ -1,5 +1,14 @@
 # coding: utf-8
+
 class FarmPresenter < BasePresenter
+
+  def data
+    s = Selic.new.to_json
+    i = INPC.new.to_json
+    s[:datasets] << i [:datasets].first
+    puts s
+    s
+  end
 
   def actives
     Debtor.all.map { |d| "#{d.name} ... #{d.balance}" }
