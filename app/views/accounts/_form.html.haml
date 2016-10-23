@@ -6,7 +6,7 @@
         %h3 Dados da Conta
         %hr
         = f.input :name, autofocus: true
-        = f.input :type, collection: [ Debtor.name, Creditor.name ]
+        = f.input :type, collection: [ Debtor.model_name.human, Creditor.model_name.human ]
         = f.input :start
         %hr
         = f.button :submit, class: "btn-primary"

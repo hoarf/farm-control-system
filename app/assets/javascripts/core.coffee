@@ -2,6 +2,7 @@ dt = (t, c, l) ->
   $(t).dataTable
     processing: true,
     serverSide: true,
+    language: { "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" },
     ajax: $(t).data('source'),
     pagingType: 'full_numbers',
     columns: { data: i } for i in [0..c]

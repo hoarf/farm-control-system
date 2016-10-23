@@ -1,0 +1,45 @@
+%h2 Demonstrativo de Resultados
+%hr
+.container-fluid
+  .row
+    .col-md-8
+      %p
+        %b Receita Bruta
+      %p - Descontos
+      %p - Devoluções
+      %p - Impostos
+      %p
+        %b Receita Líquida
+      %p - Custos de Vendas de Mercadorias
+      %p
+        %b Resultado Bruto
+      %p - Despesas
+      %p
+        %b Resultado Operacional
+      %p - Despesas Financeiras
+      %p
+        %b Resultado Pré Imposto de Renda
+      %p - Imposto de Renda
+      %p
+        %h3
+          %b Lucro Líquido
+    .col-md-4
+      %p
+        %b= dre.gross_revenue
+      %p= dre.discounts
+      %p= dre.devolutions
+      %p= dre.taxes
+      %p
+        %b= dre.net_revenue
+      %p= dre.cts
+      %p
+        %b= dre.gross_result
+        %p= dre.expenses
+      %p
+        %b= dre.operational_result
+      %p= dre.financial_expenses
+      %p
+        %b= dre.before_ir_result
+      %p= dre.income_tax
+      %h3
+        %b= dre.net_profit

@@ -1,6 +1,6 @@
 .nested-fields
   = f.input :inventory_id, collection: Inventory.all.pluck(:item, :id)
-  = f.input :type, collection: [ Checkin.name, Checkout.name ]
+  = f.input :type, collection: [ Checkin.model_name.human, Checkout.model_name.human ]
   = f.input :amount
 
   %i.fa.fa-remove.fa-fw

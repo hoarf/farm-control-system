@@ -7,8 +7,8 @@ class Inventory < ActiveRecord::Base
   accepts_nested_attributes_for :entries, reject_if: :all_blank, allow_destroy: true
   validates_presence_of :item, :date, :initial_amount, :initial_balance
 
-  def total
-    initial_amount + checkins.sum(:amount) - checkouts.sum(:amount)
+  def total(date=Date.today)
+    initial_amount + checkins.of(date).sum(:amount) - checkouts.of(date).sum(:amount)
   end
 
   def mpms
@@ -22,8 +22,8 @@ class Inventory < ActiveRecord::Base
     c
   end
 
-  def balance
-    initial_balance + checkins.to_a.sum(&:total) - checkouts.to_a.sum(&:total)
+  def balance(date=Date.today)
+    initial_balance + checkins.of(date).to_a.sum(&:total) - checkouts.of(date).to_a.sum(&:total)
   end
 
 end

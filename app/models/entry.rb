@@ -8,6 +8,8 @@ class Entry < ActiveRecord::Base
 
   delegate :date, to: :move, allow_nil: true
 
+  scope :of, ->(date) { eager_load(move: [:fact]).where('facts.date <= ?', date) }
+
   def total
     move.amount
   end

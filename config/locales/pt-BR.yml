@@ -2,27 +2,57 @@
 pt-BR:
   activerecord:
     models:
-      deal:
-        one: "Negócio"
+      creditor:
+        one: "Credora"
+      debtor:
+        one: "Devedora"
       partner:
         one: "Contato"
+      account:
+        one: "Conta"
+      inventory:
+        one: "Estoque"
+      fact:
+        one: "Fato Contábil"
+      move:
+        one: "Movimentação Financeira"
+      entry:
+        one: "Movimentação de Estoque"
+      checkin:
+        one: "Entrada"
+      checkout:
+        one: Saída
     attributes:
+      checkin:
+        human: entradas
+      fact:
+        date: "Data"
+        description: "Descrição"
+      entry:
+        inventory_id: Estoque
+        type: Tipo
+        amount: Quantidade
+      move:
+        amount: Valor
+        credit: Conta a ser Creditada
+        debit: Conta a ser Debitada
+        partner: Negociante
+        evidence: Evidência
+      inventory:
+        unit: "Unidade"
+        description: "Descrição"
+        date: "Data de Criação do Estoque"
+        initial_amount: "Quantidade"
+        initial_balance: "Valor"
       devise/users:
         remember_me: "Permanecer logado"
       partner:
         name: "Nome"
         contact: "Forma de contato"
-      deal:
-        amount: "Preço por Kilo"
-        date: "Data"
-        price: "Preço por Kilo"
-        males: "Número de Machos"
-        females: "Número de Fêmeas"
-        live_weight: "Peso Vivo (Média)"
-        dead_weight: "Peso Morto (Média)"
-        deal_type: "Tipo de Negócio"
-        reason: "Finalidade"
-        partner_id: "Contato"
+      account:
+        type: "Natureza"
+        name: "Nome"
+        start: "Saldo Inicial"
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

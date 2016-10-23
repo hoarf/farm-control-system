@@ -19,11 +19,12 @@ ActiveRecord::Schema.define(version: 20161015005219) do
   create_table "accounts", force: :cascade do |t|
     t.integer  "farm_id"
     t.integer  "parent_id"
-    t.decimal  "start",      default: 0.0
+    t.string   "system_name"
+    t.decimal  "start",       default: 0.0
     t.string   "type"
     t.string   "name"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "accounts", ["farm_id"], name: "index_accounts_on_farm_id", using: :btree
@@ -62,9 +63,12 @@ ActiveRecord::Schema.define(version: 20161015005219) do
 
   create_table "inventories", force: :cascade do |t|
     t.string   "item"
+    t.string   "system_name"
     t.text     "description"
+    t.string   "type"
+    t.string   "unit"
     t.decimal  "initial_amount",  default: 0.0
-    t.datetime "date",            default: '2016-10-20 22:08:51'
+    t.datetime "date",            default: '2016-10-23 11:27:11'
     t.decimal  "initial_balance", default: 0.0
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
