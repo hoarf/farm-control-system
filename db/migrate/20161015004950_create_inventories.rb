@@ -8,7 +8,7 @@ class CreateInventories < ActiveRecord::Migration
       t.string :unit
 
       t.decimal :initial_amount, default: 0
-      t.datetime :date, default: Time.now
+      t.date :date
       t.decimal :initial_balance, default: 0
 
       t.timestamps null: false

@@ -2,13 +2,13 @@
 - apagar_path fact_path(@fact)
 = content_for :symbol do
   %i.fa.fa-fw.fa-pencil
-- heading @fact.description || "???"
+- heading @fact.description
 %p
   %b Data:
-  %p= @fact.date
+  %= @fact.date
 %p
   %b Descrição:
-  %p= @fact.description || "vazia"
+  %= @fact.description
 %hr
   %h4 Movimentações Financeiras
   %p= render partial: "moves", object: @fact.moves

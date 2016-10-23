@@ -2,19 +2,22 @@
 - apagar_path inventory_path(@inventory)
 = content_for :symbol do
   %i.fa.fa-fw.fa-bank
-- heading @inventory.item || "???"
+- heading @inventory.item
+%p
+  %b Unidade
+  = @inventory.unit
 %p
   %b Descrição
-%p= @inventory.description || "vazia"
+  = @inventory.description
 %p
   %b Quantidade
-%p= @inventory.total || "vazia"
+  = @inventory.total
 %p
   %b Total
-%p= @inventory.balance || "vazia"
+  = @inventory.balance
 %p
   %b Média Ponderada Móvel
-%p= @inventory.mpms.last || "vazia"
+  = @inventory.mpms.last
 
 %hr
   %h4 Entradas

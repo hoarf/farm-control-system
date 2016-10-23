@@ -22,6 +22,10 @@ class Inventory < ActiveRecord::Base
     c
   end
 
+  after_initialize do |i|
+    i.date ||= Date.today if new_record?
+  end
+
   def balance(date=Date.today)
     initial_balance + checkins.of(date).to_a.sum(&:total) - checkouts.of(date).to_a.sum(&:total)
   end

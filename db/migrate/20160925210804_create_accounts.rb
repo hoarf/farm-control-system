@@ -3,6 +3,7 @@ class CreateAccounts < ActiveRecord::Migration
     create_table :accounts do |t|
       t.references :farm, index: true, foreign_key: true
       t.references :parent
+      t.text :description
       t.string :system_name
       t.decimal :start, default: 0
       t.string :type

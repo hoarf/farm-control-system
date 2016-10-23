@@ -50,6 +50,7 @@ pt-BR:
         name: "Nome"
         contact: "Forma de contato"
       account:
+        description: Descrição
         type: "Natureza"
         name: "Nome"
         start: "Saldo Inicial"
