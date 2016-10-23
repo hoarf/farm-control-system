@@ -4,8 +4,4 @@ class Debtor < Account
     start - credits.sum(:amount) + debits.sum(:amount)
   end
 
-  def to_s
-    name
-  end
-
 end

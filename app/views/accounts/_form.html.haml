@@ -6,7 +6,7 @@
         %h3 Dados da Conta
         %hr
         = f.input :name, autofocus: true
-        = f.input :type, collection: [ Debtor.model_name.human, Creditor.model_name.human ]
+        = f.input :type, collection: Account.descendants, label_method: -> (c) { c.model_name.human }, value_method: :name
         = f.input :start
         %hr
         = f.button :submit, class: "btn-primary"

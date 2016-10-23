@@ -11,7 +11,7 @@ class AccountsDatatable < BaseDatatable
     ready.map do |r|
       {
         '0' => r.name,
-        '1' => r.type,
+        '1' => r.model_name.human,
         '2' => r.balance,
         'DT_RowId' => r.id,
       }

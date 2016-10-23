@@ -4,8 +4,8 @@
   %i.fa.fa-fw.fa-book
 - heading @account.name || "???"
 %p
-  %b Tipo:
-  = @account.type
+  %b Natureza:
+  = @account.model_name.human
 %p
   %b Saldo:
   = @account.balance
@@ -13,9 +13,9 @@
 .container
   .row
     .col-md-5
-      %h3 Créditos
+      %h3 Entradas de Crédito Nesta Conta
       %p= render "credits"
     .col-md-2
     .col-md-5
-      %h3 Débitos
+      %h3 Entradas de Débito Nesta Conta
       %p= render "debits"

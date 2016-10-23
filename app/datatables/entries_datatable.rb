@@ -14,7 +14,7 @@ class EntriesDatatable < BaseDatatable
         '1' => r.amount,
         '2' => r.cost,
         '3' => r.total,
-        '4' => r.type,
+        '4' => r.model_name.human,
         'DT_RowId' => r.id,
       }
     end
