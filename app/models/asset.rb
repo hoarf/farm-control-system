@@ -1,0 +1,4 @@
+class Asset < Creditor
+
+
+end

@@ -1,0 +1,3 @@
+class Debit < Move
+
+end

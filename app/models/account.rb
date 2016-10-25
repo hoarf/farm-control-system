@@ -1,9 +1,8 @@
 class Account < ActiveRecord::Base
 
-  scope :moves, -> { joins(:credits, :debits) }
-
-  has_many :debits, class_name: "Move", foreign_key: :debit_id
-  has_many :credits, class_name: "Move", foreign_key: :credit_id
+  has_many :debits
+  has_many :credits
+  has_many :moves
 
   validates_presence_of :type, :name, :start
 

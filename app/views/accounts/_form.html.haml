@@ -6,7 +6,9 @@
         %h3 Dados da Conta
         %hr
         = f.input :name, autofocus: true
-        = f.input :type, collection: Account.descendants, label_method: -> (c) { c.model_name.human }, value_method: :name
+        = f.input :type, collection: Account.descendants,
+        label_method: -> (c) { c.model_name.human },
+        value_method: :name, as: radio_buttons
         = f.input :description
         = f.input :start
         %hr

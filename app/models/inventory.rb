@@ -1,8 +1,8 @@
 class Inventory < ActiveRecord::Base
 
   has_many :entries, dependent: :delete_all
-  has_many :checkins, class_name: Checkin.name
-  has_many :checkouts, class_name: Checkout.name
+  has_many :checkins
+  has_many :checkouts
 
   accepts_nested_attributes_for :entries, reject_if: :all_blank, allow_destroy: true
   validates_presence_of :item, :date, :initial_amount, :initial_balance
@@ -16,7 +16,7 @@ class Inventory < ActiveRecord::Base
     c << initial_balance/initial_amount
     sorted_entries = entries.sort_by(&:date)
     checkins.each do |ci|
-      e = entries.eager_load(move: [:fact]).where("facts.date <= ?", ci.date)
+      e = entries.eager_load(:fact).where("facts.date <= ?", ci.date)
       c << e.to_a.sum(&:total)/e.sum(:amount)
     end
     c

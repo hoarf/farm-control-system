@@ -22,22 +22,26 @@ pt-BR:
         one: "Entrada"
       checkout:
         one: Saída
+      credit:
+        one: Crédito
+      debit:
+        one: Débito
     attributes:
       checkin:
         human: entradas
       fact:
         date: "Data"
         description: "Descrição"
+        partner: Negociante
+        evidence: Evidência
       entry:
         inventory_id: Estoque
-        type: Tipo
+        type: Tipo de Movimentação de Estoque
         amount: Quantidade
       move:
         amount: Valor
-        credit: Conta a ser Creditada
-        debit: Conta a ser Debitada
-        partner: Negociante
-        evidence: Evidência
+        account: Conta
+        type: Tipo de Movimentação Financeira
       inventory:
         unit: "Unidade"
         description: "Descrição"
@@ -183,7 +187,7 @@ pt-BR:
         other: 'é muito longo (máximo: %{count} caracteres)'
       too_short:
         one: 'é muito curto (mínimo: 1 caracter)'
-        other: 'é muito curto (mínimo: %{count} caracteres)'
+        other: 'no mínimo %{count} são necessários'
       wrong_length:
         one: não possui o tamanho esperado (1 caracter)
         other: não possui o tamanho esperado (%{count} caracteres)

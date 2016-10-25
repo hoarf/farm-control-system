@@ -1,14 +1,14 @@
 class Entry < ActiveRecord::Base
 
   belongs_to :inventory
-  belongs_to :move
+  belongs_to :fact
 
   validates :amount, numericality: { greater_than_or_equal_to: 0 }
   validates_presence_of :type, :amount, :inventory_id
 
-  delegate :date, to: :move, allow_nil: true
+  delegate :date, to: :fact, allow_nil: true
 
-  scope :of, ->(date) { eager_load(move: [:fact]).where('facts.date <= ?', date) }
+  scope :of, ->(date) { joins(:fact).where('facts.date <= ?', date) }
 
   def total
     move.amount

@@ -32,22 +32,26 @@ ActiveRecord::Schema.define(version: 20161015005219) do
 
   create_table "entries", force: :cascade do |t|
     t.integer  "inventory_id"
-    t.integer  "move_id"
+    t.integer  "fact_id"
     t.decimal  "amount"
     t.string   "type"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
+  add_index "entries", ["fact_id"], name: "index_entries_on_fact_id", using: :btree
   add_index "entries", ["inventory_id"], name: "index_entries_on_inventory_id", using: :btree
-  add_index "entries", ["move_id"], name: "index_entries_on_move_id", using: :btree
 
   create_table "facts", force: :cascade do |t|
     t.date     "date"
     t.text     "description"
+    t.integer  "partner_id"
+    t.text     "evidence"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "facts", ["partner_id"], name: "index_facts_on_partner_id", using: :btree
 
   create_table "farms", force: :cascade do |t|
     t.string   "name"
@@ -69,18 +73,15 @@ ActiveRecord::Schema.define(version: 20161015005219) do
   end
 
   create_table "moves", force: :cascade do |t|
-    t.integer  "debit_id"
-    t.integer  "credit_id"
+    t.integer  "account_id"
+    t.string   "type"
     t.integer  "fact_id"
-    t.integer  "partner_id"
     t.decimal  "amount"
-    t.text     "evidence"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "moves", ["fact_id"], name: "index_moves_on_fact_id", using: :btree
-  add_index "moves", ["partner_id"], name: "index_moves_on_partner_id", using: :btree
 
   create_table "partners", force: :cascade do |t|
     t.string   "name"
@@ -119,9 +120,9 @@ ActiveRecord::Schema.define(version: 20161015005219) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   add_foreign_key "accounts", "farms"
+  add_foreign_key "entries", "facts"
   add_foreign_key "entries", "inventories"
-  add_foreign_key "entries", "moves"
+  add_foreign_key "facts", "partners"
   add_foreign_key "moves", "facts"
-  add_foreign_key "moves", "partners"
   add_foreign_key "users", "farms"
 end

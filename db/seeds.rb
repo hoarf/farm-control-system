@@ -29,8 +29,6 @@ Debtor.create!({ name: "Instalações", system_name: "improvements" })
 Creditor.create!({ name: "Depreciação", system_name: "depreciation" })
 Creditor.create!({ name: "Imposto de Renda", system_name: "income_tax" })
 Creditor.create!({ name: "Receitas", system_name: "income" })
-Creditor.create!({ name: "Capital", system_name: "capital" })
-Creditor.create!({ name: "Lucro Líquido", system_name: "profit" })
 Creditor.create!({ name: "Empréstimos/Financiamentos", system_name: "liabilities",
                    description: "Valores de terceiros emprestados à empresa" })
 Creditor.create!({ name: "Fornecedores", system_name: "suppliers",
@@ -43,6 +41,9 @@ Creditor.create!({ name: "Contas a Pagar", system_name: "taxes",
                    description: "Aluguel, energia, seguros, fretes e outras despesas" })
 Creditor.create!({ name: "Dividendos a Pagar", system_name: "taxes",
                    description: "Parcela do lucro devida aos sócios ao final de cada exercício" })
+
+Asset.create!({ name: "Capital", system_name: "capital" })
+Asset.create!({ name: "Lucro Líquido", system_name: "profit" })
 
 # Inventories
 Inventory.create!({ item: "Machos", system_name: "males", unit: "Cabeças",

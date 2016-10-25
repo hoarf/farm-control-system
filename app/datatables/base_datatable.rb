@@ -20,6 +20,7 @@ class BaseDatatable
   end
 
   def ready
+
     paginate do |query|
       if params['order']
         s = query.sort_by { |x| x[@columns[params['order']['0']['column'].to_i]] || "" }

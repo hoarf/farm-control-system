@@ -13,10 +13,7 @@ class FarmPresenter < BasePresenter
   def indicators
     {
       labels: BaseIndicator.date_range,
-      datasets: [
-        Selic.new.to_json,
-        INPC.new.to_json,
-      ]
+      datasets: [ Selic.new.to_json, INPC.new.to_json ]
     }
   end
 
@@ -42,11 +39,7 @@ class FarmPresenter < BasePresenter
     {
       title: {
         display: true,
-        text: "Total de Cabeças",
-      },
-      scales: {
-        xAxes: [{ stacked: true }],
-        yAxes: [{ stacked: false }]
+        text: "Estoque",
       }
     }
    end

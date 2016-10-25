@@ -1,7 +1,7 @@
 class FactsDatatable < BaseDatatable
 
   def initialize(view)
-    @columns = [:date, :description, :moves_debit_names, :moves_credit_names, :moves_amounts]
+    @columns = [:date, :description, :credits_names, :debits_names, :moves_amounts]
     super
   end
 
@@ -16,8 +16,8 @@ class FactsDatatable < BaseDatatable
     {
      '0' => r.date,
      '1' => r.description,
-     '2' => r.moves_debit_names,
-     '3' => r.moves_credit_names,
+     '2' => r.debits_names,
+     '3' => r.credits_names,
      '4' => r.moves_amounts,
      'DT_RowId' => r.id,
     }

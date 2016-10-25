@@ -1,7 +1,7 @@
 class DebitsDatatable < MovesDatatable
 
   def scope
-    Move.where({debit_id: params[:debit_id]})
+    Debit.where({account_id: params[:account_id]})
   end
 
 end

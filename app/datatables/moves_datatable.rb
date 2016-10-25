@@ -1,7 +1,7 @@
 class MovesDatatable < BaseDatatable
 
   def initialize(view)
-    @columns = [:credit_name, :debit_name, :amount]
+    @columns = [:date, :amount]
     super
   end
 
@@ -10,11 +10,9 @@ class MovesDatatable < BaseDatatable
   def data
     ready.map do |r|
       {
-        '0' => r.credit_name,
-        '1' => r.debit_name,
-        '2' => r.amount,
-        'DT_RowId' => Fact.includes(:moves).
-                        find_by(moves: { id: r.id }).id
+        '0' => r.date,
+        '1' => r.amount,
+        'DT_RowId' => r.fact_id
       }
     end
   end

@@ -1,21 +1,36 @@
 = simple_form_for(@fact) do |f|
   %p
-    = f.error_notification
-  .container
+    =f.error_notification
+  .container-fluid
     .row
       .col-md-4
         %p
           %h3 Dados do Fato
         %hr
         = f.input :date, as: :date, autofocus: true
+        .form-group
+          = f.input :evidence
         = f.input :description
+        = f.association :partner
         %hr
         = f.button :submit, class: 'btn-primary'
-      .col-md-8
+      .col-md-4
         %h3
           Movimentações Financeiras
+        .has-error=f.error :moves
         %hr
-        = f.simple_fields_for :moves do |move|
-          = render 'move_fields', f: move
-        .links
-          = link_to_add_association 'Adicionar Movimentação Financeira', f, :moves, class: 'btn-default'
+        #moves
+          = f.simple_fields_for :moves do |move|
+            = render 'move_fields', f: move
+          .links
+            = link_to_add_association 'Adicionar Movimentação Financeira', f, :moves, class: 'btn-default'
+      .col-md-4
+        %h3
+          Movimentações de Estoque
+        %hr
+        #entry
+          = f.simple_fields_for :entry do |entry|
+            = render 'entry_fields', f: entry
+          .links
+            = link_to_add_association 'Adicionar Movimentação de Estoque', f,
+            :entry, class: 'btn-default', force_non_association_create: true

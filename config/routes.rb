@@ -12,7 +12,10 @@ Rails.application.routes.draw do
     resources :inventories, path: 'estoques' do
       resources :entries,   path: 'entradas',       only: [:index]
     end
-    resources :accounts,    path: 'contas'
+    resources :accounts,    path: 'contas' do
+      resources :credits,   path: 'creditos',       only: [:index]
+      resources :debits,    path: 'debitos',        only: [:index]
+    end
     resources :farms,       path: 'fazendas',       only: [:show]
 
     devise_for :users, path: 'usuarios', path_names: {
@@ -26,8 +29,6 @@ Rails.application.routes.draw do
 
   end
 
-  get '/debits/:debit_id/'       => 'debits#index',       as: :debits
-  get '/credits/:credit_id/'     => 'credits#index',      as: :credits
   get 'livrodiario'              => 'facts#index',        as: :livrodiario
   get 'livrorazao'               => 'accounts#index',     as: :livrorazao
   get 'getafarm'                 => 'other#farmyourself', as: :getafarm

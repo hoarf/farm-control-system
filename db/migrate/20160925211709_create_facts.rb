@@ -3,6 +3,8 @@ class CreateFacts < ActiveRecord::Migration
     create_table :facts do |t|
       t.date :date
       t.text :description
+      t.references :partner, index: true, foreign_key: true
+      t.text :evidence
 
       t.timestamps null: false
     end

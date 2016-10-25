@@ -59,7 +59,7 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
+      format.html { redirect_to accounts_url, notice: 'Conta apagada com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -72,6 +72,6 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.fetch(:account, {}).permit(:name, :type, :balance)
+      params.fetch(:account, {}).permit(:name, :type, :description, :start)
     end
 end

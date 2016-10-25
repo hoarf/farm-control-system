@@ -19,7 +19,8 @@
         .row
           .col-md-12
             %h3 Patrimônio Líquido
-            %p= assets_balance.pl
+            - assets_balance.pl.each do |pl|
+              %p= pl
   .row
     .col-md-12
       %hr
