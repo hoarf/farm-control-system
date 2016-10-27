@@ -4,9 +4,7 @@
 alianca = Farm.create!({name: "Fazenda Aliança"})
 
 # User
-admin = User.create!({email: "admin@agropecuariaficagna.com",
-                      password: "111111",
-                      password_confirmation: "111111", farm: alianca })
+admin = User.create!({email: "admin@agropecuariaficagna.com", password: "111111", password_confirmation: "111111", farm: alianca })
 admin.confirm
 
 # Accounts
@@ -23,34 +21,31 @@ Debtor.create!({ name: "Veículos", system_name: "vehicles" })
 Debtor.create!({ name: "Móveis e Utensílios", system_name: "appliance" })
 Debtor.create!({ name: "Instalações", system_name: "improvements" })
 
-expenses = Creditor.create!({ name: "Despesas", system_name: "expenses" }).readonly!
+expenses = Creditor.create!({ name: "Despesas", system_name: "expenses" })
 financial_expenses = Creditor.create!({ name: "Despesas Financeiras", system_name: "financial_expenses" })
 Creditor.create!({ name: "Depreciação", system_name: "depreciation", parent: expenses })
 Creditor.create!({ name: "Imposto de Renda", system_name: "income_tax" })
 Creditor.create!({ name: "Receitas", system_name: "income" })
-Creditor.create!({ name: "Empréstimos/Financiamentos", system_name: "liabilities",
-                   description: "Valores de terceiros emprestados à empresa", parent: financial_expenses })
-Creditor.create!({ name: "Fornecedores", system_name: "suppliers", parent: financial_expenses,
-                   description: "Débitos com os fornecedores de mercadorias e matérias primas para a empresa" })
-Creditor.create!({ name: "Salários e Encargos", system_name: "wages", parent: expenses,
-                   description: "Salários, Honorários, Comissões, Férias, Gratificações e Participações a pagar" })
-Creditor.create!({ name: "Impostos", system_name: "taxes",
-                   description: "ICMS, PIS, COFINS INSS a recolher, CSL, FGTS a pagar" })
-Creditor.create!({ name: "Contas a Pagar", system_name: "bills", parent: expenses,
-                   description: "Aluguel, energia, seguros, fretes e outras despesas" })
-Creditor.create!({ name: "Dividendos a Pagar", system_name: "dividends", parent: financial_expenses,
-                   description: "Parcela do lucro devida aos sócios ao final de cada exercício" })
+Creditor.create!({ name: "Empréstimos/Financiamentos", system_name: "liabilities", description: "Valores de terceiros emprestados à empresa", parent: financial_expenses })
+Creditor.create!({ name: "Fornecedores", system_name: "suppliers", parent: financial_expenses, description: "Débitos com os fornecedores de mercadorias e matérias primas para a empresa" })
+Creditor.create!({ name: "Salários e Encargos", system_name: "wages", parent: expenses, description: "Salários, Honorários, Comissões, Férias, Gratificações e Participações a pagar" })
+Creditor.create!({ name: "Impostos", system_name: "taxes", description: "ICMS, PIS, COFINS INSS a recolher, CSL, FGTS a pagar" })
+Creditor.create!({ name: "Contas a Pagar", system_name: "bills", parent: expenses, description: "Aluguel, energia, seguros, fretes e outras despesas" })
+Creditor.create!({ name: "Dividendos a Pagar", system_name: "dividends", parent: financial_expenses, description: "Parcela do lucro devida aos sócios ao final de cada exercício" })
 
 Asset.create!({ name: "Capital", system_name: "capital" })
 Asset.create!({ name: "Lucro Líquido", system_name: "profit" })
 
+Account.all.each do |a|
+  a.farm = alianca
+  a.save
+end
+
 # Inventories
-Inventory.create!({ item: "Machos", system_name: "males", unit: "Cabeças",
-                    description: "Machos disponíveis para compra e venda."  })
-Inventory.create!({ item: "Fêmeas", system_name: "females", unit: "Cabeças",
-                    description: "Fêmeas disponíveis para compra e venda."  })
-Inventory.create!({ item: "Silagem", system_name: "food", unit: "Kilos",
-                    description: "Quantidade de Silagem na Fazenda"  })
+
+Inventory.create!({ item: "Machos", system_name: "males", unit: "Cabeças", farm: alianca, description: "Machos disponíveis para compra e venda."  })
+Inventory.create!({ item: "Fêmeas", system_name: "females", unit: "Cabeças", farm: alianca, description: "Fêmeas disponíveis para compra e venda."  })
+Inventory.create!({ item: "Silagem", system_name: "food", unit: "Kilos", farm: alianca, description: "Quantidade de Silagem na Fazenda"  })
 
 # Partners
 

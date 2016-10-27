@@ -18,6 +18,7 @@ class Account < ActiveRecord::Base
   has_many :children, class_name: Account.name,
            foreign_key: :parent_id, inverse_of: :parent
 
+  belongs_to :farm
   belongs_to :parent, class_name: Account.name,
              inverse_of: :children
 

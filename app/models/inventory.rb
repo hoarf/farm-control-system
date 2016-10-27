@@ -3,6 +3,7 @@ class Inventory < ActiveRecord::Base
   has_many :entries, dependent: :delete_all
   has_many :checkins
   has_many :checkouts
+  belongs_to :farm
 
   accepts_nested_attributes_for :entries, reject_if: :all_blank, allow_destroy: true
   validates_presence_of :item, :date, :initial_amount, :initial_balance

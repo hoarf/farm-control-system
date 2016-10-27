@@ -66,12 +66,15 @@ ActiveRecord::Schema.define(version: 20161015005219) do
     t.text     "description"
     t.string   "type"
     t.string   "unit"
+    t.integer  "farm_id"
     t.decimal  "initial_amount",  default: 0.0
     t.date     "date"
     t.decimal  "initial_balance", default: 0.0
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
+
+  add_index "inventories", ["farm_id"], name: "index_inventories_on_farm_id", using: :btree
 
   create_table "moves", force: :cascade do |t|
     t.integer  "account_id"
@@ -125,6 +128,7 @@ ActiveRecord::Schema.define(version: 20161015005219) do
   add_foreign_key "entries", "facts"
   add_foreign_key "entries", "inventories"
   add_foreign_key "facts", "partners"
+  add_foreign_key "inventories", "farms"
   add_foreign_key "moves", "accounts"
   add_foreign_key "moves", "facts"
   add_foreign_key "users", "farms"

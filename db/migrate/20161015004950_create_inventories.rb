@@ -6,6 +6,7 @@ class CreateInventories < ActiveRecord::Migration
       t.text :description
       t.string :type
       t.string :unit
+      t.references :farm, index: true, foreign_key: true
 
       t.decimal :initial_amount, default: 0
       t.date :date
