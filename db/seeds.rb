@@ -11,9 +11,6 @@ admin.confirm
 
 # Accounts
 
-Debtor.create!({ name: "Despesas", system_name: "expenses" })
-Debtor.create!({ name: "Despesas Financeiras", system_name: "financial_expenses" })
-Debtor.create!({ name: "Mercadorias", system_name: "inventory" })
 Debtor.create!({ name: "Custos de Mercadorias Vendidas", system_name: "cost_to_sell" })
 Debtor.create!({ name: "Devoluções", system_name: "returns" })
 Debtor.create!({ name: "Descontos", system_name: "discounts" })
@@ -26,20 +23,22 @@ Debtor.create!({ name: "Veículos", system_name: "vehicles" })
 Debtor.create!({ name: "Móveis e Utensílios", system_name: "appliance" })
 Debtor.create!({ name: "Instalações", system_name: "improvements" })
 
-Creditor.create!({ name: "Depreciação", system_name: "depreciation" })
+expenses = Creditor.create!({ name: "Despesas", system_name: "expenses" }).readonly!
+financial_expenses = Creditor.create!({ name: "Despesas Financeiras", system_name: "financial_expenses" })
+Creditor.create!({ name: "Depreciação", system_name: "depreciation", parent: expenses })
 Creditor.create!({ name: "Imposto de Renda", system_name: "income_tax" })
 Creditor.create!({ name: "Receitas", system_name: "income" })
 Creditor.create!({ name: "Empréstimos/Financiamentos", system_name: "liabilities",
-                   description: "Valores de terceiros emprestados à empresa" })
-Creditor.create!({ name: "Fornecedores", system_name: "suppliers",
+                   description: "Valores de terceiros emprestados à empresa", parent: financial_expenses })
+Creditor.create!({ name: "Fornecedores", system_name: "suppliers", parent: financial_expenses,
                    description: "Débitos com os fornecedores de mercadorias e matérias primas para a empresa" })
-Creditor.create!({ name: "Salários e Encargos", system_name: "wages",
+Creditor.create!({ name: "Salários e Encargos", system_name: "wages", parent: expenses,
                    description: "Salários, Honorários, Comissões, Férias, Gratificações e Participações a pagar" })
 Creditor.create!({ name: "Impostos", system_name: "taxes",
                    description: "ICMS, PIS, COFINS INSS a recolher, CSL, FGTS a pagar" })
-Creditor.create!({ name: "Contas a Pagar", system_name: "taxes",
+Creditor.create!({ name: "Contas a Pagar", system_name: "bills", parent: expenses,
                    description: "Aluguel, energia, seguros, fretes e outras despesas" })
-Creditor.create!({ name: "Dividendos a Pagar", system_name: "taxes",
+Creditor.create!({ name: "Dividendos a Pagar", system_name: "dividends", parent: financial_expenses,
                    description: "Parcela do lucro devida aos sócios ao final de cada exercício" })
 
 Asset.create!({ name: "Capital", system_name: "capital" })

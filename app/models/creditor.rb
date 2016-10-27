@@ -1,6 +1,6 @@
 class Creditor < Account
 
-  def balance
+  def checkout
     start + credits.sum(:amount) - debits.sum(:amount)
   end
 

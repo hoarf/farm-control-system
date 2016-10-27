@@ -2,6 +2,8 @@
 pt-BR:
   activerecord:
     models:
+      asset:
+        one: Patrimônio Líquido
       creditor:
         one: "Credora"
       debtor:
@@ -54,6 +56,7 @@ pt-BR:
         name: "Nome"
         contact: "Forma de contato"
       account:
+        parent: Conta Pai
         description: Descrição
         type: "Natureza"
         name: "Nome"

@@ -3,7 +3,7 @@
     .row
       .col-md-4
         = f.input :amount
-        = f.association :account
+        = f.association :account, collection: Account.movables
         = f.input :type, collection: Move.subclasses,
         label_method: -> (c) { c.model_name.human },
         value_method: :name, as: :radio_buttons

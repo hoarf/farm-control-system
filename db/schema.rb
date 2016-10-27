@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20161015005219) do
     t.integer  "farm_id"
     t.integer  "parent_id"
     t.text     "description"
-    t.string   "system_name"
     t.decimal  "start",       default: 0.0
+    t.string   "system_name"
     t.string   "type"
     t.string   "name"
     t.datetime "created_at",                null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20161015005219) do
   end
 
   add_index "accounts", ["farm_id"], name: "index_accounts_on_farm_id", using: :btree
+  add_index "accounts", ["parent_id"], name: "index_accounts_on_parent_id", using: :btree
 
   create_table "entries", force: :cascade do |t|
     t.integer  "inventory_id"
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 20161015005219) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "moves", ["account_id"], name: "index_moves_on_account_id", using: :btree
   add_index "moves", ["fact_id"], name: "index_moves_on_fact_id", using: :btree
 
   create_table "partners", force: :cascade do |t|
@@ -123,6 +125,7 @@ ActiveRecord::Schema.define(version: 20161015005219) do
   add_foreign_key "entries", "facts"
   add_foreign_key "entries", "inventories"
   add_foreign_key "facts", "partners"
+  add_foreign_key "moves", "accounts"
   add_foreign_key "moves", "facts"
   add_foreign_key "users", "farms"
 end

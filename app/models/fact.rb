@@ -1,10 +1,11 @@
 # coding: utf-8
 class Fact < ActiveRecord::Base
+
   MOVES_COUNT_MIN = 2
 
-  has_many :moves, dependent: :destroy
-  has_many :credits
-  has_many :debits
+  has_many :moves, dependent: :destroy, inverse_of: :fact
+  has_many :credits, dependent: :destroy
+  has_many :debits, dependent: :destroy
 
   has_one :entry, dependent: :destroy
   belongs_to :partner
@@ -12,10 +13,12 @@ class Fact < ActiveRecord::Base
   accepts_nested_attributes_for :moves, allow_destroy: true
   accepts_nested_attributes_for :entry, allow_destroy: true
 
-  validate :credits_and_debits_must_be_equal, :at_least_two_moves
+  validate :at_least_two_moves, :credits_and_debits_must_be_equal,
 
   def credits_and_debits_must_be_equal
-    unless moves.reject(&:marked_for_destruction?).map { |m| m.type == "Debit" ? m.amount : -m.amount }.reduce(:+) == 0
+    unless moves.reject(&:marked_for_destruction?)
+             .select { |m| m.valid? }
+             .map { |m| m.type == "Debit" ? m.amount : - m.amount }.reduce(:+) == 0
       errors.add(:moves, "A soma dos créditos e débitos deve ser igual")
     end
   end
@@ -26,20 +29,16 @@ class Fact < ActiveRecord::Base
     end
   end
 
-  def total_debits
-    debits.sum(:amount)
-  end
-
   def debits_names
-    debits.collect { |d| d.account_name }
+    debits.names
   end
 
   def credits_names
-    credits.collect { |d| d.account_name }
+    credits.names
   end
 
   def moves_amounts
-    moves.pluck(:amount)
+    moves.totals
   end
 
 end

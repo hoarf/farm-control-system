@@ -1,23 +1,27 @@
-- title "Detalhes da Conta"
-- apagar_path account_path(@account)
-= content_for :symbol do
-  %i.fa.fa-fw.fa-book
-- heading @account.name
-%p
-  %b Natureza:
-  = @account.model_name.human
-%p
-  %b Descrição:
-  = @account.description
-%p
-  %b Saldo:
-  = @account.balance
-%hr
-.container-fluid
-  .row
-    .col-md-6
-      %h3 Entradas de Crédito Nesta Conta
-      %p= render "credits"
-    .col-md-6
-      %h3 Entradas de Débito Nesta Conta
-      %p= render "debits"
+- present(@account.becomes(Account)) do |account|
+  - title "Detalhes da Conta"
+  - apagar_path account_path(@account)
+  = content_for :symbol do
+    %i.fa.fa-fw.fa-book
+  - heading @account.name
+  %p
+    %b Conta pai:
+    = account.parent
+  %p
+    %b Natureza:
+    = @account.model_name.human
+  %p
+    %b Descrição:
+    = @account.description
+  %p
+    %b Saldo:
+    = @account.balance
+  %hr
+  .container-fluid
+    .row
+      .col-md-6
+        %h3 Entradas de Crédito Nesta Conta
+        %p= render "credits"
+      .col-md-6
+        %h3 Entradas de Débito Nesta Conta
+        %p= render "debits"

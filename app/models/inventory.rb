@@ -16,7 +16,7 @@ class Inventory < ActiveRecord::Base
     c << initial_balance/initial_amount
     sorted_entries = entries.sort_by(&:date)
     checkins.each do |ci|
-      e = entries.eager_load(:fact).where("facts.date <= ?", ci.date)
+      e = entries.includes(:fact).where("facts.date <= ?", ci.date)
       c << e.to_a.sum(&:total)/e.sum(:amount)
     end
     c
