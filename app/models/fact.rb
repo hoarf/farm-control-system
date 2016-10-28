@@ -29,6 +29,10 @@ class Fact < ActiveRecord::Base
     end
   end
 
+  def amount
+    credits.sum(:amount)
+  end
+
   def debits_names
     debits.names
   end
