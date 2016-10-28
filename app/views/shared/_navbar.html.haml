@@ -16,5 +16,19 @@
   %ul.nav.navbar-top-links.navbar-right
     - if user_signed_in?
       %li
+        %a{href: new_partner_path}
+          %i.fa.fa-users
+      %li
+        %a{href: new_fact_path}
+          %i.fa.fa-book
+      %li
+        %a{href: new_inventory_path}
+          %i.fa.fa-list-alt
+      %li
+        %a{href: new_account_path}
+          %i.fa.fa-calculator
+
+
+      %li
         %strong= "#{current_user.email}"
       %li= link_to "Sair", destroy_user_session_path, :method => :delete

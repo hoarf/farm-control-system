@@ -9,6 +9,7 @@ admin.confirm
 
 # Accounts
 
+inventory = Debtor.create!({ name: "Mercadorias", system_name: "inventory" })
 Debtor.create!({ name: "Custos de Mercadorias Vendidas", system_name: "cost_to_sell" })
 Debtor.create!({ name: "Devoluções", system_name: "returns" })
 Debtor.create!({ name: "Descontos", system_name: "discounts" })
@@ -20,6 +21,8 @@ Debtor.create!({ name: "Imóveis", system_name: "real_state", description: "Uso 
 Debtor.create!({ name: "Veículos", system_name: "vehicles" })
 Debtor.create!({ name: "Móveis e Utensílios", system_name: "appliance" })
 Debtor.create!({ name: "Instalações", system_name: "improvements" })
+Debtor.create!({ name: "Machos", parent: inventory })
+Debtor.create!({ name: "Fêmeas", parent: inventory })
 
 expenses = Creditor.create!({ name: "Despesas", system_name: "expenses" })
 financial_expenses = Creditor.create!({ name: "Despesas Financeiras", system_name: "financial_expenses" })

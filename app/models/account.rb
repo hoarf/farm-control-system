@@ -11,6 +11,16 @@ class Account < ActiveRecord::Base
 
   scope :parentables, -> { where(parent_id: nil) }
   scope :names, -> { pluck(:name) }
+  scope :period, -> (date) {
+    joins(moves: [:fact])
+      .where('facts.date between ? and ?', date - 1.year, date)
+  }
+
+  scope :of_system_name, -> (name) {
+    where(system_name: name)
+  }
+
+  scope :system_names, -> { pluck(:system_name) }
 
   has_many :debits
   has_many :credits
@@ -23,6 +33,10 @@ class Account < ActiveRecord::Base
              inverse_of: :children
 
   validates_presence_of :type, :name, :start
+
+  def self.with_balance(scope)
+    scope.to_a.map { |a| a.balance }.reduce(0, :+)
+  end
 
   def balance
     if children.count > 0

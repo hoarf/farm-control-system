@@ -1,9 +1,11 @@
 .nested-fields
-  = f.input :inventory_id, collection: Inventory.all.pluck(:item, :id)
+  = f.input :inventory_id, collection: Inventory.all, label_method: :form_label, value_method: :id
   = f.input :type, collection: Entry.subclasses,
   label_method: -> (c) { c.model_name.human },
   value_method: :name, as: :radio_buttons
   = f.input :amount
 
+
   %i.fa.fa-remove.fa-fw
-  = link_to_remove_association "Esta movimentação não altera estoque", f, data: { confirm: "Você está certo disso?" }
+  = link_to_remove_association "Esta movimentação não altera estoque",
+  f, data: { confirm: "Você está certo disso?" }

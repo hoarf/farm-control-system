@@ -1,9 +1,9 @@
 class AssetsBalancePresenter
 
   def initialize
-    @debtors = Debtor.all
-    @creditors = Creditor.all
-    @assets = Asset.all
+    @debtors = Debtor.parentables
+    @creditors = Creditor.parentables
+    @assets = Asset.parentables
    end
 
   def actives
@@ -11,7 +11,7 @@ class AssetsBalancePresenter
   end
 
   def passives
-    @creditors.map { |d| "#{d.name} ... #{d.balance}" }
+    @creditors.map { |d| "#{d.name} ... #{d.balance}"  }
   end
 
   def pl

@@ -1,12 +1,20 @@
 # coding: utf-8
 class DrePresenter
 
-  def initialize
-    @accounts = Account.all
+  def initialize(date=Date.today)
+    @accounts = Account.period(date)
+  end
+
+  def method_missing(method_sym, *arguments, &block)
+    if Account.system_names.include?(method_sym.to_s)
+      Account.with_balance(@accounts.of_system_name(method_sym))
+    else
+      super
+    end
   end
 
   def gross_result
-    net_revenue - cts
+    net_revenue - cost_to_sell
   end
 
   def operational_result
@@ -22,39 +30,7 @@ class DrePresenter
   end
 
   def net_revenue
-    gross_revenue - discounts - devolutions - taxes
-  end
-
-  def gross_revenue
-    @accounts.find_by(system_name: "income").balance
-  end
-
-  def discounts
-    @accounts.find_by(system_name: "discounts").balance
-  end
-
-  def devolutions
-    @accounts.find_by(system_name: "returns").balance
-  end
-
-  def cts
-    @accounts.find_by(system_name: "cost_to_sell").balance
-  end
-
-  def expenses
-    @accounts.find_by(system_name: "expenses").balance
-  end
-
-  def taxes
-    @accounts.find_by(system_name: "taxes").balance
-  end
-
-  def financial_expenses
-    @accounts.find_by(system_name: "financial_expenses").balance
-  end
-
-  def income_tax
-    @accounts.find_by(system_name: "income_tax").balance
+    income - discounts - returns - taxes
   end
 
 end

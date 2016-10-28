@@ -10,6 +10,10 @@ class FarmPresenter < BasePresenter
     super
   end
 
+  def profit(date=Date.today)
+    @dre.profit(date)/@assets_balance.capital(date)
+  end
+
   def indicators
     {
       labels: BaseIndicator.date_range,
