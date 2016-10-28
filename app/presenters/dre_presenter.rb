@@ -2,7 +2,7 @@
 class DrePresenter
 
   def initialize(date=Date.today)
-    @accounts = Account.period(date)
+    @accounts = Account.of(date)
   end
 
   def method_missing(method_sym, *arguments, &block)

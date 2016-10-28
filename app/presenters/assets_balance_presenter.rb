@@ -19,7 +19,7 @@ class AssetsBalancePresenter
   end
 
   def total_actives
-    @debtors.to_a.sum &:balance
+    @debtors.to_a.sum(&:balance)
   end
 
   def total_passives

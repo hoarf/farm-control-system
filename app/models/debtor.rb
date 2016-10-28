@@ -1,7 +1,7 @@
 class Debtor < Account
 
-  def checkout
-    - start - credits.sum(:amount) + debits.sum(:amount)
+  def checkout(date)
+    - start - credits.of(date).sum(:amount) + debits.of(date).sum(:amount)
   end
 
 end

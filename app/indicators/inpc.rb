@@ -1,18 +1,17 @@
 # coding: utf-8
 
-class INPC < BaseIndicator
+class INPC < BaseFileIndicator
 
   def initialize
     super('inpc.json')
   end
 
-  def to_json
-    {
-      data: data,
-      label: "IPCA (%)",
-      fill: false,
-      backgroundColor: 'rgba(255,0,0,.5)'
-    }
+  def label
+    "IPCA (%)"
+  end
+
+  def background_color
+    'rgba(100,100,100,1)'
   end
 
 end

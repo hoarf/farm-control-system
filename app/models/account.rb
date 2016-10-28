@@ -11,7 +11,7 @@ class Account < ActiveRecord::Base
 
   scope :parentables, -> { where(parent_id: nil) }
   scope :names, -> { pluck(:name) }
-  scope :period, -> (date) {
+  scope :of, -> (date) {
     joins(moves: [:fact])
       .where('facts.date between ? and ?', date - 1.year, date)
   }
@@ -38,11 +38,11 @@ class Account < ActiveRecord::Base
     scope.to_a.map { |a| a.balance }.reduce(0, :+)
   end
 
-  def balance
+  def balance(date=Date.today)
     if children.count > 0
-      children.to_a.sum(&:checkout)
+      children.to_a.map { |x| x.checkout(date) }.reduce(:+)
     else
-      checkout
+      checkout(date)
     end
   end
 

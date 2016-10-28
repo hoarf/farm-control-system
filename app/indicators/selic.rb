@@ -1,18 +1,17 @@
 # coding: utf-8
 
-class Selic < BaseIndicator
+class Selic < BaseFileIndicator
 
   def initialize
     super('selic.json')
   end
 
-  def to_json
-    {
-      data: data,
-      label: "Selic (%)",
-      fill: false,
-      backgroundColor: 'rgba(0,0,255,.5)'
-    }
+  def label
+    "Selic (%)"
+  end
+
+  def background_color
+    'rgba(200,200,200,1)'
   end
 
 end
