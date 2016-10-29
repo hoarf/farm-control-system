@@ -4,10 +4,22 @@
 alianca = Farm.create!({name: "Fazenda Aliança"})
 
 # User
-admin = User.create!({email: "admin@agropecuariaficagna.com", password: "111111", password_confirmation: "111111", farm: alianca })
+admin = User.create!({email: "admin@agropecuariaficagna.com", password: "212121", password_confirmation: "212121", farm: alianca })
 admin.confirm
 
 # Partners
+
+partners = %w('RAFAEL MARION' 'JUCA BALA' 'JAIME GALVANI' 'VALDINEI
+ TOLEDO' 'CAMBARÁ' 'EVA FIUZA' 'RODRIGO MILHOES' 'RICARDO BRUM' PELÉ
+ 'JOSE LUIZ' 'PREDIGER' 'LAIRES FIUZA' 'OLIVIO MORAES' 'JUNIOR TOLEDO'
+ SCHERER 'NELSON PIEREZAN' 'FRIGORIFICO PLUS / EMILIO' 'FRIGO FORTE /
+ JOELCIO' EMILIO 'FRIGOZATTO / JOELCIO' JATIR ALINE 'PAULO LASCÃO'
+ 'ERALDO JACUIZINHO' 'ARAMIS FERNANDES' 'JOAO BAPTISTA' 'AGRICULTURA'
+ 'CONFINAMENTO' 'ALINE/CONFINAMENTO' 'ROBERTO TOMAZZI' )
+
+partners.each do |p|
+  Partner.create({name: p })
+end
 
 # Accounts
 
@@ -33,11 +45,12 @@ Debtor.create!({ name: "Salários e Encargos", system_name: "wages", parent: exp
 Debtor.create!({ name: "Imposto de Renda", system_name: "income_tax" })
 
 Creditor.create!({ name: "Receitas", system_name: "income" })
+Creditor.create!({ name: "Salários e Encargos a pagar", system_name: "future_wages", parent: expenses, description: "Salários, Honorários, Comissões, Férias, Gratificações e Participações a pagar" })
 Creditor.create!({ name: "Empréstimos/Financiamentos", system_name: "liabilities", description: "Valores de terceiros emprestados à empresa", parent: financial_expenses })
 Creditor.create!({ name: "Fornecedores", system_name: "suppliers", description: "Débitos com os fornecedores de mercadorias e matérias primas para a empresa" })
-Creditor.create!({ name: "Impostos", system_name: "taxes_to_be_payed", description: "ICMS, PIS, COFINS INSS a recolher, CSL, FGTS a pagar" })
-Creditor.create!({ name: "Contas a Pagar", system_name: "bills", description: "Aluguel, energia, seguros, fretes e outras despesas" })
-Creditor.create!({ name: "Dividendos a Pagar", system_name: "dividends", description: "Parcela do lucro devida aos sócios ao final de cada exercício" })
+Creditor.create!({ name: "Impostos a pagar", system_name: "future_taxes", description: "ICMS, PIS, COFINS INSS a recolher, CSL, FGTS a pagar" })
+Creditor.create!({ name: "Contas a Pagar", system_name: "future_bills", description: "Aluguel, energia, seguros, fretes e outras despesas" })
+Creditor.create!({ name: "Dividendos a Pagar", system_name: "future_dividends", description: "Parcela do lucro devida aos sócios ao final de cada exercício" })
 
 Asset.create!({ name: "Capital", system_name: "capital" })
 Asset.create!({ name: "Lucro Líquido", system_name: "profit" })
