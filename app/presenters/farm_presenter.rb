@@ -2,13 +2,15 @@
 
 class FarmPresenter < BasePresenter
 
-  attr_accessor :dre, :assets_balance, :profitability, :inventory_levels
+  attr_accessor :dre, :assets_balance, :profitability,
+                :inventory_levels, :expenses
 
   def initialize(model, view)
     @dre = DrePresenter.new
     @assets_balance = AssetsBalancePresenter.new
-    @profitability = ProfitabilityDataset.new(self)
-    @inventory_levels = InventoryLevelsDataset.new(self)
+    @profitability = ProfitabilityDataset.new(model)
+    @inventory_levels = InventoryLevelsDataset.new(model)
+    @expenses = ExpensesDataset.new(model)
     super
   end
 

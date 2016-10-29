@@ -5,6 +5,9 @@
       %p= line_chart farm.profitability.data, farm.profitability.options
     .col-md-4
       %p= line_chart farm.inventory_levels.data, farm.inventory_levels.options
+    .col-md-4
+      %p= bar_chart farm.expenses.data, farm.expenses.options
+
   .row
     .col-md-5
       = render partial: "dre", object: farm.dre
