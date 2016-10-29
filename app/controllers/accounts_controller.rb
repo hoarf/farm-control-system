@@ -17,7 +17,7 @@ class AccountsController < ApplicationController
 
   # GET /accounts/new
   def new
-    @account = Account.new
+    @account = Account.new(farm: current_user.farm)
   end
 
   # GET /accounts/1/edit

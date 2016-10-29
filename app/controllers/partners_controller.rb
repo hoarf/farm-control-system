@@ -18,7 +18,7 @@ class PartnersController < ApplicationController
 
   # GET /partners/new
   def new
-    @partner = Partner.new
+    @partner = Partner.new(farm: current_user.farm)
   end
 
   # GET /partners/1/edit

@@ -17,7 +17,7 @@ class InventoriesController < ApplicationController
 
   # GET /inventories/new
   def new
-    @inventory = Inventory.new()
+    @inventory = Inventory.new(farm: current_user.farm)
     @inventory.entries << Entry.new({amount: 20})
   end
 

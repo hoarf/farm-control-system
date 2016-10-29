@@ -8,7 +8,7 @@ class FarmPresenter < BasePresenter
     @dre = DrePresenter.new
     @assets_balance = AssetsBalancePresenter.new
     @profitability = ProfitabilityDataset.new(self)
-    @inventory_levels = InventoryLevelsDataset.new
+    @inventory_levels = InventoryLevelsDataset.new(self)
     super
   end
 

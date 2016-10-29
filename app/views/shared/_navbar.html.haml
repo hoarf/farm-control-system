@@ -16,16 +16,16 @@
   %ul.nav.navbar-top-links.navbar-right
     - if user_signed_in?
       %li
-        %a{href: new_partner_path}
+        %a{href: new_partner_path, title: "Novo Contato" }
           %i.fa.fa-users
       %li
-        %a{href: new_fact_path}
+        %a{href: new_fact_path, title: "Novo Fato Contábil" }
           %i.fa.fa-book
       %li
-        %a{href: new_inventory_path}
+        %a{href: new_inventory_path, title: "Novo Estoque" }
           %i.fa.fa-list-alt
       %li
-        %a{href: new_account_path}
+        %a{href: new_account_path, title: "Nova Conta" }
           %i.fa.fa-calculator
 
 

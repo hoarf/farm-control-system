@@ -91,9 +91,12 @@ ActiveRecord::Schema.define(version: 20161015005219) do
   create_table "partners", force: :cascade do |t|
     t.string   "name"
     t.text     "contact"
+    t.integer  "farm_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "partners", ["farm_id"], name: "index_partners_on_farm_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -131,5 +134,6 @@ ActiveRecord::Schema.define(version: 20161015005219) do
   add_foreign_key "inventories", "farms"
   add_foreign_key "moves", "accounts"
   add_foreign_key "moves", "facts"
+  add_foreign_key "partners", "farms"
   add_foreign_key "users", "farms"
 end
