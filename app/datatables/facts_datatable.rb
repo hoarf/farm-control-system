@@ -18,7 +18,7 @@ class FactsDatatable < BaseDatatable
      '1' => r.description,
      '2' => r.debits_names,
      '3' => r.credits_names,
-     '4' => r.moves_amounts,
+     '4' => number_to_currency(r.moves_amounts),
      'DT_RowId' => r.id,
     }
     end

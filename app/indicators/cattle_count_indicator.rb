@@ -5,6 +5,10 @@ class CattleCountIndicator < BaseIndicator
     @farm = farm
   end
 
+  def background_color
+    "rgb(255,0,0)"
+  end
+
   def label
     "Total de Cabeças"
   end

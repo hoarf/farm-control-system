@@ -1,7 +1,7 @@
 class AccountsDatatable < BaseDatatable
 
   def initialize(view)
-    @columns = [:name, :type, :balance]
+    @columns = [:name, :description, :type, :balance]
     super
   end
 
@@ -11,8 +11,9 @@ class AccountsDatatable < BaseDatatable
     ready.map do |r|
       {
         '0' => r.name,
-        '1' => r.model_name.human,
-        '2' => r.balance,
+        '1' => r.description,
+        '2' => r.model_name.human,
+        '3' => number_to_currency(r.balance),
         'DT_RowId' => r.id,
       }
     end
@@ -23,7 +24,7 @@ class AccountsDatatable < BaseDatatable
   end
 
   def search
-    "lower(accounts.name) like :search or lower(accounts.type) like :search"
+    "lower(accounts.name) like :search or lower(accounts.type) like :search or lower(accounts.description) like :search"
   end
 
 end

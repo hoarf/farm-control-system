@@ -12,7 +12,7 @@ class InventoriesDatatable < BaseDatatable
       {
         '0' => r.item,
         '1' => r.total,
-        '2' => r.balance,
+        '2' => number_to_currency(r.balance),
         'DT_RowId' => r.id,
       }
     end

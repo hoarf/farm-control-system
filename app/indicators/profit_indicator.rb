@@ -5,7 +5,7 @@ class ProfitIndicator < BaseIndicator
   end
 
   def label
-    "Rendimento (%)"
+    "Fazenda (%)"
   end
 
   def values

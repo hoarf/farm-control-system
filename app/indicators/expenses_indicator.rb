@@ -9,6 +9,6 @@ class ExpensesIndicator < BaseIndicator
   end
 
   def values
-    [ @debtor.balance ]
+     @debtor.balance
   end
 end

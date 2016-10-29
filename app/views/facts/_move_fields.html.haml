@@ -2,7 +2,7 @@
   .container
     .row
       .col-md-4
-        = f.input :amount
+        = f.input :amount, as: :currency
         = f.association :account, collection: Account.movables
         = f.input :type, collection: Move.subclasses,
         label_method: -> (c) { c.model_name.human },

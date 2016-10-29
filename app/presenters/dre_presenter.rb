@@ -1,8 +1,9 @@
 # coding: utf-8
-class DrePresenter
+class DrePresenter < BasePresenter
 
-  def initialize(date=Date.today)
-    @accounts = Account.of(date)
+  def initialize(model, view)
+    @accounts = Account.of(Date.today)
+    super(model, view)
   end
 
   def method_missing(method_sym, *arguments, &block)

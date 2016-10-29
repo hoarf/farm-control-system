@@ -9,7 +9,19 @@ class ExpensesDataset < Dataset
   end
 
   def datasets
-    @expenses.to_a.map { |e| ExpensesIndicator.new(e).data }
+    colors = Colors.new
+    [{
+       data: @expenses.to_a.map { |e| ExpensesIndicator.new(e).values },
+       label: "Despesas",
+       backgroundColor: @expenses.to_a.map { colors.next }
+    }]
+  end
+
+  def options
+    {
+      title: { display: true, text: title },
+      legend: { display: false }
+    }
   end
 
   def labels

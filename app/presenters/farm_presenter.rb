@@ -6,7 +6,7 @@ class FarmPresenter < BasePresenter
                 :inventory_levels, :expenses
 
   def initialize(model, view)
-    @dre = DrePresenter.new
+    @dre = DrePresenter.new(model, view)
     @assets_balance = AssetsBalancePresenter.new
     @profitability = ProfitabilityDataset.new(model)
     @inventory_levels = InventoryLevelsDataset.new(model)

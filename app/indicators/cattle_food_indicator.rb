@@ -4,6 +4,10 @@ class CattleFoodIndicator < BaseIndicator
     @farm = farm
   end
 
+  def background_color
+    "rgb(100,100,100)"
+  end
+
   def label
     "Quantidade de Silagem"
   end
