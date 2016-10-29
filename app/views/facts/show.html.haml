@@ -5,7 +5,7 @@
 - heading @fact.description
 %p
   %b Data:
-  = @fact.date
+  = @fact.date.to_formatted_s(:long)
 %p
   %b Negociante:
   = @fact.partner

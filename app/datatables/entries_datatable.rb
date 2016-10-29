@@ -10,10 +10,10 @@ class EntriesDatatable < BaseDatatable
   def data
     ready.map do |r|
       {
-        '0' => r.date,
+        '0' => l(r.date, format: :short),
         '1' => r.amount,
-        '2' => r.cost,
-        '3' => r.total,
+        '2' => number_to_currency(r.cost),
+        '3' => number_to_currency(r.total),
         '4' => r.model_name.human,
         'DT_RowId' => r.id,
       }

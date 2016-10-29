@@ -17,5 +17,5 @@ $ ->
   dt '#inventories-table', 2, "#{$('table').data('source')}"
   dt '#credits-table', 1, "/livrodiario"
   dt '#debits-table', 1, "/livrodiario"
-  dt '#moves-table', 1, "/livrodiario"
+  dt '#moves-table', 2, "/livrodiario"
   dt '#entries-table', 4, "/livrodiario"

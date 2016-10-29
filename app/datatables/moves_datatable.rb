@@ -1,7 +1,7 @@
 class MovesDatatable < BaseDatatable
 
   def initialize(view)
-    @columns = [:date, :amount]
+    @columns = [:account, :type, :amount]
     super
   end
 
@@ -10,8 +10,9 @@ class MovesDatatable < BaseDatatable
   def data
     ready.map do |r|
       {
-        '0' => r.date,
-        '1' => r.amount,
+        '0' => r.account.name,
+        '1' => r.model_name.human,
+        '2' => number_to_currency(r.amount),
         'DT_RowId' => r.fact_id
       }
     end
