@@ -5,7 +5,7 @@ class ExpensesDataset < Dataset
   end
 
   def title
-    "Gastos"
+    "Despesas"
   end
 
   def datasets

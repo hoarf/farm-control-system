@@ -30,7 +30,8 @@ Debtor.create!({ name: "Custos de Mercadorias Vendidas", system_name: "cost_to_s
 Debtor.create!({ name: "Descontos", system_name: "discounts", parent: expenses })
 Debtor.create!({ name: "Doações e Perdas", system_name: "loss", parent: expenses })
 Debtor.create!({ name: "Impostos", system_name: "taxes", description: "ICMS, PIS, COFINS INSS a recolhidos, CSL, FGTS pagos", parent: expenses })
-
+Debtor.create!({ name: "Depesas Médicas", system_name: "health", description: "Despesas com a saúde dos animais", parent: expenses })
+Debtor.create!({ name: "Alimentação", system_name: "food", description: "Despesas com a alimentação dos animais", parent: expenses })
 Debtor.create!({ name: "Caixa", system_name: "cash", description: "Dinheiro disponível e cheques não depositados" })
 Debtor.create!({ name: "Banco", system_name: "bank", description: "Recursos nas contas bancárias" })
 Debtor.create!({ name: "Aplicações", system_name: "investments", description: "Instrumentos financeiros" })

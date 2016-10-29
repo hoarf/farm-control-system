@@ -1,7 +1,7 @@
 class ProfitabilityDataset < Dataset
 
   def title
-    "Lucratividade"
+    "Rendimentos"
   end
 
   def initialize(farm)
