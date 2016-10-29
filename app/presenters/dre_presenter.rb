@@ -30,7 +30,7 @@ class DrePresenter
   end
 
   def net_revenue
-    income - discounts - returns - taxes
+    income - discounts - loss - taxes
   end
 
 end
