@@ -44,7 +44,7 @@ class Fact < ActiveRecord::Base
   end
 
   def moves_amounts
-    moves.totals/2
+    moves.totals/moves.count
   end
 
 end
