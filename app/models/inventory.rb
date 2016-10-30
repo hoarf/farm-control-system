@@ -19,10 +19,9 @@ class Inventory < ActiveRecord::Base
   def mpms
     c = []
     c << safe_div(initial_balance, initial_amount)
-    sorted_entries = entries.sort_by(&:date)
-    checkins.each do |ci|
-      e = entries.eager_load(:fact).where("facts.date <= ?", ci.date)
-      c << safe_div(e.to_a.sum(&:total), e.sum(:amount))
+    checkins.by_date.each do |ci|
+      counted = checkins.select { |c| c.date <= ci.date }
+      c << safe_div(counted.sum(&:total), counted.sum(&:amount))
     end
     c
   end

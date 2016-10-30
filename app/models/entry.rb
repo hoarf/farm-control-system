@@ -8,6 +8,7 @@ class Entry < ActiveRecord::Base
 
   delegate :date, to: :fact, allow_nil: true
 
+  scope :by_date, -> { joins(:fact).order('facts.date') }
   scope :of, ->(date) { joins(:fact).where('facts.date <= ?', date) }
 
   def total
