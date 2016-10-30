@@ -7,6 +7,10 @@ module ApplicationHelper
     yield(presenter) if block_given?
   end
 
+  def number_with_precision(number)
+    super(number, precision: 2)
+  end
+
   def icon
     "fa fa-user"
   end
