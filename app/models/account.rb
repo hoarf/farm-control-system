@@ -3,25 +3,26 @@ class Account < ActiveRecord::Base
   MOVABLES_SCOPE = "RIGHT OUTER JOIN accounts parents
                    on parents.id = accounts.parent_id"
 
+  PARENT_OR_CHILD_NAME = "accounts.system_name = :name OR
+                           parents_accounts.system_name = :name"
+
+  scope :parentables, -> { where(parent_id: nil) }
+  scope :with_parent, -> { joins(:parent) }
+  scope :names, -> { pluck(:name) }
+  scope :of_sysname, -> (name) { with_parent.where(PARENT_OR_CHILD_NAME, { name: name} ) }
+  scope :system_names, -> { pluck(:system_name) }
+
+  scope :of, -> (date) {
+    joins(moves: [:fact])
+      .joins(MOVABLES_SCOPE)
+      .where('facts.date between ? and ?', date - 1.year, date)
+  }
+
   scope :movables, -> {
     joins(MOVABLES_SCOPE)
       .where('accounts.parent_id is ?', nil)
       .pluck('parents.name, parents.id').sort_by { |i| i.first }
   }
-
-  scope :sorted, -> { order(:name) }
-  scope :parentables, -> { where(parent_id: nil) }
-  scope :names, -> { pluck(:name) }
-  scope :of, -> (date) {
-    joins(moves: [:fact])
-      .where('facts.date between ? and ?', date - 1.year, date)
-  }
-
-  scope :of_system_name, -> (name) {
-    where(system_name: name)
-  }
-
-  scope :system_names, -> { pluck(:system_name) }
 
   has_many :debits
   has_many :credits

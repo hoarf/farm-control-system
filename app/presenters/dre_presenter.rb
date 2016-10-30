@@ -8,7 +8,7 @@ class DrePresenter < BasePresenter
 
   def method_missing(method_sym, *arguments, &block)
     if Account.system_names.include?(method_sym.to_s)
-      Account.with_balance(@accounts.of_system_name(method_sym))
+      Account.with_balance(@accounts.of_sysname(method_sym))
     else
       super
     end
