@@ -7,8 +7,9 @@ class Farm < ActiveRecord::Base
   has_many :accounts
   has_many :inventory
 
-  def profit_at(date)
-    accounts.find_by(system_name: :profit).balance(date)
+  def rentability_at(date)
+    accounts.find_by(system_name: :profit).balance(date)/
+       accounts.find_by(system_name: :capital).balance(date)
   end
 
   def cattle_count_at(date)

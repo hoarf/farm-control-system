@@ -9,7 +9,7 @@ class ProfitIndicator < BaseIndicator
   end
 
   def values
-    BaseIndicator.date_range.map { |d| @farm.profit_at(d) }
+    BaseIndicator.date_range.map { |d| @farm.rentability_at(d) }
   end
 
   def background_color
