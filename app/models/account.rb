@@ -6,9 +6,10 @@ class Account < ActiveRecord::Base
   scope :movables, -> {
     joins(MOVABLES_SCOPE)
       .where('accounts.parent_id is ?', nil)
-      .pluck('parents.name, parents.id')
+      .pluck('parents.name, parents.id').sort_by { |i| i.first }
   }
 
+  scope :sorted, -> { order(:name) }
   scope :parentables, -> { where(parent_id: nil) }
   scope :names, -> { pluck(:name) }
   scope :of, -> (date) {
