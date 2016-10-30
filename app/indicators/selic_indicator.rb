@@ -1,6 +1,6 @@
 # coding: utf-8
 
-class Selic < BaseFileIndicator
+class SelicIndicator < BaseFileIndicator
 
   def initialize
     super('selic.json')

@@ -1,45 +1,46 @@
-%h2 Demonstrativo de Resultados
-%hr
-.container-fluid
-  .row
-    .col-md-8
-      %p
-        %b Receita Bruta
-      %p - Descontos
-      %p - Doações e Perdas
-      %p - Impostos
-      %p
-        %b Receita Líquida
-      %p - Custos de Mercadorias Vendidas
-      %p
-        %b Resultado Bruto
-      %p - Despesas
-      %p
-        %b Resultado Operacional
-      %p - Despesas Financeiras
-      %p
-        %b Resultado Pré Imposto de Renda
-      %p - Imposto de Renda
-      %p
+- present(dre) do |d|
+  %h2 Demonstrativo de Resultados
+  %hr
+  .container-fluid
+    .row
+      .col-md-8
+        %p
+          %b Receita Bruta
+        %p - Descontos
+        %p - Doações e Perdas
+        %p - Impostos
+        %p
+          %b Receita Líquida
+        %p - Custos de Mercadorias Vendidas
+        %p
+          %b Resultado Bruto
+        %p - Despesas
+        %p
+          %b Resultado Operacional
+        %p - Despesas Financeiras
+        %p
+          %b Resultado Pré Imposto de Renda
+        %p - Imposto de Renda
+        %p
+          %h3
+            %b Lucro Líquido
+      .col-md-4
+        %p
+          %b= d.income
+        %p= d.discounts
+        %p= d.loss
+        %p= d.taxes
+        %p
+          %b= d.net_revenue
+        %p= d.cost_to_sell
+        %p
+          %b= d.gross_result
+          %p= d.expenses
+        %p
+          %b= d.operational_result
+        %p= d.financial_expenses
+        %p
+          %b= d.before_ir_result
+        %p= d.income_tax
         %h3
-          %b Lucro Líquido
-    .col-md-4
-      %p
-        %b= dre.income
-      %p= dre.discounts
-      %p= dre.loss
-      %p= dre.taxes
-      %p
-        %b= dre.net_revenue
-      %p= dre.cost_to_sell
-      %p
-        %b= dre.gross_result
-        %p= dre.expenses
-      %p
-        %b= dre.operational_result
-      %p= dre.financial_expenses
-      %p
-        %b= dre.before_ir_result
-      %p= dre.income_tax
-      %h3
-        %b= dre.net_profit
+          %b= d.net_profit

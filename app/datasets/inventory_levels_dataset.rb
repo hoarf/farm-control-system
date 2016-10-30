@@ -17,13 +17,14 @@ class InventoryLevelsDataset < Dataset
     {
       title: { display: true, text: title },
       scales: {
-        yAxes: [{
-                position: "left",
-                "id": "y-axis-0"
-              }, {
-                position: "right",
-                "id": "y-axis-1"
-                }]
+        yAxes: [
+          {
+            position: "left",
+            "id": "y-axis-0"
+          }, {
+            position: "right",
+            "id": "y-axis-1"
+          }]
       }
     }
   end

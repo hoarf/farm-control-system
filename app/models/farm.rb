@@ -7,10 +7,6 @@ class Farm < ActiveRecord::Base
   has_many :accounts
   has_many :inventory
 
-  def rentability_at(date)
-    0
-  end
-
   def cattle_count_at(date)
     inventory.find_by(system_name: :females).total(date) +
       inventory.find_by(system_name: :males).total(date)

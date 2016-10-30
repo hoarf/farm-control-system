@@ -1,22 +1,12 @@
-class AssetsBalancePresenter
+class BalanceSheet
+
+  attr_accessor :debtors, :creditors, :assets
 
   def initialize
     @debtors = Debtor.parentables
     @creditors = Creditor.parentables.where.not(type: "Asset")
     @assets = Asset.parentables
    end
-
-  def actives
-    @debtors.map { |d| "#{d.name} ... #{d.balance}" }
-  end
-
-  def passives
-    @creditors.map { |d| "#{d.name} ... #{d.balance}"  }
-  end
-
-  def pl
-    @assets.map { |a| "#{a.name} ... #{a.balance}" }
-  end
 
   def total_actives
     @debtors.to_a.sum(&:balance)

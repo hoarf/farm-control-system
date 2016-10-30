@@ -1,6 +1,6 @@
 # coding: utf-8
 
-class INPC < BaseFileIndicator
+class IPCAIndicator < BaseFileIndicator
 
   def initialize
     super('inpc.json')

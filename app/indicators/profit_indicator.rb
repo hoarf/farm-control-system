@@ -1,15 +1,11 @@
 class ProfitIndicator < BaseIndicator
 
-  def initialize(farm)
-    @farm = farm
-  end
-
   def label
     "Fazenda (%)"
   end
 
   def values
-    BaseIndicator.date_range.map { |d| @farm.rentability_at(d) }
+    BaseIndicator.date_range.map { |d| Dre.new(d).net_profit }
   end
 
   def background_color
