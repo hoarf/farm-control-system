@@ -12,7 +12,7 @@ dt = (t, c, l) ->
 
 $ ->
   dt '#partners-table', 1, "#{$('table').data('source')}"
-  dt '#facts-table', 4, "#{$('table').data('source')}"
+  dt '#facts-table', 3, "#{$('table').data('source')}"
   dt '#accounts-table', 3, "#{$('table').data('source')}"
   dt '#inventories-table', 2, "#{$('table').data('source')}"
   dt '#credits-table', 1, "/livrodiario"

@@ -1,12 +1,9 @@
 .nested-fields
-  .container
-    .row
-      .col-md-4
-        = f.input :amount, as: :currency
-        = f.association :account, collection: Account.movables
-        = f.input :type, collection: Move.subclasses,
-        label_method: -> (c) { c.model_name.human },
-        value_method: :name, as: :radio_buttons
+  = f.input :amount, as: :currency
+  = f.association :account, collection: Account.movables
+  = f.input :type, collection: Move.subclasses,
+  label_method: -> (c) { c.model_name.human },
+  value_method: :name, as: :radio_buttons
   %i.fa.fa-remove.fa-fw
   = link_to_remove_association "Remover esta movimentação", f, data: { confirm: "Você está certo disso?" }
   %hr

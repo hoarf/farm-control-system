@@ -5,8 +5,9 @@
     #wrapper
       = render "shared/navigation"
       #page-wrapper
-        = render "shared/title"
-        .row
-          .col-md-12
-            = render "form"
+        .container-fluid
+          = render "shared/title"
+          .row
+            .col-md-12
+              = render "form"
       = render "shared/footer"

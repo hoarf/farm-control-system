@@ -1,6 +1,6 @@
 class Move < ActiveRecord::Base
 
-  scope :names, -> { includes(:account).pluck(:name) }
+  scope :names, -> { includes(:account).pluck(:name).join(", ") }
   scope :totals, -> { sum(:amount) }
   scope :of, -> (date) { joins(:fact).where('facts.date between ? and ?', date - 1.year, date) }
 
