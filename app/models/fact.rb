@@ -1,4 +1,5 @@
 # coding: utf-8
+
 class Fact < ActiveRecord::Base
 
   MOVES_COUNT_MIN = 2
@@ -8,6 +9,7 @@ class Fact < ActiveRecord::Base
   has_many :debits, dependent: :destroy
 
   has_one :entry, dependent: :destroy
+
   belongs_to :partner
 
   accepts_nested_attributes_for :moves, allow_destroy: true
@@ -42,7 +44,7 @@ class Fact < ActiveRecord::Base
   end
 
   def moves_amounts
-    moves.totals
+    moves.totals/2
   end
 
 end

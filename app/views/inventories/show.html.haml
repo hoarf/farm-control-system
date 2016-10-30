@@ -2,24 +2,25 @@
 - apagar_path inventory_path(@inventory)
 = content_for :symbol do
   %i.fa.fa-fw.fa-bank
-- heading @inventory.item
-%p
-  %b Unidade
-  = @inventory.unit
-%p
-  %b Descrição
-  = @inventory.description
-%p
-  %b Quantidade
-  = @inventory.total
-%p
-  %b Total
-  = @inventory.balance
-%p
-  %b Média Ponderada Móvel
-  = @inventory.mpms.last
+- present(@inventory) do |inventory|
+  - heading inventory.item
+  %p
+    %b Unidade
+    = inventory.unit
+  %p
+    %b Descrição
+    = inventory.description
+  %p
+    %b Quantidade
+    = inventory.total
+  %p
+    %b Total
+    = inventory.balance
+  %p
+    %b Média Ponderada Móvel
+    = inventory.mpm
 
-%hr
-  %h4 Entradas
   %hr
-  %p= render "entries", object: @inventory.entries
+    %h4 Entradas
+    %hr
+    %p= render "entries", object: inventory.entries

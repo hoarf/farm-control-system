@@ -14,7 +14,7 @@ class FactsDatatable < BaseDatatable
   def data
     ready.map do |r|
     {
-     '0' => l(r.date, format: :short ),
+     '0' => l(r.date, format: :short),
      '1' => r.description,
      '2' => r.debits_names,
      '3' => r.credits_names,

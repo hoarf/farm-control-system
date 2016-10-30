@@ -1,6 +1,5 @@
 class Inventory < ActiveRecord::Base
 
-
   has_many :entries, dependent: :delete_all
   has_many :checkins
   has_many :checkouts
@@ -10,6 +9,8 @@ class Inventory < ActiveRecord::Base
   accepts_nested_attributes_for :entries, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :item, :date, :initial_amount, :initial_balance
+
+  after_initialize { |i| i.date ||= Date.today if new_record? }
 
   def total(date=Date.today)
     initial_amount + checkins.of(date).sum(:amount) - checkouts.of(date).sum(:amount)
@@ -31,11 +32,7 @@ class Inventory < ActiveRecord::Base
   end
 
   def form_label
-    "#{item} - (CTS: #{mpm})"
-  end
-
-  after_initialize do |i|
-    i.date ||= Date.today if new_record?
+    "#{item}"
   end
 
   def balance(date=Date.today)
