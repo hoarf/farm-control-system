@@ -2,7 +2,7 @@ class AssetsBalancePresenter
 
   def initialize
     @debtors = Debtor.parentables
-    @creditors = Creditor.parentables
+    @creditors = Creditor.parentables.where.not(type: "Asset")
     @assets = Asset.parentables
    end
 
