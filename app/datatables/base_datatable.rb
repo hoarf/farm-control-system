@@ -1,5 +1,6 @@
 class BaseDatatable
-  delegate :params, :h, :link_to, :number_to_currency, :l, to: :@view
+  delegate :params, :h, :link_to, :number_to_currency,
+           :number_with_delimiter, :l, to: :@view
 
   def initialize(view)
     @view = view
