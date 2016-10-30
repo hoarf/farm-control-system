@@ -11,7 +11,7 @@ class Entry < ActiveRecord::Base
   scope :of, ->(date) { joins(:fact).where('facts.date <= ?', date) }
 
   def total
-    fact.amount
+    fact.cts_total
   end
 
   def cost

@@ -31,16 +31,20 @@ class Fact < ActiveRecord::Base
     end
   end
 
-  def amount
-    credits.sum(:amount)
-  end
-
   def debits_names
     debits.names
   end
 
   def credits_names
     credits.names
+  end
+
+  def cts_total
+    begin
+      moves.select { |m| m.account.system_name = :cost_to_sell }.first.amount
+    rescue
+      0
+    end
   end
 
   def moves_amounts
