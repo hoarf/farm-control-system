@@ -28,11 +28,7 @@ class Inventory < ActiveRecord::Base
   end
 
   def mpm
-    mpms.last
-  end
-
-  def form_label
-    "#{item} - CMV: #{mpm.humanize}"
+    mpms.last.nan? ? 0 : mpms.last
   end
 
   def balance(date=Date.today)
