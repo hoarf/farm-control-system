@@ -11,7 +11,7 @@ class InventoriesDatatable < BaseDatatable
     ready.map do |r|
       {
         '0' => r.item,
-        '1' => r.total.humanize,
+        '1' => number_with_precision(r.total),
         '2' => number_to_currency(r.balance),
         'DT_RowId' => r.id,
       }
