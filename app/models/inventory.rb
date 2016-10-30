@@ -32,7 +32,7 @@ class Inventory < ActiveRecord::Base
   end
 
   def form_label
-    "#{item}"
+    "#{item} - CMV: #{mpm}"
   end
 
   def balance(date=Date.today)
