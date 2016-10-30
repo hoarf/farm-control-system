@@ -11,7 +11,7 @@
         .form-group
           = f.input :evidence
         = f.input :description
-        = f.association :partner
+        = f.association :partner, collection: Partner.sorted
         %hr
         = f.button :submit, class: 'btn-primary'
       .col-md-4
