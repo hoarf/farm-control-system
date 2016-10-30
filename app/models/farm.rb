@@ -8,8 +8,7 @@ class Farm < ActiveRecord::Base
   has_many :inventory
 
   def rentability_at(date)
-    100*(accounts.find_by(system_name: :profit).balance(date)/
-       accounts.find_by(system_name: :capital).balance(date))
+    0
   end
 
   def cattle_count_at(date)
