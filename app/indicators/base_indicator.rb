@@ -5,8 +5,13 @@ class BaseIndicator
       data: values,
       label: label,
       backgroundColor: background_color,
-      fill: false
+      fill: false,
+      yAxisID: axis
     }
+  end
+
+  def axis
+    "y-axis-0"
   end
 
   def background_color

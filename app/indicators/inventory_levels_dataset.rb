@@ -13,4 +13,19 @@ class InventoryLevelsDataset < Dataset
     [ CattleCountIndicator.new(@farm).data, CattleFoodIndicator.new(@farm).data  ]
   end
 
+  def options
+    {
+      title: { display: true, text: title },
+      scales: {
+        yAxes: [{
+                position: "left",
+                "id": "y-axis-0"
+              }, {
+                position: "right",
+                "id": "y-axis-1"
+                }]
+      }
+    }
+  end
+
 end

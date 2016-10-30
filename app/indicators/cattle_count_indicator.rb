@@ -17,4 +17,8 @@ class CattleCountIndicator < BaseIndicator
     BaseIndicator.date_range.map { |d| @farm.cattle_count_at(d) }
   end
 
+  def axis
+    "y-axis-0"
+  end
+
 end
