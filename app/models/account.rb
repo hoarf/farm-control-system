@@ -9,6 +9,7 @@ class Account < ActiveRecord::Base
   PARENT_OR_CHILD_NAME = "accounts.system_name = :name OR
                            parents.system_name = :name"
 
+  scope :capital, -> { find_by(system_name: :capital) }
   scope :parentables, -> { where(parent_id: nil) }
   scope :with_parent, -> { joins(PARENT_LEFT_JOIN) }
   scope :names, -> { pluck(:name) }

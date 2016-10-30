@@ -5,7 +5,9 @@ class ProfitIndicator < BaseIndicator
   end
 
   def values
-    BaseIndicator.date_range.map { |d| Dre.new(d).net_profit }
+    BaseIndicator.date_range.map do |d|
+      100 * (Dre.new(d).net_profit / Account.capital.balance)
+    end
   end
 
   def background_color
