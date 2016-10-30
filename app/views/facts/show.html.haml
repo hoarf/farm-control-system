@@ -2,19 +2,20 @@
 - apagar_path fact_path(@fact)
 = content_for :symbol do
   %i.fa.fa-fw.fa-pencil
-- heading @fact.description
-%p
-  %b Data:
-  = @fact.date.to_formatted_s(:long)
-%p
-  %b Negociante:
-  = @fact.partner
-%p
-  %b Evidência:
-  = @fact.evidence
-%p
-  %b Descrição:
-  = @fact.description
-%hr
-  %h4 Movimentações Financeiras
-  %p= render partial: "moves", object: @fact.moves
+- present(@fact) do |fact|
+  - heading fact.description
+  %p
+    %b Data:
+    = fact.date
+  %p
+    %b Negociante:
+    = fact.partner
+  %p
+    %b Evidência:
+    = fact.evidence
+  %p
+    %b Descrição:
+    = fact.description
+  %hr
+    %h4 Movimentações Financeiras
+    %p= render partial: "moves", object: fact.moves
