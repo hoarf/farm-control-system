@@ -9,7 +9,7 @@ class Dre
 
   def method_missing(method_sym, *arguments, &block)
     if Account.system_names.include?(method_sym.to_s)
-      Account.find_by(system_name: method_sym).balance(date)
+      Account.find_by(system_name: method_sym).balance(@date)
     else
       super
     end
