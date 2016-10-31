@@ -8,7 +8,7 @@ class Dre
 
   def method_missing(method_sym, *arguments, &block)
     if Account.system_names.include?(method_sym.to_s)
-      Account.with_balance(@accounts.of_sysname(method_sym))
+      Account.find_by(system_name: method_sym).balance
     else
       super
     end
