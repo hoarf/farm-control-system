@@ -3,7 +3,7 @@
     %div
       - if user_signed_in?
         %a.navbar-brand{href: "#"}
-          %button.btn.btn-success.btn-circle
+          %button.btn.btn-danger.btn-circle
             %i.fa.fa-leaf
           %span#company= current_user.farm.name
       - else
