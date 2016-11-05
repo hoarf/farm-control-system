@@ -1,15 +1,14 @@
 class Inventory < ActiveRecord::Base
+  include ArelHelpers::ArelTable
 
-  has_many :entries, dependent: :delete_all
-  has_many :checkins
-  has_many :checkouts
+  has_many :entries, dependent: :destroy
+  has_many :checkins, dependent: :destroy
+  has_many :checkouts, dependent: :destroy
 
   belongs_to :farm
 
   accepts_nested_attributes_for :entries, reject_if: :all_blank, allow_destroy: true
-
   validates_presence_of :item, :date, :initial_amount, :initial_balance
-
   after_initialize { |i| i.date ||= Date.today if new_record? }
 
   def total(date=Date.today)

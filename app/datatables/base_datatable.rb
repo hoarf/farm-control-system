@@ -9,41 +9,47 @@ class BaseDatatable
   def as_json(options = {})
     {
       data: data,
-      recordsTotal: scope.count,
-      recordsFiltered: query.count
+      recordsTotal: ready.count,
+      recordsFiltered: filtered_count,
     }
   end
 
   private
 
-  def paginate
-    yield query.page(page).per(per_page)
+  def filtered_count
+    ActiveRecord::Base.connection.execute("SELECT COUNT(*) FROM (#{filter.to_sql}) QUERY").first["count"].to_i
+  end
+
+  def filter
+    filter_params(scope)
   end
 
   def ready
-
-    paginate do |query|
-      if params['order']
-        s = query.sort_by { |x| x[@columns[params['order']['0']['column'].to_i]] || "" }
-        dir_param = params['order']['0']['dir'] || ""
-        dir = dir_param == "desc" ? "desc" : nil
-        s.reverse! if dir
-        query = s
-      end
-      query
-    end
-  end
-
-  def query
-    records = scope
-    if params[:search].present? && params[:search][:value].present?
-      records = records.where("#{search}", search: "%#{params[:search][:value]}%")
-    end
-    records
+    ActiveRecord::Base.connection.execute(
+      filter
+        .order(sort_params)
+        .take(per_page)
+        .skip(page).to_sql)
   end
 
   def page
-    params[:start].to_i/per_page + 1
+    params[:start].to_i/per_page
+  end
+
+  def search_params
+    params.dig :search, :value
+  end
+
+  def sort_params
+    "#{sort_col} #{sort_dir}"
+  end
+
+  def sort_col
+    @columns[params.dig(:order, :'0', :column).to_i]
+  end
+
+  def sort_dir
+    params.dig :order, :'0', :dir
   end
 
   def per_page

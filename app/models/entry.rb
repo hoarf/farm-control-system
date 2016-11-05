@@ -11,6 +11,7 @@ class Entry < ActiveRecord::Base
   scope :by_date, -> { joins(:fact).order('facts.date') }
   scope :of, ->(date) { joins(:fact).where('facts.date <= ?', date) }
 
+
   def total
     fact.cts_total
   end

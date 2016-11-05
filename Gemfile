@@ -66,7 +66,10 @@ gem "kaminari"
 gem 'chartjs-ror'
 
 #Hashs are everywhere
-gem 'hashifiable'
+gem 'ruby_dig'
+
+#Fuck SQL
+gem 'arel-helpers'
 
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

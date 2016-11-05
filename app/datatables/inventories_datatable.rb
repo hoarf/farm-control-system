@@ -1,31 +1,37 @@
 class InventoriesDatatable < BaseDatatable
 
   def initialize(view)
-    @columns = [:item, :total, :balance, :last_mpm]
+    @columns = [:item, :total]
     super
   end
 
   private
 
   def data
+    puts ready.each { |a| puts a }
     ready.map do |r|
       {
-        '0' => r.item,
-        '1' => number_with_precision(r.total),
-        '2' => number_to_currency(r.balance),
-        'DT_RowId' => r.id,
+        '0' => r["item"],
+        '1' => number_with_precision(r["total"].to_f),
+        'DT_RowId' => r["id"],
       }
     end
   end
 
-
   def scope
-    Inventory.all
+    inventories = Inventory.arel_table
+    entries = Entry.arel_table
+    checkins = Checkin
+                 .select(entries[:amount].sum.as("total"), entries[:inventory_id])
+                 .group(:inventory_id).as("checkins")
+    inventories
+      .project(inventories[:id], inventories[:item], checkins[:total])
+      .join(checkins, Arel::Nodes::OuterJoin)
+      .on(checkins[:inventory_id].eq(inventories[:id]))
   end
 
-
-  def search
-    "lower(item) like :search"
+  def filter_params(base)
+    base.where(Inventory[:item].matches("%#{search_params}%"))
   end
 
 end
