@@ -68,8 +68,11 @@ gem 'chartjs-ror'
 #Hashs are everywhere
 gem 'ruby_dig'
 
-#Fuck SQL
+#FUCK SQL
 gem 'arel-helpers'
+
+#OK SQL IS COOL I GUESS
+gem 'scenic'
 
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

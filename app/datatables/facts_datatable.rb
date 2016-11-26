@@ -1,7 +1,7 @@
 class FactsDatatable < BaseDatatable
 
   def initialize(view)
-    @columns = [:date, :description, :credits_names, :debits_names, :moves_amounts]
+    @columns = [:date, :description, :total, :partner]
     super
   end
 
@@ -16,16 +16,22 @@ class FactsDatatable < BaseDatatable
     {
      '0' => l(r.date, format: :short),
      '1' => r.description,
-     '2' => r.debits_names,
-     '3' => r.credits_names,
+     '2' => number_to_currency(r.total),
+     '3' => r.partner,
      'DT_RowId' => r.id,
     }
     end
   end
 
-  def search
-    "(lower(facts.description) like :search or to_char(facts.date,'YYYY-MM-DD') like :search)"
+  def scope
+    DatatableFact.all
   end
 
+  def filter_params(base)
+    base.where(
+      DatatableFact[:partner].matches("%#{search_params}%").or(
+        DatatableFact[:description].matches("%#{search_params}%"))
+    )
+  end
 
 end

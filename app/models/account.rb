@@ -1,4 +1,5 @@
 class Account < ActiveRecord::Base
+  include ArelHelpers::ArelTable
 
   PARENT_RIGHT_JOIN = "RIGHT OUTER JOIN accounts parents
                    on parents.id = accounts.parent_id"
@@ -27,6 +28,7 @@ class Account < ActiveRecord::Base
       .pluck('parents.name, parents.id').sort_by { |i| i.first }
   }
 
+  scope :total, -> { projects(:name).joins(Move.totals) }
   has_many :debits
   has_many :credits
   has_many :moves

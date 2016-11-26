@@ -22,9 +22,8 @@ class PartnerDatatable < BaseDatatable
     Partner.all
   end
 
-
-  def search
-    "lower(partners.name) like :search or lower(contact) like :search"
+  def filter_params(base)
+    base.where(Partner[:name].matches("%#{search_params}%"))
   end
 
 end

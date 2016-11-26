@@ -1,5 +1,6 @@
-dt = (t, c, l) ->
+dt = (t, c, l, o) ->
   $(t).dataTable
+    order: o || [[ 0, 'asc' ]]
     iDisplayLength: 25,
     processing: true,
     serverSide: true,
@@ -12,8 +13,8 @@ dt = (t, c, l) ->
 
 $ ->
   dt '#partners-table', 1, "#{$('table').data('source')}"
-  dt '#facts-table', 3, "#{$('table').data('source')}"
-  dt '#accounts-table', 3, "#{$('table').data('source')}"
+  dt '#facts-table', 3, "#{$('table').data('source')}", [[ 0, 'desc' ]]
+  dt '#accounts-table', 2, "#{$('table').data('source')}"
   dt '#inventories-table', 1, "#{$('table').data('source')}"
   dt '#credits-table', 1, "/livrodiario"
   dt '#debits-table', 1, "/livrodiario"

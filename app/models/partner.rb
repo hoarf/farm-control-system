@@ -1,4 +1,5 @@
 class Partner < ActiveRecord::Base
+  include ArelHelpers::ArelTable
 
   scope :sorted, -> { order(:name) }
 

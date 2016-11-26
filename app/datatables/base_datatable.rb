@@ -10,26 +10,18 @@ class BaseDatatable
     {
       data: data,
       recordsTotal: ready.count,
-      recordsFiltered: filtered_count,
+      recordsFiltered: scope.count,
     }
   end
 
   private
-
-  def filtered_count
-    ActiveRecord::Base.connection.execute("SELECT COUNT(*) FROM (#{filter.to_sql}) QUERY").first["count"].to_i
-  end
 
   def filter
     filter_params(scope)
   end
 
   def ready
-    ActiveRecord::Base.connection.execute(
-      filter
-        .order(sort_params)
-        .take(per_page)
-        .skip(page).to_sql)
+    filter.order(sort_params).page(page).per(per_page)
   end
 
   def page

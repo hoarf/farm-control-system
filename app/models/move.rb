@@ -1,7 +1,8 @@
 class Move < ActiveRecord::Base
+  include ArelHelpers::ArelTable
 
   scope :names, -> { includes(:account).pluck(:name).join(", ") }
-  scope :totals, -> { sum(:amount) }
+  scope :totals, -> { select(:account_id, Move[:amount].sum.as("amount")).group(:account_id) }
   scope :of, -> (date) { joins(:fact).where('facts.date between ? and ?', date - 1.year, date) }
 
   belongs_to :fact

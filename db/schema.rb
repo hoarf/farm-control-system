@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161015005219) do
+ActiveRecord::Schema.define(version: 20161126093026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,4 +136,78 @@ ActiveRecord::Schema.define(version: 20161015005219) do
   add_foreign_key "moves", "facts"
   add_foreign_key "partners", "farms"
   add_foreign_key "users", "farms"
+
+  create_view :datatable_accounts,  sql_definition: <<-SQL
+      SELECT parents.id,
+      parents.name,
+      parents.description,
+      parents.type,
+      (COALESCE(debits.valor, (0)::numeric) - COALESCE(credits.valor, (0)::numeric)) AS valor
+     FROM (((accounts parents
+       LEFT JOIN accounts childrens ON ((childrens.parent_id = parents.id)))
+       LEFT JOIN ( SELECT moves.account_id,
+              COALESCE(sum(moves.amount), (0)::numeric) AS valor
+             FROM moves
+            WHERE ((moves.type)::text = 'Credit'::text)
+            GROUP BY moves.account_id) credits ON ((credits.account_id = parents.id)))
+       LEFT JOIN ( SELECT moves.account_id,
+              COALESCE(sum(moves.amount), (0)::numeric) AS valor
+             FROM moves
+            WHERE ((moves.type)::text = 'Debit'::text)
+            GROUP BY moves.account_id) debits ON ((debits.account_id = parents.id)))
+    WHERE (((parents.type)::text = 'Debtor'::text) AND (childrens.parent_id IS NULL))
+  UNION
+   SELECT parents.id,
+      parents.name,
+      parents.description,
+      parents.type,
+      (COALESCE(credits.valor, (0)::numeric) - COALESCE(debits.valor, (0)::numeric)) AS valor
+     FROM (((accounts parents
+       LEFT JOIN accounts childrens ON ((childrens.parent_id = parents.id)))
+       LEFT JOIN ( SELECT moves.account_id,
+              COALESCE(sum(moves.amount), (0)::numeric) AS valor
+             FROM moves
+            WHERE ((moves.type)::text = 'Credit'::text)
+            GROUP BY moves.account_id) credits ON ((credits.account_id = parents.id)))
+       LEFT JOIN ( SELECT moves.account_id,
+              COALESCE(sum(moves.amount), (0)::numeric) AS valor
+             FROM moves
+            WHERE ((moves.type)::text = 'Debit'::text)
+            GROUP BY moves.account_id) debits ON ((debits.account_id = parents.id)))
+    WHERE (((parents.type)::text = 'Creditor'::text) AND (childrens.parent_id IS NULL));
+  SQL
+
+  create_view :datatable_inventories,  sql_definition: <<-SQL
+      SELECT inventories.id,
+      inventories.item,
+      inventories.unit,
+      (ci.total - co.total) AS total
+     FROM ((inventories
+       LEFT JOIN ( SELECT entries.inventory_id,
+              sum(entries.amount) AS total
+             FROM entries
+            WHERE ((entries.type)::text = 'Checkin'::text)
+            GROUP BY entries.inventory_id) ci ON ((ci.inventory_id = inventories.id)))
+       LEFT JOIN ( SELECT entries.inventory_id,
+              sum(entries.amount) AS total
+             FROM entries
+            WHERE ((entries.type)::text = 'Checkout'::text)
+            GROUP BY entries.inventory_id) co ON ((co.inventory_id = inventories.id)));
+  SQL
+
+  create_view :datatable_facts,  sql_definition: <<-SQL
+      SELECT facts.id,
+      facts.date,
+      facts.description,
+      m.amount AS total,
+      partners.name AS partner
+     FROM ((facts
+       JOIN ( SELECT moves.fact_id,
+              sum(moves.amount) AS amount
+             FROM moves
+            WHERE ((moves.type)::text = 'Credit'::text)
+            GROUP BY moves.fact_id) m ON ((facts.id = m.fact_id)))
+       LEFT JOIN partners ON ((facts.partner_id = partners.id)));
+  SQL
+
 end

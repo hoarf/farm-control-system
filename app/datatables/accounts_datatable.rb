@@ -1,7 +1,7 @@
 class AccountsDatatable < BaseDatatable
 
   def initialize(view)
-    @columns = [:name, :description, :type, :balance]
+    @columns = [:name, :description, :valor]
     super
   end
 
@@ -12,19 +12,18 @@ class AccountsDatatable < BaseDatatable
       {
         '0' => r.name,
         '1' => r.description,
-        '2' => r.model_name.human,
-        '3' => number_to_currency(r.balance),
+        '2' => number_to_currency(r.valor),
         'DT_RowId' => r.id,
       }
     end
   end
 
   def scope
-    Account.all
+    DatatableAccount.all
   end
 
-  def search
-    "lower(accounts.name) like :search or lower(accounts.type) like :search or lower(accounts.description) like :search"
+  def filter_params(base)
+    base.where(DatatableAccount[:name].matches("%#{search_params}%").or(DatatableAccount[:description].matches("%#{search_params}%")))
   end
 
 end
