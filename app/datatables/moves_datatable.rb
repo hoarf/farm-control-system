@@ -1,7 +1,7 @@
 class MovesDatatable < BaseDatatable
 
   def initialize(view)
-    @columns = [:account, :type, :amount]
+    @columns = [:date, :amount]
     super
   end
 
@@ -10,20 +10,19 @@ class MovesDatatable < BaseDatatable
   def data
     ready.map do |r|
       {
-        '0' => r.account.name,
-        '1' => r.model_name.human,
-        '2' => number_to_currency(r.amount),
-        'DT_RowId' => r.fact_id
+        '0' => r.date && l(r.date, format: :short),
+        '1' => number_to_currency(r.amount),
+        'DT_RowId' => r.id
       }
     end
   end
 
   def scope
-    Move.where(fact_id: params[:fact_id])
+    Move.all
   end
 
-  def search
-    ""
+  def filter_params(base)
+    base
   end
 
 end

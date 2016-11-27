@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161126093026) do
+ActiveRecord::Schema.define(version: 20161127101904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -208,6 +208,18 @@ ActiveRecord::Schema.define(version: 20161126093026) do
             WHERE ((moves.type)::text = 'Credit'::text)
             GROUP BY moves.fact_id) m ON ((facts.id = m.fact_id)))
        LEFT JOIN partners ON ((facts.partner_id = partners.id)));
+  SQL
+
+  create_view :datatable_moves,  sql_definition: <<-SQL
+      SELECT facts.id,
+      facts.date,
+      accounts.name AS account,
+      accounts.id AS account_id,
+      moves.amount,
+      moves.type
+     FROM ((moves
+       JOIN accounts ON ((accounts.id = moves.account_id)))
+       JOIN facts ON ((facts.id = moves.fact_id)));
   SQL
 
 end

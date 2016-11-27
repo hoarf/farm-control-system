@@ -1,7 +1,9 @@
 class CreditsDatatable < MovesDatatable
 
   def scope
-    Credit.where({account_id: params[:account_id]})
+    DatatableMove
+      .where( account_id: params[:account_id] )
+      .where( type: 'Credit' )
   end
 
 end
