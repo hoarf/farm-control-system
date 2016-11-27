@@ -1,9 +1,10 @@
-dt = (t, c, l, o) ->
+dt = (t, c, l, o, s) ->
   $(t).dataTable
     order: o || [[ 0, 'asc' ]]
     iDisplayLength: 25,
     processing: true,
     serverSide: true,
+    bFilter: s || false,
     language: { "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" },
     ajax: $(t).data('source'),
     pagingType: 'full_numbers',
@@ -12,11 +13,11 @@ dt = (t, c, l, o) ->
   $("#{t} tbody").on 'click', 'tr', -> window.location.href = "#{l}/#{this.id}"
 
 $ ->
-  dt '#partners-table', 1, "#{$('table').data('source')}"
-  dt '#facts-table', 3, "#{$('table').data('source')}", [[ 0, 'desc' ]]
-  dt '#accounts-table', 2, "#{$('table').data('source')}"
-  dt '#inventories-table', 1, "#{$('table').data('source')}"
-  dt '#credits-table', 1, "/livrodiario"
-  dt '#debits-table', 1, "/livrodiario"
-  dt '#moves-table', 1, "/livrodiario"
-  dt '#entries-table', 4, "/livrodiario"
+  dt '#partners-table', 1, "#{$('table').data('source')}", [[ 0, 'desc' ]], true
+  dt '#facts-table', 3, "#{$('table').data('source')}", [[ 0, 'desc' ]], true
+  dt '#accounts-table', 2, "#{$('table').data('source')}", [[ 0, 'desc' ]], true
+  dt '#inventories-table', 1, "#{$('table').data('source')}", [[ 0, 'desc' ]], true
+  dt '#credits-table', 1, "/livrodiario", [[ 0, 'desc' ]], true
+  dt '#debits-table', 1, "/livrodiario", [[ 0, 'desc' ]], true
+  dt '#moves-table', 2, "/livrodiario", [[ 0, 'desc' ]], false
+  dt '#entries-table', 4, "/livrodiario", [[ 0, 'desc' ]], false

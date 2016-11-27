@@ -1,7 +1,7 @@
 class MovesDatatable < BaseDatatable
 
   def initialize(view)
-    @columns = [:date, :amount]
+    @columns = [:date, :amount, :type]
     super
   end
 
@@ -12,13 +12,14 @@ class MovesDatatable < BaseDatatable
       {
         '0' => r.date && l(r.date, format: :short),
         '1' => number_to_currency(r.amount),
-        'DT_RowId' => r.id
+        '2' => r.type,
+        '3' => r.account.name,
       }
     end
   end
 
   def scope
-    Move.all
+    Move.joins(:fact)
   end
 
   def filter_params(base)

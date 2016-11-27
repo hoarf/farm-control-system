@@ -20,14 +20,12 @@ class EntriesDatatable < BaseDatatable
     end
   end
 
-
   def scope
-    Entry.where(inventory_id: params[:inventory_id])
+    Entry.joins(:fact).where(inventory_id: params[:inventory_id])
   end
 
-
-  def search
-    ""
+  def filter_params(base)
+    base
   end
 
 end
