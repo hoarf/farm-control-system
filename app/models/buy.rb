@@ -1,0 +1,3 @@
+class Buy < Fact
+
+end

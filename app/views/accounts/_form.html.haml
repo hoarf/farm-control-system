@@ -11,6 +11,5 @@
         value_method: :name, as: :radio_buttons
         = f.association :parent, collection: Account.parentables
         = f.input :description
-        = f.input :start, as: :currency
         %hr
         = f.button :submit, class: "btn-primary"

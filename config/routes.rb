@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     end
     resources :farms,       path: 'fazendas',       only: [:show]
 
+    resources :buys,        path: 'compras',        only: [:new, :create]
+    resources :sales,       path: 'vendas',        only: [:new, :create]
+
     devise_for :users, path: 'usuarios', path_names: {
                  sign_in: 'entrar',
                  sign_out: 'sair',

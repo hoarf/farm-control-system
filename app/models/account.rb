@@ -29,6 +29,7 @@ class Account < ActiveRecord::Base
   }
 
   scope :total, -> { projects(:name).joins(Move.totals) }
+
   has_many :debits
   has_many :credits
   has_many :moves
@@ -39,10 +40,14 @@ class Account < ActiveRecord::Base
   belongs_to :parent, class_name: Account.name,
              inverse_of: :children
 
-  validates_presence_of :type, :name, :start
+  validates_presence_of :type, :name
 
   def self.with_balance(scope)
     scope.to_a.map { |a| a.balance }.reduce(0, :+)
+  end
+
+  def self.method_missing(method, *args)
+    Account.find_by system_name: method || super
   end
 
   def balance(date=Date.today)

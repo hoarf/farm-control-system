@@ -8,18 +8,23 @@ class Inventory < ActiveRecord::Base
   belongs_to :farm
 
   accepts_nested_attributes_for :entries, reject_if: :all_blank, allow_destroy: true
+
   validates_presence_of :item, :date, :initial_amount, :initial_balance
+
   after_initialize { |i| i.date ||= Date.today if new_record? }
 
   def total(date=Date.today)
     initial_amount + checkins.of(date).sum(:amount) - checkouts.of(date).sum(:amount)
   end
 
+  def to_s
+    item
+  end
+
   def mpms
     c = []
-    c << safe_div(initial_balance, initial_amount)
     checkins.by_date.each do |ci|
-      counted = checkins.select { |c| c.date <= ci.date }
+      counted = checkins.select { |ca| ca.date <= ci.date }
       c << safe_div(counted.sum(&:total), counted.sum(&:amount))
     end
     c
@@ -33,6 +38,14 @@ class Inventory < ActiveRecord::Base
     initial_balance + checkins.of(date).to_a.sum(&:total) - checkouts.of(date).to_a.sum(&:total)
   end
 
+  def self.males
+    Inventory.find_by system_name: :males
+  end
+
+  def self.females
+    Inventory.find_by system_name: :females
+  end
+
   private
 
   def safe_div(n1,n2)
@@ -42,5 +55,7 @@ class Inventory < ActiveRecord::Base
       0
     end
   end
+
+
 
 end

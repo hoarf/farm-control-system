@@ -1,4 +1,5 @@
 class Move < ActiveRecord::Base
+
   include ArelHelpers::ArelTable
 
   scope :names, -> { includes(:account).pluck(:name).join(", ") }

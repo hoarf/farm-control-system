@@ -1,7 +1,7 @@
 dt = (t, c, l, o, s) ->
   $(t).dataTable
     order: o || [[ 0, 'asc' ]]
-    iDisplayLength: 25,
+    iDisplayLength: 50,
     processing: true,
     serverSide: true,
     bFilter: s || false,
@@ -17,7 +17,7 @@ $ ->
   dt '#facts-table', 3, "#{$('table').data('source')}", [[ 0, 'desc' ]], true
   dt '#accounts-table', 2, "#{$('table').data('source')}", [[ 0, 'desc' ]], true
   dt '#inventories-table', 1, "#{$('table').data('source')}", [[ 0, 'desc' ]], true
-  dt '#credits-table', 1, "/livrodiario", [[ 0, 'desc' ]], true
-  dt '#debits-table', 1, "/livrodiario", [[ 0, 'desc' ]], true
+  dt '#credits-table', 1, "/livrodiario", [[ 0, 'desc' ]], false
+  dt '#debits-table', 1, "/livrodiario", [[ 0, 'desc' ]], false
   dt '#moves-table', 2, "/livrodiario", [[ 0, 'desc' ]], false
   dt '#entries-table', 4, "/livrodiario", [[ 0, 'desc' ]], false

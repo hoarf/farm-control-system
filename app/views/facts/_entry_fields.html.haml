@@ -1,5 +1,5 @@
 .nested-fields
-  = f.input :inventory_id, collection: Inventory.all,
+  = f.association :inventory,
   label_method: lambda { |i| "#{i.item} - CMV: #{number_to_currency(i.mpm)}" },
   value_method: :id
   = f.input :type, collection: Entry.subclasses,

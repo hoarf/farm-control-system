@@ -1,0 +1,18 @@
+= simple_form_for(@sale) do |f|
+  %p
+    = f.error_notification
+  .container-fluid
+    .row
+      .col-md-4
+        %p
+          %h3 Dados do Fato
+        %hr
+        = f.input :date, as: :date, autofocus: true
+        = f.input :evidence
+        = f.input :description
+        = f.input :partner_id, collection: Partner.sorted
+        = f.input :amount_males
+        = f.input :amount_females, default: 0
+        = f.input :amount, as: :currency
+        %hr
+        = f.button :submit, class: 'btn-primary'

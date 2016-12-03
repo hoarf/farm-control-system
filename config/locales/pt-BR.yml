@@ -1,27 +1,34 @@
 ---
 pt-BR:
+  activemodel:
+    attributes:
+      sale:
+        amount: Valor
+        amount_males: Quantidade de Machos
+        amount_females: Quantidade de Fêmeas
+        partner_id: Contato
   activerecord:
     models:
       asset:
         one: Patrimônio Líquido
       creditor:
-        one: "Credora"
+        one: Credora
       debtor:
-        one: "Devedora"
+        one: Devedora
       partner:
-        one: "Contato"
+        one: Contato
       account:
-        one: "Conta"
+        one: Conta
       inventory:
-        one: "Estoque"
+        one: Estoque
       fact:
-        one: "Fato Contábil"
+        one: Fato Contábil
       move:
-        one: "Movimentação Financeira"
+        one: Movimentação Financeira
       entry:
-        one: "Movimentação de Estoque"
+        one: Movimentação de Estoque
       checkin:
-        one: "Entrada"
+        one: Entrada
       checkout:
         one: Saída
       credit:
@@ -32,12 +39,12 @@ pt-BR:
       checkin:
         human: entradas
       fact:
-        date: "Data"
-        description: "Descrição"
+        date: Data
+        description: Descrição
         partner: Negociante
         evidence: Evidência
       entry:
-        inventory_id: Estoque
+        inventory: Estoque
         type: Tipo de Movimentação de Estoque
         amount: Quantidade
       move:

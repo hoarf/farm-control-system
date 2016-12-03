@@ -1,21 +1,21 @@
-- present(@account.becomes(Account)) do |account|
+- present(@account, presenter_klass=AccountPresenter) do |account|
   - title "Detalhes da Conta"
   - apagar_path account_path(@account)
   = content_for :symbol do
     %i.fa.fa-fw.fa-book
-  - heading @account.name
+  - heading account.name
   %p
     %b Conta pai:
     = account.parent
   %p
     %b Natureza:
-    = @account.model_name.human
+    = account.model_name.human
   %p
     %b Descrição:
-    = @account.description
+    = account.description
   %p
     %b Saldo:
-    = @account.balance
+    = account.balance
   %hr
   .container-fluid
     .row

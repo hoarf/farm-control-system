@@ -8,8 +8,7 @@
           %h3 Dados do Fato
         %hr
         = f.input :date, as: :date, autofocus: true
-        .form-group
-          = f.input :evidence
+        = f.input :evidence
         = f.input :description
         = f.association :partner, collection: Partner.sorted
         %hr

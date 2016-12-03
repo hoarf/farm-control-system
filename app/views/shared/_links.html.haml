@@ -18,6 +18,9 @@
           = fa_menu_item(new_partner_path, "Contato", "users")
           = fa_menu_item(new_inventory_path, "Estoque", "list-alt")
           = fa_menu_item(new_fact_path, "Fato Contábil", "book")
+          %ul.nav.nav-third-level
+            = fa_menu_item(new_sale_path, "Venda", "arrow-up")
+            = fa_menu_item(new_buy_path, "Compra", "arrow-down")
       %li
         %a{href: "#"}
           %i.fa.fa-search

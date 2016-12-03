@@ -1,0 +1,3 @@
+before_action :set_fact, only: [:show, :edit, :update, :destroy]class SalesController < ApplicationController
+
+end
