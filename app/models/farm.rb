@@ -8,12 +8,11 @@ class Farm < ActiveRecord::Base
   has_many :inventory
 
   def cattle_count_at(date)
-    inventory.find_by(system_name: :females).total(date) +
-      inventory.find_by(system_name: :males).total(date)
+    inventory.females.balance(date) + inventory.males.balance(date)
   end
 
   def cattle_food_at(date)
-    inventory.find_by(system_name: :food).total(date)
+    inventory.food.balance(date)
   end
 
 end

@@ -20,4 +20,4 @@ $ ->
   dt '#credits-table', 1, "/livrodiario", [[ 0, 'desc' ]], false
   dt '#debits-table', 1, "/livrodiario", [[ 0, 'desc' ]], false
   dt '#moves-table', 2, "/livrodiario", [[ 0, 'desc' ]], false
-  dt '#entries-table', 4, "/livrodiario", [[ 0, 'desc' ]], false
+  dt '#entries-table', 2, "/livrodiario", [[ 0, 'desc' ]], false

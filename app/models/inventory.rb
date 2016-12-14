@@ -1,61 +1,46 @@
+
+# coding: utf-8
+
 class Inventory < ActiveRecord::Base
-  include ArelHelpers::ArelTable
 
+  # Required Objects in the system
+  scope :males, -> { find_by(system_name: :males) }
+  scope :females, -> { find_by(system_name: :females) }
+  scope :food, -> { find_by(system_name: :food) }
+
+  # Relationships
   has_many :entries, dependent: :destroy
-  has_many :checkins, dependent: :destroy
   has_many :checkouts, dependent: :destroy
-
+  has_many :checkins, dependent: :destroy
   belongs_to :farm
 
-  accepts_nested_attributes_for :entries, reject_if: :all_blank, allow_destroy: true
+  # Validation
+  validates_presence_of :item, :date
 
-  validates_presence_of :item, :date, :initial_amount, :initial_balance
-
+  # Initialization
   after_initialize { |i| i.date ||= Date.today if new_record? }
 
-  def total(date=Date.today)
-    initial_amount + checkins.of(date).sum(:amount) - checkouts.of(date).sum(:amount)
+  def balance(date=Date.today)
+    checkins.of(date).total - self.checkouts.of(date).total
   end
 
-  def to_s
-    item
-  end
+  Mpm = Struct.new(:date, :value)
 
   def mpms
-    c = []
-    checkins.by_date.each do |ci|
-      counted = checkins.select { |ca| ca.date <= ci.date }
-      c << safe_div(counted.sum(&:total), counted.sum(&:amount))
-    end
-    c
-  end
+    checkins.map do |checkin|
+      entries_sum = checkins.of(checkin.date).total -
+                    checkouts.of(checkin.date).total || 0
 
-  def mpm
-    mpms.last
-  end
+      moves_sum = checkin.fact.credits_of_cts_account_of(checkin.date) -
+                  checkin.fact.debits_of_cts_account_of(checkin.date)
 
-  def balance(date=Date.today)
-    initial_balance + checkins.of(date).to_a.sum(&:total) - checkouts.of(date).to_a.sum(&:total)
-  end
-
-  def self.males
-    Inventory.find_by system_name: :males
-  end
-
-  def self.females
-    Inventory.find_by system_name: :females
-  end
-
-  private
-
-  def safe_div(n1,n2)
-    begin
-      n1/n2
-    rescue
-      0
+      mpm_value = if moves_sum != 0 then moves_sum/entries_sum else 0 end
+      Mpm.new(checkins.date, mpm_value)
     end
   end
 
-
+  def mpm(date)
+    mpms.select { |m| m.date < date }.last || 0
+  end
 
 end
