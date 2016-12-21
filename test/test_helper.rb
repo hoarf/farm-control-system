@@ -1,7 +1,7 @@
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../../config/environment", __FILE__)
-require "rails/test_help"
 
+require "rails/test_help"
 require "mocha/mini_test"
 
 # Improved Minitest output (color and progress bar)
@@ -20,20 +20,12 @@ require "minitest/rails"
 require "minitest/spec"
 require "minitest/rails/capybara"
 
-class ActiveSupport::TestCase
-  fixtures :all
-end
+class ActionController::TestCase
+  include Devise::Test::ControllerHelpers
 
-class Capybara::Rails::TestCase
-  fixtures :all
-  def sign_in_user
-    visit new_user_session_path
-
-    fill_in "Email", :with => users(:admin).email
-    fill_in "Password", :with => ENV['admin_account_password']
-    click_button "Log in"
-
-    page.must_have_content "Logado como #{users(:admin).email}"
+  def setup
+    @request.env['devise.mapping'] =  Devise.mappings[:users]
+    sign_in users :admin
   end
 end
 
@@ -46,6 +38,7 @@ class ActiveRecord::Base
     @@shared_connection || ConnectionPool::Wrapper.new(:size => 1) { retrieve_connection }
   end
 end
+
 ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 
 class ActiveSupport::TestCase

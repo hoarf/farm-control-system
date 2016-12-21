@@ -1,5 +1,5 @@
 - title "Detalhes do Estoque"
-- apagar_path inventory_path(@inventory)
+- delete_path inventory_path(@inventory)
 = content_for :symbol do
   %i.fa.fa-fw.fa-bank
 - present(@inventory) do |inventory|

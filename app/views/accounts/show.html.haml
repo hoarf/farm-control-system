@@ -1,6 +1,6 @@
 - present(@account, presenter_klass=AccountPresenter) do |account|
   - title "Detalhes da Conta"
-  - apagar_path account_path(@account)
+  - delete_path account_path(@account)
   = content_for :symbol do
     %i.fa.fa-fw.fa-book
   - heading account.name

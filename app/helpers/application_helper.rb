@@ -42,8 +42,8 @@ module ApplicationHelper
     content_for(:heading) { text }
   end
 
-  def apagar_path(url)
-    content_for(:apagar_path) {
+  def delete_path(url)
+    content_for(:delete_path) {
       link_to "Apagar",
               url,
               method: :delete,

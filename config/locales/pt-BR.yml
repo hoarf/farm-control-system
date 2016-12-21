@@ -7,6 +7,11 @@ pt-BR:
         amount_males: Quantidade de Machos
         amount_females: Quantidade de Fêmeas
         partner_id: Contato
+      buy:
+        amount: Valor
+        amount_males: Quantidade de Machos
+        amount_females: Quantidade de Fêmeas
+        partner_id: Contato
   activerecord:
     models:
       asset:

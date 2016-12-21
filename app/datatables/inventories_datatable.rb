@@ -12,7 +12,7 @@ class InventoriesDatatable < BaseDatatable
     ready.map do |r|
       {
         '0' => r.item,
-        '1' => r.total,
+        '1' => r.total || 0,
         'DT_RowId' => r.id,
       }
     end

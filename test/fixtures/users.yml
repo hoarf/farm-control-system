@@ -1,0 +1,6 @@
+admin:
+  email: "admin@agropecuariaficagna.com"
+  encrypted_password: "212121"
+  confirmed_at: '2016-1-1'
+  farm_id: 1
+  id: 1

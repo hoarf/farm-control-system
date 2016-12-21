@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161203095607) do
+ActiveRecord::Schema.define(version: 20161128223048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 20161203095607) do
       SELECT inventories.id,
       inventories.item,
       inventories.unit,
-      (ci.total - co.total) AS total
+      COALESCE((ci.total - co.total), (0)::numeric) AS total
      FROM ((inventories
        LEFT JOIN ( SELECT entries.inventory_id,
               sum(entries.amount) AS total

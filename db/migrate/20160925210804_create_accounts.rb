@@ -7,8 +7,6 @@ class CreateAccounts < ActiveRecord::Migration
 
       t.text :description
 
-      t.decimal :start, default: 0
-
       t.string :system_name
       t.string :type
       t.string :name

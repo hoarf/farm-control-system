@@ -40,7 +40,7 @@ Debtor.create!({ name: "Imóveis", system_name: :real_state, description: "Uso e
 Debtor.create!({ name: "Veículos", system_name: :vehicles })
 Debtor.create!({ name: "Móveis e Utensílios", system_name: :appliance })
 Debtor.create!({ name: "Instalações", system_name: :improvements })
-Debtor.create!({ name: "Estoques", system_name: :inventory, description:   })
+Debtor.create!({ name: "Estoques", system_name: :inventory, description: "Total em estoques" })
 
 Debtor.create!({ name: "Depreciação", system_name: "depreciation", parent: expenses })
 Debtor.create!({ name: "Salários e Encargos", system_name: "wages", parent: expenses, description: "Salários, Honorários, Comissões, Férias, Gratificações e Participações a pagar" })

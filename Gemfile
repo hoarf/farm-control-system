@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.2.4"
+ruby "2.2.6"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -76,18 +76,20 @@ gem 'scenic'
 
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
-  gem 'guard'
-  gem 'guard-minitest'
+
 end
 
 group :test, :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'guard'
+  gem 'guard-minitest'
+  gem 'byebug'
 end
 
 group :test do
@@ -102,5 +104,4 @@ group :test do
   gem "test_after_commit"
   gem 'minitest-rails'
   gem 'minitest-rails-capybara'
-  gem 'minitest-spec'
 end

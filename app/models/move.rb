@@ -1,9 +1,14 @@
 # coding: utf-8
 
+# This class models a financial movement in the system.
 class Move < ActiveRecord::Base
 
-  scope :of, -> (date) { joins(:fact).where('facts.date between ? and ?', date - 1.year, date) }
-  scope :of_cts_account, -> { where(account: { sytem_name: :cts }) }
+  scope :with_facts, -> { joins(:fact) }
+  scope :with_accounts, -> { joins(:account) }
+  scope :of, -> (date) { where('facts.date between ? and ?', date - 1.year, date) }
+  scope :in, -> (account) { where(Account[:system_name].eq(account)) }
+  scope :of_date, -> (date) { with_facts.of(date).total }
+  scope :of_account, -> (date, account) { with_facts.with_accounts.of(date).in(account).total }
   scope :total, -> { sum(:amount) }
 
   belongs_to :fact

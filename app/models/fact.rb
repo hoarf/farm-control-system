@@ -1,5 +1,6 @@
 # coding: utf-8
 
+# This class represents any accounting relevant thing that happens.
 class Fact < ActiveRecord::Base
 
   MOVES_COUNT_MIN = 2
@@ -33,31 +34,11 @@ class Fact < ActiveRecord::Base
   end
 
   def credits_of_cts_account_of(date)
-       credits.of_cts_account.of(date).total
+    credits.of_account(date, :cts)
   end
 
   def debits_of_cts_account_of(date)
-       debits.of_cts_account.of(date).total
-  end
-
-  def self.create_from_sale(sale, inventory, amount, total)
-    unless amount == 0 # Amount 0 means no fact
-      Fact.create do |f|
-        cost = inventory.mpm(sale.date) * amount
-        revenue = (sale.amount/total) * amount
-
-        f.date = sale.date
-        f.description = sale.description
-        f.evidence = sale.evidence
-
-        f.entry = Entry.new({type: 'Checkout', inventory: inventory, amount: amount})
-
-        f.moves << Move.new({ amount: revenue, account: Account.sales_revenue, type: 'Credit' })
-        f.moves << Move.new({ amount: revenue, account: Account.cash, type: 'Debit' })
-        f.moves << Move.new({ amount: cost, account: Account.cost_to_sell, type: 'Debit' })
-        f.moves << Move.new({ amount: cost, account: Account.inventory, type: 'Credit' })
-      end
-    end
+    debits.of_account(date, :cts)
   end
 
 end

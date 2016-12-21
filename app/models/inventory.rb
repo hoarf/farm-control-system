@@ -1,4 +1,3 @@
-
 # coding: utf-8
 
 class Inventory < ActiveRecord::Base
@@ -21,26 +20,25 @@ class Inventory < ActiveRecord::Base
   after_initialize { |i| i.date ||= Date.today if new_record? }
 
   def balance(date=Date.today)
-    checkins.of(date).total - self.checkouts.of(date).total
+    checkins.of(date) - checkouts.of(date)
   end
 
   Mpm = Struct.new(:date, :value)
 
   def mpms
     checkins.map do |checkin|
-      entries_sum = checkins.of(checkin.date).total -
-                    checkouts.of(checkin.date).total || 0
+      entries_sum = checkins.of(checkin.date) - checkouts.of(checkin.date)
 
       moves_sum = checkin.fact.credits_of_cts_account_of(checkin.date) -
                   checkin.fact.debits_of_cts_account_of(checkin.date)
 
-      mpm_value = if moves_sum != 0 then moves_sum/entries_sum else 0 end
-      Mpm.new(checkins.date, mpm_value)
+      mpm_value = if entries_sum != 0 then moves_sum/entries_sum else 0 end
+      Mpm.new(checkin.date, mpm_value)
     end
   end
 
-  def mpm(date)
-    mpms.select { |m| m.date < date }.last || 0
+  def mpm(date=Date.today)
+    mpms.select { |m| m.date <= date }.last || 0
   end
 
 end

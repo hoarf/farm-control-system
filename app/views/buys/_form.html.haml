@@ -1,6 +1,6 @@
 = simple_form_for(@buy) do |f|
   %p
-    =f.error_notification
+    = f.error_notification
   .container-fluid
     .row
       .col-md-4
@@ -10,11 +10,9 @@
         = f.input :date, as: :date, autofocus: true
         = f.input :evidence
         = f.input :description
-        = f.association :partner, collection: Partner.sorted
-        = f.simple_fields_for :entry do |entry|
-          = entry.association :inventory
-          = entry.input :amount
-        = f.simple_fields_for :move do |move|
-          = move.input :amount, as: :currency
+        = f.input :partner_id, collection: Partner.sorted
+        = f.input :amount_males
+        = f.input :amount_females, default: 0
+        = f.input :amount, as: :currency
         %hr
         = f.button :submit, class: 'btn-primary'
